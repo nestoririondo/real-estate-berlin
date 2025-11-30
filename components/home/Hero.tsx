@@ -21,7 +21,7 @@ interface Hero7Props {
   };
 }
 
-const Hero7 = ({
+const Hero = ({
   heading = "A Collection of Components Built With Shadcn & Tailwind",
   description = "Finely crafted components built with React, Tailwind and Shadcn UI. Developers can copy and paste these blocks directly into their project.",
   button = {
@@ -97,4 +97,4 @@ const Hero7 = ({
   );
 };
 
-export { Hero7 };
+export { Hero };

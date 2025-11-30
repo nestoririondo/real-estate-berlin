@@ -1,5 +1,4 @@
 import { ArrowRight } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 
 interface Feature {
@@ -18,7 +17,7 @@ interface Feature72Props {
   features?: Feature[];
 }
 
-const Feature72 = ({
+const Features = ({
   title = "Powerful Features",
   description = "Discover the powerful features that make our platform stand out from the rest. Built with the latest technology and designed for maximum productivity.",
   buttonUrl = "https://shadcnblocks.com",
@@ -111,4 +110,4 @@ const Feature72 = ({
   );
 };
 
-export { Feature72 };
+export { Features };
