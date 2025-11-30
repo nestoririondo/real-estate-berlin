@@ -13,8 +13,8 @@ export const DEFAULT_FILTERS: PropertyFilterValues = {
   type: PropertyType.ALL,
   priceMin: 0,
   priceMax: 2000000,
-  bedrooms: Bedrooms.ALL,
-  neighborhood: Neighborhood.ALL,
+  bedrooms: [Bedrooms.ALL],
+  neighborhood: [Neighborhood.ALL],
   sizeMin: 0,
   sizeMax: 200,
 };

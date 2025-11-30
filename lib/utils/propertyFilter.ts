@@ -23,21 +23,23 @@ export const filterProperties = (
     }
 
     // Filter by bedrooms
-    if (filters.bedrooms !== Bedrooms.ALL) {
-      if (filters.bedrooms === Bedrooms.FOUR_PLUS) {
-        if (property.beds < 4) return false;
-      } else {
-        const bedsFilter = Number(filters.bedrooms);
-        if (property.beds !== bedsFilter) return false;
-      }
+    if (!filters.bedrooms.includes(Bedrooms.ALL)) {
+      const matchesBedroom = filters.bedrooms.some((bedroom) => {
+        if (bedroom === Bedrooms.FOUR_PLUS) {
+          return property.beds >= 4;
+        } else {
+          const bedsFilter = Number(bedroom);
+          return property.beds === bedsFilter;
+        }
+      });
+      if (!matchesBedroom) return false;
     }
 
     // Filter by neighborhood
-    if (
-      filters.neighborhood !== Neighborhood.ALL &&
-      property.location !== filters.neighborhood
-    ) {
-      return false;
+    if (!filters.neighborhood.includes(Neighborhood.ALL)) {
+      if (!filters.neighborhood.includes(property.location as Neighborhood)) {
+        return false;
+      }
     }
 
     // Filter by size

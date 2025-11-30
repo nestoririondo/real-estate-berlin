@@ -20,10 +20,10 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
     <Link href={`/properties/${property.id}`}>
       <Card
         className={cn(
-          "group overflow-hidden transition-all hover:shadow-lg cursor-pointer h-full flex flex-col"
+          "group overflow-hidden transition-all hover:shadow-lg cursor-pointer h-full flex flex-col p-0"
         )}
       >
-        <div className="relative w-full h-64 overflow-hidden">
+        <div className="relative w-full h-64 overflow-hidden rounded-t-xl">
           <Image
             src={property.image}
             alt={property.title}
@@ -69,7 +69,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
           </div>
         </CardContent>
 
-        <CardFooter className="pt-0">
+        <CardFooter className="pt-0 pb-6">
           <p className="text-2xl font-bold text-primary">{property.price}</p>
         </CardFooter>
       </Card>

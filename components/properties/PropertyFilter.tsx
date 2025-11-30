@@ -13,6 +13,7 @@ import { Slider } from "@/components/ui/slider";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { Home, Euro, Bed, MapPin, Square } from "lucide-react";
 import type { PropertyFilterValues } from "@/types/filter";
 import { PropertyType, Neighborhood, Bedrooms } from "@/types/enums";
 import {
@@ -30,10 +31,74 @@ interface PropertyFilterProps {
 const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
   const updateFilter = (
     key: keyof PropertyFilterValues,
-    value: string | number
+    value: string | number | Bedrooms[] | Neighborhood[]
   ) => {
     const newFilters = { ...filters, [key]: value };
     onFilterChange(newFilters);
+  };
+
+  const handleBedroomToggle = (bedroom: Bedrooms) => {
+    const currentBedrooms = filters.bedrooms;
+    
+    // If "All" is selected, replace with just the clicked option
+    if (currentBedrooms.includes(Bedrooms.ALL)) {
+      if (bedroom === Bedrooms.ALL) {
+        // If clicking "All" when it's already selected, do nothing
+        return;
+      }
+      // Replace "All" with the new selection
+      updateFilter("bedrooms", [bedroom]);
+      return;
+    }
+    
+    // If clicking "All", replace everything with just "All"
+    if (bedroom === Bedrooms.ALL) {
+      updateFilter("bedrooms", [Bedrooms.ALL]);
+      return;
+    }
+    
+    // Toggle the bedroom option
+    if (currentBedrooms.includes(bedroom)) {
+      // Remove it
+      const newBedrooms = currentBedrooms.filter((b) => b !== bedroom);
+      // If no bedrooms selected, default to "All"
+      updateFilter("bedrooms", newBedrooms.length > 0 ? newBedrooms : [Bedrooms.ALL]);
+    } else {
+      // Add it
+      updateFilter("bedrooms", [...currentBedrooms, bedroom]);
+    }
+  };
+
+  const handleNeighborhoodToggle = (neighborhood: Neighborhood) => {
+    const currentNeighborhoods = filters.neighborhood;
+    
+    // If "All" is selected, replace with just the clicked option
+    if (currentNeighborhoods.includes(Neighborhood.ALL)) {
+      if (neighborhood === Neighborhood.ALL) {
+        // If clicking "All" when it's already selected, do nothing
+        return;
+      }
+      // Replace "All" with the new selection
+      updateFilter("neighborhood", [neighborhood]);
+      return;
+    }
+    
+    // If clicking "All", replace everything with just "All"
+    if (neighborhood === Neighborhood.ALL) {
+      updateFilter("neighborhood", [Neighborhood.ALL]);
+      return;
+    }
+    
+    // Toggle the neighborhood option
+    if (currentNeighborhoods.includes(neighborhood)) {
+      // Remove it
+      const newNeighborhoods = currentNeighborhoods.filter((n) => n !== neighborhood);
+      // If no neighborhoods selected, default to "All"
+      updateFilter("neighborhood", newNeighborhoods.length > 0 ? newNeighborhoods : [Neighborhood.ALL]);
+    } else {
+      // Add it
+      updateFilter("neighborhood", [...currentNeighborhoods, neighborhood]);
+    }
   };
 
   const handlePriceRangeChange = (values: number[]) => {
@@ -55,13 +120,22 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
   };
 
   const resetFilters = () => {
-    onFilterChange(DEFAULT_FILTERS);
+    const resetFilters: PropertyFilterValues = {
+      type: PropertyType.ALL,
+      priceMin: FILTER_LIMITS.PRICE_MIN,
+      priceMax: FILTER_LIMITS.PRICE_MAX,
+      bedrooms: [Bedrooms.ALL],
+      neighborhood: [Neighborhood.ALL],
+      sizeMin: FILTER_LIMITS.SIZE_MIN,
+      sizeMax: FILTER_LIMITS.SIZE_MAX,
+    };
+    onFilterChange(resetFilters);
   };
 
   return (
     <div className="w-full space-y-6 rounded-lg border bg-card p-6 shadow-sm">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold">Filter Properties</h2>
+        <h2 className="text-2xl font-semibold">Filter</h2>
         <Button variant="outline" size="sm" onClick={resetFilters}>
           Reset
         </Button>
@@ -71,7 +145,10 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
 
       {/* Buy or Rent */}
       <div className="space-y-3">
-        <Label className="text-base font-medium">Type</Label>
+        <Label className="text-base font-medium flex items-center gap-2">
+          <Home className="h-4 w-4" />
+          Type
+        </Label>
         <RadioGroup
           value={filters.type}
           onValueChange={(value) => updateFilter("type", value as PropertyType)}
@@ -102,7 +179,8 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
 
       {/* Price Range */}
       <div className="space-y-3">
-        <Label className="text-base font-medium">
+        <Label className="text-base font-medium flex items-center gap-2">
+          <Euro className="h-4 w-4" />
           Price Range: €{filters.priceMin.toLocaleString()} - €
           {filters.priceMax.toLocaleString()}
         </Label>
@@ -154,55 +232,62 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
 
       {/* Bedrooms */}
       <div className="space-y-3">
-        <Label htmlFor="bedrooms" className="text-base font-medium">
+        <Label className="text-base font-medium flex items-center gap-2">
+          <Bed className="h-4 w-4" />
           Bedrooms
         </Label>
-        <Select
-          value={filters.bedrooms}
-          onValueChange={(value) => updateFilter("bedrooms", value)}
-        >
-          <SelectTrigger id="bedrooms">
-            <SelectValue placeholder="Select bedrooms" />
-          </SelectTrigger>
-          <SelectContent>
-            {BEDROOM_OPTIONS.map((option) => (
-              <SelectItem key={option} value={option}>
+        <div className="flex flex-wrap gap-2">
+          {BEDROOM_OPTIONS.map((option) => {
+            const isSelected = filters.bedrooms.includes(option);
+            return (
+              <Button
+                key={option}
+                type="button"
+                variant={isSelected ? "default" : "outline"}
+                size="sm"
+                onClick={() => handleBedroomToggle(option)}
+                className="flex-1 min-w-[60px]"
+              >
                 {option}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+              </Button>
+            );
+          })}
+        </div>
       </div>
 
       <Separator />
 
       {/* Neighborhood */}
       <div className="space-y-3">
-        <Label htmlFor="neighborhood" className="text-base font-medium">
+        <Label className="text-base font-medium flex items-center gap-2">
+          <MapPin className="h-4 w-4" />
           Neighborhood
         </Label>
-        <Select
-          value={filters.neighborhood}
-          onValueChange={(value) => updateFilter("neighborhood", value)}
-        >
-          <SelectTrigger id="neighborhood">
-            <SelectValue placeholder="Select neighborhood" />
-          </SelectTrigger>
-          <SelectContent>
-            {NEIGHBORHOODS.map((neighborhood) => (
-              <SelectItem key={neighborhood} value={neighborhood}>
+        <div className="flex flex-wrap gap-2">
+          {NEIGHBORHOODS.map((neighborhood) => {
+            const isSelected = filters.neighborhood.includes(neighborhood);
+            return (
+              <Button
+                key={neighborhood}
+                type="button"
+                variant={isSelected ? "default" : "outline"}
+                size="sm"
+                onClick={() => handleNeighborhoodToggle(neighborhood)}
+                className="flex-1 min-w-[120px]"
+              >
                 {neighborhood}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+              </Button>
+            );
+          })}
+        </div>
       </div>
 
       <Separator />
 
       {/* Size Range */}
       <div className="space-y-3">
-        <Label className="text-base font-medium">
+        <Label className="text-base font-medium flex items-center gap-2">
+          <Square className="h-4 w-4" />
           Size: {filters.sizeMin}m² - {filters.sizeMax}m²
         </Label>
         <Slider
