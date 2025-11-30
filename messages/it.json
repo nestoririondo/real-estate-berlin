@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "home": "Home",
+    "properties": "Immobili",
+    "about": "Chi siamo",
+    "contact": "Contatti"
+  },
+  "common": {
+    "filter": "Filtro",
+    "reset": "Reimposta",
+    "all": "Tutti",
+    "buy": "Acquista",
+    "rent": "Affitta",
+    "new": "Nuovo",
+    "available": "Disponibile"
+  },
+  "filter": {
+    "type": "Tipo",
+    "priceRange": "Fascia di prezzo",
+    "bedrooms": "Camere da letto",
+    "neighborhood": "Quartiere",
+    "size": "Dimensione",
+    "minPrice": "Prezzo minimo",
+    "maxPrice": "Prezzo massimo",
+    "minSize": "Dimensione minima (m²)",
+    "maxSize": "Dimensione massima (m²)"
+  },
+  "properties": {
+    "title": "Immobili",
+    "showing": "Mostra {count} di {total} immobili",
+    "noResults": "Nessun immobile corrisponde ai tuoi filtri",
+    "tryAdjusting": "Prova ad aggiustare i tuoi criteri di ricerca",
+    "beds": "{count} camere",
+    "baths": "{count} bagni",
+    "sqm": "{count}m²"
+  },
+  "property": {
+    "details": "Dettagli immobile",
+    "description": "Descrizione",
+    "keyFeatures": "Caratteristiche principali",
+    "additionalInfo": "Informazioni aggiuntive",
+    "yearBuilt": "Anno di costruzione",
+    "propertyType": "Tipo di immobile",
+    "parking": "Parcheggio",
+    "garden": "Giardino",
+    "energyRating": "Classe energetica",
+    "energyEfficient": "Immobile energeticamente efficiente"
+  },
+  "contact": {
+    "title": "Contatta agente",
+    "subtitle": "Interessato a questo immobile? Contattaci.",
+    "name": "Nome",
+    "email": "Email",
+    "phone": "Telefono",
+    "message": "Messaggio",
+    "sendMessage": "Invia messaggio",
+    "sending": "Invio in corso...",
+    "sent": "Messaggio inviato!",
+    "sentDescription": "Ti risponderemo il prima possibile.",
+    "orContact": "Oppure contattaci direttamente"
+  },
+  "footer": {
+    "product": "Prodotto",
+    "resources": "Risorse",
+    "stayUpdated": "Resta aggiornato",
+    "rights": "© 2025 Shadcn UI Blocks. Tutti i diritti riservati."
+  }
+}
+

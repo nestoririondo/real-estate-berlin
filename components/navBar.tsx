@@ -4,6 +4,7 @@ import * as React from "react";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -16,6 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { LanguageSelector } from "@/components/LanguageSelector";
 import { cn } from "@/lib/utils";
 
 // Simple logo component for the navbar
@@ -94,45 +96,27 @@ export interface NavbarNavItem {
 export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
   logo?: React.ReactNode;
   logoHref?: string;
-  navigationLinks?: NavbarNavItem[];
-  signInText?: string;
-  signInHref?: string;
-  ctaText?: string;
-  ctaHref?: string;
-  onSignInClick?: () => void;
-  onCtaClick?: () => void;
 }
 
-// Default navigation links
-const defaultNavigationLinks: NavbarNavItem[] = [
-  { href: "/", label: "Home" },
-  { href: "/properties", label: "Properties" },
-  { href: "#", label: "About" },
-  { href: "#", label: "Contact" },
-];
-
 export const NavBar = React.forwardRef<HTMLElement, NavbarProps>(
-  (
-    {
-      className,
-      logo = <Logo />,
-      logoHref = "#",
-      navigationLinks = defaultNavigationLinks,
-      signInText = "Sign In",
-      signInHref = "#signin",
-      ctaText = "Get Started",
-      ctaHref = "#get-started",
-      onSignInClick,
-      onCtaClick,
-      ...props
-    },
-    ref
-  ) => {
+  ({ className, logo = <Logo />, logoHref = "#", ...props }, ref) => {
     const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef<HTMLElement>(null);
     const pathname = usePathname();
+    const t = useTranslations("nav");
+    const locale = useLocale();
+
+    // Build navigation links with locale
+    const navigationLinks: NavbarNavItem[] = [
+      { href: `/${locale}`, label: t("home") },
+      { href: `/${locale}/properties`, label: t("properties") },
+      { href: `/${locale}#about`, label: t("about") },
+      { href: `/${locale}#contact`, label: t("contact") },
+    ];
 
     useEffect(() => {
+      if (typeof window === "undefined") return;
+
       const checkWidth = () => {
         if (containerRef.current) {
           const width = containerRef.current.offsetWidth;
@@ -142,14 +126,16 @@ export const NavBar = React.forwardRef<HTMLElement, NavbarProps>(
 
       checkWidth();
 
-      const resizeObserver = new ResizeObserver(checkWidth);
-      if (containerRef.current) {
-        resizeObserver.observe(containerRef.current);
-      }
+      if (typeof ResizeObserver !== "undefined") {
+        const resizeObserver = new ResizeObserver(checkWidth);
+        if (containerRef.current) {
+          resizeObserver.observe(containerRef.current);
+        }
 
-      return () => {
-        resizeObserver.disconnect();
-      };
+        return () => {
+          resizeObserver.disconnect();
+        };
+      }
     }, []);
 
     // Combine refs
@@ -254,27 +240,7 @@ export const NavBar = React.forwardRef<HTMLElement, NavbarProps>(
           </div>
           {/* Right side */}
           <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-              onClick={(e) => {
-                e.preventDefault();
-                if (onSignInClick) onSignInClick();
-              }}
-            >
-              {signInText}
-            </Button>
-            <Button
-              size="sm"
-              className="text-sm font-medium px-4 h-9 rounded-md shadow-sm"
-              onClick={(e) => {
-                e.preventDefault();
-                if (onCtaClick) onCtaClick();
-              }}
-            >
-              {ctaText}
-            </Button>
+            <LanguageSelector />
           </div>
         </div>
       </header>

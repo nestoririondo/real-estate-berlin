@@ -1,15 +1,7 @@
-"use client";
-
-import { useState } from "react";
-import { PropertyFilter } from "@/components/properties/PropertyFilter";
-import { PropertyCard } from "@/components/properties/PropertyCard";
-import type { PropertyFilterValues } from "@/types/filter";
 import type { Property } from "@/types/property";
-import { filterProperties } from "@/lib/utils/propertyFilter";
 import { PropertyType } from "@/types/enums";
-import { DEFAULT_FILTERS } from "@/constants/filterDefaults";
 
-const allProperties: Property[] = [
+export const allProperties: Property[] = [
   {
     id: 1,
     image:
@@ -90,47 +82,3 @@ const allProperties: Property[] = [
   },
 ];
 
-const Properties = () => {
-  const [filters, setFilters] = useState<PropertyFilterValues>(DEFAULT_FILTERS);
-
-  const filteredProperties = filterProperties(allProperties, filters);
-
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">Properties</h1>
-
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* Filter Sidebar */}
-        <div className="lg:col-span-1">
-          <PropertyFilter filters={filters} onFilterChange={setFilters} />
-        </div>
-
-        {/* Properties Grid */}
-        <div className="lg:col-span-3">
-          <p className="text-muted-foreground mb-6">
-            Showing {filteredProperties.length} of {allProperties.length}{" "}
-            properties
-          </p>
-          {filteredProperties.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {filteredProperties.map((property) => (
-                <PropertyCard key={property.id} property={property} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16">
-              <p className="text-muted-foreground text-lg mb-2">
-                No properties match your filters
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Try adjusting your search criteria
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Properties;

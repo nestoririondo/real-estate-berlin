@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
@@ -29,6 +30,9 @@ interface PropertyFilterProps {
 }
 
 const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
+  const t = useTranslations("filter");
+  const tCommon = useTranslations("common");
+
   const updateFilter = (
     key: keyof PropertyFilterValues,
     value: string | number | Bedrooms[] | Neighborhood[]
@@ -101,7 +105,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
     }
   };
 
-  const handlePriceRangeChange = (values: number[]) => {
+  const handlePriceRangeChange = (values: number[ ]) => {
     const newFilters = {
       ...filters,
       priceMin: values[0],
@@ -135,9 +139,9 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
   return (
     <div className="w-full space-y-6 rounded-lg border bg-card p-6 shadow-sm">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold">Filter</h2>
+        <h2 className="text-2xl font-semibold">{tCommon("filter")}</h2>
         <Button variant="outline" size="sm" onClick={resetFilters}>
-          Reset
+          {tCommon("reset")}
         </Button>
       </div>
 
@@ -147,7 +151,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
       <div className="space-y-3">
         <Label className="text-base font-medium flex items-center gap-2">
           <Home className="h-4 w-4" />
-          Type
+          {t("type")}
         </Label>
         <RadioGroup
           value={filters.type}
@@ -157,19 +161,19 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
           <div className="flex items-center space-x-2">
             <RadioGroupItem value={PropertyType.ALL} id="all" />
             <Label htmlFor="all" className="cursor-pointer font-normal">
-              All
+              {tCommon("all")}
             </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value={PropertyType.BUY} id="buy" />
             <Label htmlFor="buy" className="cursor-pointer font-normal">
-              Buy
+              {tCommon("buy")}
             </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value={PropertyType.RENT} id="rent" />
             <Label htmlFor="rent" className="cursor-pointer font-normal">
-              Rent
+              {tCommon("rent")}
             </Label>
           </div>
         </RadioGroup>
@@ -181,7 +185,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
       <div className="space-y-3">
         <Label className="text-base font-medium flex items-center gap-2">
           <Euro className="h-4 w-4" />
-          Price Range: €{filters.priceMin.toLocaleString()} - €
+          {t("priceRange")}: €{filters.priceMin.toLocaleString()} - €
           {filters.priceMax.toLocaleString()}
         </Label>
         <Slider
@@ -198,7 +202,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
               htmlFor="price-min"
               className="text-sm text-muted-foreground"
             >
-              Min Price
+              {t("minPrice")}
             </Label>
             <Input
               id="price-min"
@@ -214,7 +218,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
               htmlFor="price-max"
               className="text-sm text-muted-foreground"
             >
-              Max Price
+              {t("maxPrice")}
             </Label>
             <Input
               id="price-max"
@@ -234,7 +238,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
       <div className="space-y-3">
         <Label className="text-base font-medium flex items-center gap-2">
           <Bed className="h-4 w-4" />
-          Bedrooms
+          {t("bedrooms")}
         </Label>
         <div className="flex flex-wrap gap-2">
           {BEDROOM_OPTIONS.map((option) => {
@@ -261,7 +265,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
       <div className="space-y-3">
         <Label className="text-base font-medium flex items-center gap-2">
           <MapPin className="h-4 w-4" />
-          Neighborhood
+          {t("neighborhood")}
         </Label>
         <div className="flex flex-wrap gap-2">
           {NEIGHBORHOODS.map((neighborhood) => {
@@ -288,7 +292,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
       <div className="space-y-3">
         <Label className="text-base font-medium flex items-center gap-2">
           <Square className="h-4 w-4" />
-          Size: {filters.sizeMin}m² - {filters.sizeMax}m²
+          {t("size")}: {filters.sizeMin}m² - {filters.sizeMax}m²
         </Label>
         <Slider
           value={[filters.sizeMin, filters.sizeMax]}
@@ -301,7 +305,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
         <div className="flex gap-4">
           <div className="flex-1">
             <Label htmlFor="size-min" className="text-sm text-muted-foreground">
-              Min Size (m²)
+              {t("minSize")}
             </Label>
             <Input
               id="size-min"
@@ -314,7 +318,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
           </div>
           <div className="flex-1">
             <Label htmlFor="size-max" className="text-sm text-muted-foreground">
-              Max Size (m²)
+              {t("maxSize")}
             </Label>
             <Input
               id="size-max"

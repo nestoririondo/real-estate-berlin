@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 import {
   Card,
   CardContent,
@@ -16,8 +19,11 @@ interface PropertyCardProps {
 }
 
 const PropertyCard = ({ property }: PropertyCardProps) => {
+  const t = useTranslations("common");
+  const locale = useLocale();
+
   return (
-    <Link href={`/properties/${property.id}`}>
+    <Link href={`/${locale}/properties/${property.id}`}>
       <Card
         className={cn(
           "group overflow-hidden transition-all hover:shadow-lg cursor-pointer h-full flex flex-col p-0"
@@ -33,7 +39,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
           />
           {property.isNew && (
             <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground">
-              New
+              {t("new")}
             </Badge>
           )}
         </div>

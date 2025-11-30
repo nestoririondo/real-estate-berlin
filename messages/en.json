@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "home": "Home",
+    "properties": "Properties",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "common": {
+    "filter": "Filter",
+    "reset": "Reset",
+    "all": "All",
+    "buy": "Buy",
+    "rent": "Rent",
+    "new": "New",
+    "available": "Available"
+  },
+  "filter": {
+    "type": "Type",
+    "priceRange": "Price Range",
+    "bedrooms": "Bedrooms",
+    "neighborhood": "Neighborhood",
+    "size": "Size",
+    "minPrice": "Min Price",
+    "maxPrice": "Max Price",
+    "minSize": "Min Size (m²)",
+    "maxSize": "Max Size (m²)"
+  },
+  "properties": {
+    "title": "Properties",
+    "showing": "Showing {count} of {total} properties",
+    "noResults": "No properties match your filters",
+    "tryAdjusting": "Try adjusting your search criteria",
+    "beds": "{count} beds",
+    "baths": "{count} baths",
+    "sqm": "{count}m²"
+  },
+  "property": {
+    "details": "Property Details",
+    "description": "Description",
+    "keyFeatures": "Key Features",
+    "additionalInfo": "Additional Information",
+    "yearBuilt": "Year Built",
+    "propertyType": "Property Type",
+    "parking": "Parking",
+    "garden": "Garden",
+    "energyRating": "Energy Rating",
+    "energyEfficient": "Energy efficient property"
+  },
+  "contact": {
+    "title": "Contact Agent",
+    "subtitle": "Interested in this property? Get in touch with us.",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "sendMessage": "Send Message",
+    "sending": "Sending...",
+    "sent": "Message Sent!",
+    "sentDescription": "We'll get back to you as soon as possible.",
+    "orContact": "Or contact us directly"
+  },
+  "footer": {
+    "product": "Product",
+    "resources": "Resources",
+    "stayUpdated": "Stay up to date",
+    "rights": "© 2025 Shadcn UI Blocks. All rights reserved."
+  }
+}
+

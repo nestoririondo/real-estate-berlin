@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "home": "Início",
+    "properties": "Propriedades",
+    "about": "Sobre",
+    "contact": "Contato"
+  },
+  "common": {
+    "filter": "Filtro",
+    "reset": "Redefinir",
+    "all": "Todos",
+    "buy": "Comprar",
+    "rent": "Alugar",
+    "new": "Novo",
+    "available": "Disponível"
+  },
+  "filter": {
+    "type": "Tipo",
+    "priceRange": "Faixa de preço",
+    "bedrooms": "Quartos",
+    "neighborhood": "Bairro",
+    "size": "Tamanho",
+    "minPrice": "Preço mínimo",
+    "maxPrice": "Preço máximo",
+    "minSize": "Tamanho mínimo (m²)",
+    "maxSize": "Tamanho máximo (m²)"
+  },
+  "properties": {
+    "title": "Propriedades",
+    "showing": "Mostrando {count} de {total} propriedades",
+    "noResults": "Nenhuma propriedade corresponde aos seus filtros",
+    "tryAdjusting": "Tente ajustar seus critérios de busca",
+    "beds": "{count} quartos",
+    "baths": "{count} banheiros",
+    "sqm": "{count}m²"
+  },
+  "property": {
+    "details": "Detalhes da propriedade",
+    "description": "Descrição",
+    "keyFeatures": "Características principais",
+    "additionalInfo": "Informações adicionais",
+    "yearBuilt": "Ano de construção",
+    "propertyType": "Tipo de propriedade",
+    "parking": "Estacionamento",
+    "garden": "Jardim",
+    "energyRating": "Classificação energética",
+    "energyEfficient": "Propriedade energeticamente eficiente"
+  },
+  "contact": {
+    "title": "Contatar agente",
+    "subtitle": "Interessado nesta propriedade? Entre em contato conosco.",
+    "name": "Nome",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "message": "Mensagem",
+    "sendMessage": "Enviar mensagem",
+    "sending": "Enviando...",
+    "sent": "Mensagem enviada!",
+    "sentDescription": "Entraremos em contato o mais breve possível.",
+    "orContact": "Ou entre em contato diretamente"
+  },
+  "footer": {
+    "product": "Produto",
+    "resources": "Recursos",
+    "stayUpdated": "Mantenha-se atualizado",
+    "rights": "© 2025 Shadcn UI Blocks. Todos os direitos reservados."
+  }
+}
+

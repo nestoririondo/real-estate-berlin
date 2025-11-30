@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "properties": "Immobilien",
+    "about": "Über uns",
+    "contact": "Kontakt"
+  },
+  "common": {
+    "filter": "Filter",
+    "reset": "Zurücksetzen",
+    "all": "Alle",
+    "buy": "Kaufen",
+    "rent": "Mieten",
+    "new": "Neu",
+    "available": "Verfügbar"
+  },
+  "filter": {
+    "type": "Typ",
+    "priceRange": "Preisspanne",
+    "bedrooms": "Schlafzimmer",
+    "neighborhood": "Stadtteil",
+    "size": "Größe",
+    "minPrice": "Mindestpreis",
+    "maxPrice": "Höchstpreis",
+    "minSize": "Mindestgröße (m²)",
+    "maxSize": "Maximalgröße (m²)"
+  },
+  "properties": {
+    "title": "Immobilien",
+    "showing": "{count} von {total} Immobilien angezeigt",
+    "noResults": "Keine Immobilien entsprechen Ihren Filtern",
+    "tryAdjusting": "Versuchen Sie, Ihre Suchkriterien anzupassen",
+    "beds": "{count} Schlafzimmer",
+    "baths": "{count} Badezimmer",
+    "sqm": "{count}m²"
+  },
+  "property": {
+    "details": "Immobiliendetails",
+    "description": "Beschreibung",
+    "keyFeatures": "Hauptmerkmale",
+    "additionalInfo": "Zusätzliche Informationen",
+    "yearBuilt": "Baujahr",
+    "propertyType": "Immobilientyp",
+    "parking": "Parkplatz",
+    "garden": "Garten",
+    "energyRating": "Energieeffizienz",
+    "energyEfficient": "Energieeffiziente Immobilie"
+  },
+  "contact": {
+    "title": "Mitarbeiter kontaktieren",
+    "subtitle": "Interessiert an dieser Immobilie? Kontaktieren Sie uns.",
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "message": "Nachricht",
+    "sendMessage": "Nachricht senden",
+    "sending": "Wird gesendet...",
+    "sent": "Nachricht gesendet!",
+    "sentDescription": "Wir melden uns so schnell wie möglich bei Ihnen.",
+    "orContact": "Oder kontaktieren Sie uns direkt"
+  },
+  "footer": {
+    "product": "Produkt",
+    "resources": "Ressourcen",
+    "stayUpdated": "Bleiben Sie auf dem Laufenden",
+    "rights": "© 2025 Shadcn UI Blocks. Alle Rechte vorbehalten."
+  }
+}
+
