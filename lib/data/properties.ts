@@ -14,6 +14,7 @@ export const allProperties: Property[] = [
     sqm: 95,
     isNew: true,
     type: PropertyType.BUY,
+    coordinates: { lat: 52.5409, lng: 13.4137 },
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ export const allProperties: Property[] = [
     sqm: 150,
     isNew: false,
     type: PropertyType.BUY,
+    coordinates: { lat: 52.517, lng: 13.2907 },
   },
   {
     id: 3,
@@ -40,6 +42,7 @@ export const allProperties: Property[] = [
     sqm: 80,
     isNew: true,
     type: PropertyType.RENT,
+    coordinates: { lat: 52.4956, lng: 13.4036 },
   },
   {
     id: 4,
@@ -53,6 +56,7 @@ export const allProperties: Property[] = [
     sqm: 120,
     isNew: false,
     type: PropertyType.BUY,
+    coordinates: { lat: 52.52, lng: 13.405 },
   },
   {
     id: 5,
@@ -66,6 +70,7 @@ export const allProperties: Property[] = [
     sqm: 75,
     isNew: false,
     type: PropertyType.RENT,
+    coordinates: { lat: 52.5145, lng: 13.4534 },
   },
   {
     id: 6,
@@ -79,6 +84,7 @@ export const allProperties: Property[] = [
     sqm: 140,
     isNew: true,
     type: PropertyType.BUY,
+    coordinates: { lat: 52.5165, lng: 13.2885 },
   },
 ];
 

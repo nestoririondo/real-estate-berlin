@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { PropertyGallery } from "@/components/properties/PropertyGallery";
 import { PropertyDetails } from "@/components/properties/PropertyDetails";
+import { PropertyMap } from "@/components/properties/PropertyMap";
 import { ContactForm } from "@/components/properties/ContactForm";
 import { Bed, Bath, Square, MapPin } from "lucide-react";
 import { allProperties } from "@/lib/data/properties";
@@ -68,7 +69,10 @@ const PropertyPage = async ({ params }: PropertyPageProps) => {
 
         {/* Right Column - Contact Form */}
         <div className="lg:col-span-1">
-          <ContactForm propertyId={property.id} propertyTitle={property.title} />
+          <ContactForm
+            propertyId={property.id}
+            propertyTitle={property.title}
+          />
         </div>
       </div>
     </div>
@@ -76,4 +80,3 @@ const PropertyPage = async ({ params }: PropertyPageProps) => {
 };
 
 export default PropertyPage;
-

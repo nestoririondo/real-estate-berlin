@@ -45,7 +45,8 @@
     "parking": "Parcheggio",
     "garden": "Giardino",
     "energyRating": "Classe energetica",
-    "energyEfficient": "Immobile energeticamente efficiente"
+    "energyEfficient": "Immobile energeticamente efficiente",
+    "location": "Posizione"
   },
   "contact": {
     "title": "Contatta agente",

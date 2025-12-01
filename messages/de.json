@@ -45,7 +45,8 @@
     "parking": "Parkplatz",
     "garden": "Garten",
     "energyRating": "Energieeffizienz",
-    "energyEfficient": "Energieeffiziente Immobilie"
+    "energyEfficient": "Energieeffiziente Immobilie",
+    "location": "Standort"
   },
   "contact": {
     "title": "Mitarbeiter kontaktieren",

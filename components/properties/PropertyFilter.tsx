@@ -10,11 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { Home, Euro, Bed, MapPin, Square } from "lucide-react";
 import type { PropertyFilterValues } from "@/types/filter";
 import { PropertyType, Neighborhood, Bedrooms } from "@/types/enums";
-import {
-  DEFAULT_FILTERS,
-  FILTER_LIMITS,
-  BEDROOM_OPTIONS,
-} from "@/constants/filterDefaults";
+import { FILTER_LIMITS, BEDROOM_OPTIONS } from "@/constants/filterDefaults";
 import { NEIGHBORHOODS } from "@/constants/neighborhoods";
 
 interface PropertyFilterProps {
@@ -51,7 +47,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
 
   const handleBedroomToggle = (bedroom: Bedrooms) => {
     const currentBedrooms = filters.bedrooms;
-    
+
     // If "All" is selected, replace with just the clicked option
     if (currentBedrooms.includes(Bedrooms.ALL)) {
       if (bedroom === Bedrooms.ALL) {
@@ -62,19 +58,22 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
       updateFilter("bedrooms", [bedroom]);
       return;
     }
-    
+
     // If clicking "All", replace everything with just "All"
     if (bedroom === Bedrooms.ALL) {
       updateFilter("bedrooms", [Bedrooms.ALL]);
       return;
     }
-    
+
     // Toggle the bedroom option
     if (currentBedrooms.includes(bedroom)) {
       // Remove it
       const newBedrooms = currentBedrooms.filter((b) => b !== bedroom);
       // If no bedrooms selected, default to "All"
-      updateFilter("bedrooms", newBedrooms.length > 0 ? newBedrooms : [Bedrooms.ALL]);
+      updateFilter(
+        "bedrooms",
+        newBedrooms.length > 0 ? newBedrooms : [Bedrooms.ALL]
+      );
     } else {
       // Add it
       updateFilter("bedrooms", [...currentBedrooms, bedroom]);
@@ -83,7 +82,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
 
   const handleNeighborhoodToggle = (neighborhood: Neighborhood) => {
     const currentNeighborhoods = filters.neighborhood;
-    
+
     // If "All" is selected, replace with just the clicked option
     if (currentNeighborhoods.includes(Neighborhood.ALL)) {
       if (neighborhood === Neighborhood.ALL) {
@@ -94,26 +93,31 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
       updateFilter("neighborhood", [neighborhood]);
       return;
     }
-    
+
     // If clicking "All", replace everything with just "All"
     if (neighborhood === Neighborhood.ALL) {
       updateFilter("neighborhood", [Neighborhood.ALL]);
       return;
     }
-    
+
     // Toggle the neighborhood option
     if (currentNeighborhoods.includes(neighborhood)) {
       // Remove it
-      const newNeighborhoods = currentNeighborhoods.filter((n) => n !== neighborhood);
+      const newNeighborhoods = currentNeighborhoods.filter(
+        (n) => n !== neighborhood
+      );
       // If no neighborhoods selected, default to "All"
-      updateFilter("neighborhood", newNeighborhoods.length > 0 ? newNeighborhoods : [Neighborhood.ALL]);
+      updateFilter(
+        "neighborhood",
+        newNeighborhoods.length > 0 ? newNeighborhoods : [Neighborhood.ALL]
+      );
     } else {
       // Add it
       updateFilter("neighborhood", [...currentNeighborhoods, neighborhood]);
     }
   };
 
-  const handlePriceRangeChange = (values: number[ ]) => {
+  const handlePriceRangeChange = (values: number[]) => {
     const newFilters = {
       ...filters,
       priceMin: values[0],
@@ -159,7 +163,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
       <div className="space-y-3">
         <Label className="text-base font-medium flex items-center gap-2">
           <Home className="h-4 w-4" />
-          {t("type")}
+          {tCommon("all")}
         </Label>
         <RadioGroup
           value={filters.type}

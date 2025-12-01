@@ -45,7 +45,8 @@
     "parking": "Parking",
     "garden": "Garden",
     "energyRating": "Energy Rating",
-    "energyEfficient": "Energy efficient property"
+    "energyEfficient": "Energy efficient property",
+    "location": "Location"
   },
   "contact": {
     "title": "Contact Agent",

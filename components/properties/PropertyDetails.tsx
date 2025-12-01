@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Building, Car, TreePine } from "lucide-react";
 import type { Property } from "@/types/property";
 import { PropertyType } from "@/types/enums";
+import { PropertyMap } from "./PropertyMap";
 
 interface PropertyDetailsProps {
   property: Property;
@@ -77,14 +78,18 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
             <div className="flex items-center gap-3">
               <Calendar className="h-5 w-5 text-muted-foreground" />
               <div>
-                <p className="text-sm text-muted-foreground">{t("yearBuilt")}</p>
+                <p className="text-sm text-muted-foreground">
+                  {t("yearBuilt")}
+                </p>
                 <p className="font-medium">{extendedDetails.yearBuilt}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Building className="h-5 w-5 text-muted-foreground" />
               <div>
-                <p className="text-sm text-muted-foreground">{t("propertyType")}</p>
+                <p className="text-sm text-muted-foreground">
+                  {t("propertyType")}
+                </p>
                 <p className="font-medium">{extendedDetails.propertyType}</p>
               </div>
             </div>
@@ -119,10 +124,19 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
             </span>
           </div>
         </div>
+
+        <Separator />
+
+        {property.coordinates && (
+        <PropertyMap
+          lat={property.coordinates?.lat ?? 0}
+            lng={property.coordinates?.lng ?? 0}
+            title={property.title}
+          />
+        )}
       </CardContent>
     </Card>
   );
 };
 
 export { PropertyDetails };
-

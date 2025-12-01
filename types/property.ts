@@ -11,5 +11,9 @@ export interface Property {
   sqm: number;
   isNew: boolean;
   type?: PropertyType.BUY | PropertyType.RENT;
+  coordinates?: {
+    lat: number;
+    lng: number;
+  };
 }
 

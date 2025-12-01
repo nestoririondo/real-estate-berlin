@@ -5,7 +5,7 @@ export enum PropertyType {
 }
 
 export enum Neighborhood {
-  ALL = "All Neighborhoods",
+  ALL = "filter.all",
   PRENZLAUER_BERG = "Prenzlauer Berg",
   CHARLOTTENBURG = "Charlottenburg",
   KREUZBERG = "Kreuzberg",
@@ -14,7 +14,7 @@ export enum Neighborhood {
 }
 
 export enum Bedrooms {
-  ALL = "All",
+  ALL = "filter.all",
   ONE = "1",
   TWO = "2",
   THREE = "3",
