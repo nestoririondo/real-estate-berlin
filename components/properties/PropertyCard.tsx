@@ -39,11 +39,16 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
             className="object-cover group-hover:scale-105 transition-transform duration-300"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          {property.isNew && (
-            <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
-              {t("new")}
+          <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2">
+            {property.isNew && (
+              <Badge className="bg-primary text-primary-foreground">
+                {t("new")}
+              </Badge>
+            )}
+            <Badge className="bg-background/95 text-foreground backdrop-blur-sm text-base font-bold px-3 py-1 ml-auto">
+              {formatPrice(property.price, property.currency, locale)}
             </Badge>
-          )}
+          </div>
         </div>
 
         <div className="px-4 py-3 space-y-2">
@@ -63,10 +68,6 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
               size="sm"
             />
           </div>
-
-          <p className="text-2xl font-bold text-primary">
-            {formatPrice(property.price, property.currency, locale)}
-          </p>
         </div>
       </Card>
     </Link>
