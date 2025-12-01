@@ -1,11 +1,12 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
-import { Home, Bed, MapPin } from "lucide-react";
+import { Home, Bed, MapPin, ChevronDown, ChevronUp, RotateCcw } from "lucide-react";
 import type { PropertyFilterValues } from "@/types/filter";
 import { PropertyType, Neighborhood, Bedrooms } from "@/types/enums";
 import { FILTER_LIMITS, BEDROOM_OPTIONS } from "@/constants/filterDefaults";
@@ -23,6 +24,19 @@ interface PropertyFilterProps {
 const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
   const t = useTranslations("filter");
   const tCommon = useTranslations("common");
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Set initial state based on screen size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const isDesktop = window.innerWidth >= 1024; // lg breakpoint
+      setIsOpen(isDesktop);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   // Helper function to translate enum values that are translation keys
   const translateEnumValue = (value: string): string => {
@@ -92,16 +106,53 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
     onFilterChange(resetFilters);
   };
 
+  // Check if filters have been changed from defaults
+  const hasActiveFilters = () => {
+    return (
+      filters.type !== PropertyType.ALL ||
+      filters.priceMin !== FILTER_LIMITS.PRICE_MIN ||
+      filters.priceMax !== FILTER_LIMITS.PRICE_MAX ||
+      !(filters.bedrooms.length === 1 && filters.bedrooms[0] === Bedrooms.ALL) ||
+      !(filters.neighborhood.length === 1 && filters.neighborhood[0] === Neighborhood.ALL) ||
+      filters.sizeMin !== FILTER_LIMITS.SIZE_MIN ||
+      filters.sizeMax !== FILTER_LIMITS.SIZE_MAX
+    );
+  };
+
   return (
-    <div className="w-full space-y-6 rounded-lg border bg-card p-6 shadow-sm">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold">{tCommon("filter")}</h2>
-        <Button variant="outline" size="sm" onClick={resetFilters}>
-          {tCommon("reset")}
-        </Button>
+    <div className="w-full rounded-lg border bg-card shadow-sm">
+      {/* Header - Always Visible */}
+      <div className={`flex items-center justify-between transition-all ${isOpen ? 'p-6 pb-0' : 'p-6 lg:pb-0'}`}>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex items-center gap-2 text-2xl font-semibold lg:cursor-default"
+        >
+          {tCommon("filter")}
+          <span className="lg:hidden">
+            {isOpen ? (
+              <ChevronUp className="h-5 w-5" />
+            ) : (
+              <ChevronDown className="h-5 w-5" />
+            )}
+          </span>
+        </button>
+        {isOpen && hasActiveFilters() && (
+          <Button variant="outline" size="sm" onClick={resetFilters} className="gap-2">
+            <RotateCcw className="h-4 w-4" />
+            {tCommon("reset")}
+          </Button>
+        )}
       </div>
 
-      <Separator />
+      {/* Collapsible Content */}
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="space-y-6 p-6">
+            <Separator />
 
       {/* Buy or Rent */}
       <div className="space-y-3">
@@ -176,6 +227,9 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
         onMinChange={(value) => updateFilter("sizeMin", value)}
         onMaxChange={(value) => updateFilter("sizeMax", value)}
       />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
