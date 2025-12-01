@@ -13,6 +13,7 @@ import {
 import { Globe } from "lucide-react";
 import { locales, type Locale } from "@/i18n";
 
+
 const languageNames: Record<Locale, string> = {
   en: "English",
   de: "Deutsch",

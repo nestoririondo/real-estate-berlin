@@ -23,7 +23,8 @@
     "minPrice": "Preço mínimo",
     "maxPrice": "Preço máximo",
     "minSize": "Tamanho mínimo (m²)",
-    "maxSize": "Tamanho máximo (m²)"
+    "maxSize": "Tamanho máximo (m²)",
+    "all": "Todos"
   },
   "properties": {
     "title": "Propriedades",

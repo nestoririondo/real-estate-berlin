@@ -3,13 +3,6 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
@@ -32,6 +25,21 @@ interface PropertyFilterProps {
 const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
   const t = useTranslations("filter");
   const tCommon = useTranslations("common");
+
+  // Helper function to translate enum values that are translation keys
+  const translateEnumValue = (value: string): string => {
+    // Check if the value is a translation key (contains a dot)
+    if (value.includes(".")) {
+      try {
+        // Try to translate it (e.g., "filter.all" -> t("all"))
+        const key = value.split(".").slice(1).join("."); // Remove namespace
+        return t(key) || tCommon(key) || value;
+      } catch {
+        return value;
+      }
+    }
+    return value;
+  };
 
   const updateFilter = (
     key: keyof PropertyFilterValues,
@@ -156,7 +164,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
         <RadioGroup
           value={filters.type}
           onValueChange={(value) => updateFilter("type", value as PropertyType)}
-          className="flex gap-4"
+          className="flex gap-4 flex-wrap"
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value={PropertyType.ALL} id="all" />
@@ -252,7 +260,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
                 onClick={() => handleBedroomToggle(option)}
                 className="flex-1 min-w-[60px]"
               >
-                {option}
+                {translateEnumValue(option)}
               </Button>
             );
           })}
@@ -279,7 +287,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
                 onClick={() => handleNeighborhoodToggle(neighborhood)}
                 className="flex-1 min-w-[120px]"
               >
-                {neighborhood}
+                {translateEnumValue(neighborhood)}
               </Button>
             );
           })}

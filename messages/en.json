@@ -23,7 +23,8 @@
     "minPrice": "Min Price",
     "maxPrice": "Max Price",
     "minSize": "Min Size (m²)",
-    "maxSize": "Max Size (m²)"
+    "maxSize": "Max Size (m²)",
+    "all": "All"
   },
   "properties": {
     "title": "Properties",

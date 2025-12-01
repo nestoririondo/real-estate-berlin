@@ -23,7 +23,8 @@
     "minPrice": "Prezzo minimo",
     "maxPrice": "Prezzo massimo",
     "minSize": "Dimensione minima (m²)",
-    "maxSize": "Dimensione massima (m²)"
+    "maxSize": "Dimensione massima (m²)",
+    "all": "Tutti"
   },
   "properties": {
     "title": "Immobili",
