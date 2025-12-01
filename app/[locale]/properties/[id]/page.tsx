@@ -2,10 +2,13 @@ import { notFound } from "next/navigation";
 import { PropertyGallery } from "@/components/properties/PropertyGallery";
 import { PropertyDetails } from "@/components/properties/PropertyDetails";
 import { PropertyMap } from "@/components/properties/PropertyMap";
+import { PropertyStats } from "@/components/properties/PropertyStats";
 import { ContactForm } from "@/components/properties/ContactForm";
 import { BackButton } from "@/components/ui/back-button";
-import { Bed, Bath, Square, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { allProperties } from "@/lib/data/properties";
+import { getPropertyExtras } from "@/lib/data/mockPropertyExtras";
+import { formatPrice } from "@/lib/utils/formatPrice";
 import type { Property } from "@/types/property";
 
 // Mock function - replace with actual API call
@@ -15,25 +18,19 @@ const getProperty = async (id: string): Promise<Property | null> => {
 };
 
 interface PropertyPageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 }
 
 const PropertyPage = async ({ params }: PropertyPageProps) => {
-  const { id } = await params;
+  const { id, locale } = await params;
   const property = await getProperty(id);
 
   if (!property) {
     notFound();
   }
 
-  // Generate additional images for gallery (in real app, these would come from API)
-  const galleryImages = [
-    property.image,
-    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800",
-    "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800",
-    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800",
-    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
-  ];
+  const propertyExtras = getPropertyExtras(property.id);
+  const galleryImages = [property.image, ...propertyExtras.galleryImages];
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -46,21 +43,16 @@ const PropertyPage = async ({ params }: PropertyPageProps) => {
           <MapPin className="h-5 w-5" />
           <span className="text-lg">{property.location}</span>
         </div>
-        <div className="flex items-center gap-6 text-lg">
-          <div className="flex items-center gap-2">
-            <Bed className="h-5 w-5" />
-            <span>{property.beds} Bedrooms</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Bath className="h-5 w-5" />
-            <span>{property.baths} Bathrooms</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Square className="h-5 w-5" />
-            <span>{property.sqm}m²</span>
-          </div>
-        </div>
-        <p className="text-3xl font-bold text-primary mt-4">{property.price}</p>
+        <PropertyStats
+          beds={property.beds}
+          baths={property.baths}
+          sqm={property.sqm}
+          size="lg"
+          showLabels
+        />
+        <p className="text-3xl font-bold text-primary mt-4">
+          {formatPrice(property.price, property.currency, locale)}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -68,6 +60,13 @@ const PropertyPage = async ({ params }: PropertyPageProps) => {
         <div className="lg:col-span-2 space-y-8">
           <PropertyGallery images={galleryImages} title={property.title} />
           <PropertyDetails property={property} />
+          {property.coordinates && (
+            <PropertyMap
+              lat={property.coordinates.lat}
+              lng={property.coordinates.lng}
+              title={property.title}
+            />
+          )}
         </div>
 
         {/* Right Column - Contact Form */}

@@ -3,15 +3,17 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Home, Euro, Bed, MapPin, Square } from "lucide-react";
+import { Home, Bed, MapPin } from "lucide-react";
 import type { PropertyFilterValues } from "@/types/filter";
 import { PropertyType, Neighborhood, Bedrooms } from "@/types/enums";
 import { FILTER_LIMITS, BEDROOM_OPTIONS } from "@/constants/filterDefaults";
 import { NEIGHBORHOODS } from "@/constants/neighborhoods";
+import { toggleFilterValue } from "@/lib/utils/filterToggle";
+import { PriceRangeFilter } from "./filters/PriceRangeFilter";
+import { SizeRangeFilter } from "./filters/SizeRangeFilter";
+import { MultiSelectFilter } from "./filters/MultiSelectFilter";
 
 interface PropertyFilterProps {
   filters: PropertyFilterValues;
@@ -46,75 +48,17 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
   };
 
   const handleBedroomToggle = (bedroom: Bedrooms) => {
-    const currentBedrooms = filters.bedrooms;
-
-    // If "All" is selected, replace with just the clicked option
-    if (currentBedrooms.includes(Bedrooms.ALL)) {
-      if (bedroom === Bedrooms.ALL) {
-        // If clicking "All" when it's already selected, do nothing
-        return;
-      }
-      // Replace "All" with the new selection
-      updateFilter("bedrooms", [bedroom]);
-      return;
-    }
-
-    // If clicking "All", replace everything with just "All"
-    if (bedroom === Bedrooms.ALL) {
-      updateFilter("bedrooms", [Bedrooms.ALL]);
-      return;
-    }
-
-    // Toggle the bedroom option
-    if (currentBedrooms.includes(bedroom)) {
-      // Remove it
-      const newBedrooms = currentBedrooms.filter((b) => b !== bedroom);
-      // If no bedrooms selected, default to "All"
-      updateFilter(
-        "bedrooms",
-        newBedrooms.length > 0 ? newBedrooms : [Bedrooms.ALL]
-      );
-    } else {
-      // Add it
-      updateFilter("bedrooms", [...currentBedrooms, bedroom]);
-    }
+    const newBedrooms = toggleFilterValue(filters.bedrooms, bedroom, Bedrooms.ALL);
+    updateFilter("bedrooms", newBedrooms);
   };
 
   const handleNeighborhoodToggle = (neighborhood: Neighborhood) => {
-    const currentNeighborhoods = filters.neighborhood;
-
-    // If "All" is selected, replace with just the clicked option
-    if (currentNeighborhoods.includes(Neighborhood.ALL)) {
-      if (neighborhood === Neighborhood.ALL) {
-        // If clicking "All" when it's already selected, do nothing
-        return;
-      }
-      // Replace "All" with the new selection
-      updateFilter("neighborhood", [neighborhood]);
-      return;
-    }
-
-    // If clicking "All", replace everything with just "All"
-    if (neighborhood === Neighborhood.ALL) {
-      updateFilter("neighborhood", [Neighborhood.ALL]);
-      return;
-    }
-
-    // Toggle the neighborhood option
-    if (currentNeighborhoods.includes(neighborhood)) {
-      // Remove it
-      const newNeighborhoods = currentNeighborhoods.filter(
-        (n) => n !== neighborhood
-      );
-      // If no neighborhoods selected, default to "All"
-      updateFilter(
-        "neighborhood",
-        newNeighborhoods.length > 0 ? newNeighborhoods : [Neighborhood.ALL]
-      );
-    } else {
-      // Add it
-      updateFilter("neighborhood", [...currentNeighborhoods, neighborhood]);
-    }
+    const newNeighborhoods = toggleFilterValue(
+      filters.neighborhood,
+      neighborhood,
+      Neighborhood.ALL
+    );
+    updateFilter("neighborhood", newNeighborhoods);
   };
 
   const handlePriceRangeChange = (values: number[]) => {
@@ -163,7 +107,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
       <div className="space-y-3">
         <Label className="text-base font-medium flex items-center gap-2">
           <Home className="h-4 w-4" />
-          {tCommon("all")}
+          {t("type")}
         </Label>
         <RadioGroup
           value={filters.type}
@@ -193,156 +137,45 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
 
       <Separator />
 
-      {/* Price Range */}
-      <div className="space-y-3">
-        <Label className="text-base font-medium flex items-center gap-2">
-          <Euro className="h-4 w-4" />
-          {t("priceRange")}: €{filters.priceMin.toLocaleString()} - €
-          {filters.priceMax.toLocaleString()}
-        </Label>
-        <Slider
-          value={[filters.priceMin, filters.priceMax]}
-          onValueChange={handlePriceRangeChange}
-          max={FILTER_LIMITS.PRICE_MAX}
-          min={FILTER_LIMITS.PRICE_MIN}
-          step={FILTER_LIMITS.PRICE_STEP}
-          className="w-full"
-        />
-        <div className="flex gap-4">
-          <div className="flex-1">
-            <Label
-              htmlFor="price-min"
-              className="text-sm text-muted-foreground"
-            >
-              {t("minPrice")}
-            </Label>
-            <Input
-              id="price-min"
-              type="number"
-              value={filters.priceMin}
-              onChange={(e) => updateFilter("priceMin", Number(e.target.value))}
-              min={0}
-              max={filters.priceMax}
-            />
-          </div>
-          <div className="flex-1">
-            <Label
-              htmlFor="price-max"
-              className="text-sm text-muted-foreground"
-            >
-              {t("maxPrice")}
-            </Label>
-            <Input
-              id="price-max"
-              type="number"
-              value={filters.priceMax}
-              onChange={(e) => updateFilter("priceMax", Number(e.target.value))}
-              min={filters.priceMin}
-              max={FILTER_LIMITS.PRICE_MAX}
-            />
-          </div>
-        </div>
-      </div>
+      <PriceRangeFilter
+        minPrice={filters.priceMin}
+        maxPrice={filters.priceMax}
+        onPriceRangeChange={handlePriceRangeChange}
+        onMinChange={(value) => updateFilter("priceMin", value)}
+        onMaxChange={(value) => updateFilter("priceMax", value)}
+      />
 
       <Separator />
 
-      {/* Bedrooms */}
-      <div className="space-y-3">
-        <Label className="text-base font-medium flex items-center gap-2">
-          <Bed className="h-4 w-4" />
-          {t("bedrooms")}
-        </Label>
-        <div className="flex flex-wrap gap-2">
-          {BEDROOM_OPTIONS.map((option) => {
-            const isSelected = filters.bedrooms.includes(option);
-            return (
-              <Button
-                key={option}
-                type="button"
-                variant={isSelected ? "default" : "outline"}
-                size="sm"
-                onClick={() => handleBedroomToggle(option)}
-                className="flex-1 min-w-[60px]"
-              >
-                {translateEnumValue(option)}
-              </Button>
-            );
-          })}
-        </div>
-      </div>
+      <MultiSelectFilter
+        label={t("bedrooms")}
+        icon={Bed}
+        options={BEDROOM_OPTIONS}
+        selectedValues={filters.bedrooms}
+        onToggle={handleBedroomToggle}
+        translateValue={translateEnumValue}
+      />
 
       <Separator />
 
-      {/* Neighborhood */}
-      <div className="space-y-3">
-        <Label className="text-base font-medium flex items-center gap-2">
-          <MapPin className="h-4 w-4" />
-          {t("neighborhood")}
-        </Label>
-        <div className="flex flex-wrap gap-2">
-          {NEIGHBORHOODS.map((neighborhood) => {
-            const isSelected = filters.neighborhood.includes(neighborhood);
-            return (
-              <Button
-                key={neighborhood}
-                type="button"
-                variant={isSelected ? "default" : "outline"}
-                size="sm"
-                onClick={() => handleNeighborhoodToggle(neighborhood)}
-                className="flex-1 min-w-[120px]"
-              >
-                {translateEnumValue(neighborhood)}
-              </Button>
-            );
-          })}
-        </div>
-      </div>
+      <MultiSelectFilter
+        label={t("neighborhood")}
+        icon={MapPin}
+        options={NEIGHBORHOODS}
+        selectedValues={filters.neighborhood}
+        onToggle={handleNeighborhoodToggle}
+        translateValue={translateEnumValue}
+      />
 
       <Separator />
 
-      {/* Size Range */}
-      <div className="space-y-3">
-        <Label className="text-base font-medium flex items-center gap-2">
-          <Square className="h-4 w-4" />
-          {t("size")}: {filters.sizeMin}m² - {filters.sizeMax}m²
-        </Label>
-        <Slider
-          value={[filters.sizeMin, filters.sizeMax]}
-          onValueChange={handleSizeRangeChange}
-          max={FILTER_LIMITS.SIZE_MAX}
-          min={FILTER_LIMITS.SIZE_MIN}
-          step={FILTER_LIMITS.SIZE_STEP}
-          className="w-full"
-        />
-        <div className="flex gap-4">
-          <div className="flex-1">
-            <Label htmlFor="size-min" className="text-sm text-muted-foreground">
-              {t("minSize")}
-            </Label>
-            <Input
-              id="size-min"
-              type="number"
-              value={filters.sizeMin}
-              onChange={(e) => updateFilter("sizeMin", Number(e.target.value))}
-              min={0}
-              max={filters.sizeMax}
-            />
-          </div>
-          <div className="flex-1">
-            <Label htmlFor="size-max" className="text-sm text-muted-foreground">
-              {t("maxSize")}
-            </Label>
-            <Input
-              id="size-max"
-              type="number"
-              value={filters.sizeMax}
-              onChange={(e) => updateFilter("sizeMax", Number(e.target.value))}
-              min={filters.sizeMin}
-              max={FILTER_LIMITS.SIZE_MAX}
-            />
-          </div>
-        </div>
-      </div>
+      <SizeRangeFilter
+        minSize={filters.sizeMin}
+        maxSize={filters.sizeMax}
+        onSizeRangeChange={handleSizeRangeChange}
+        onMinChange={(value) => updateFilter("sizeMin", value)}
+        onMaxChange={(value) => updateFilter("sizeMax", value)}
+      />
     </div>
   );
 };

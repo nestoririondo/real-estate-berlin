@@ -2,10 +2,6 @@ import type { PropertyFilterValues } from "@/types/filter";
 import type { Property } from "@/types/property";
 import { PropertyType, Neighborhood, Bedrooms } from "@/types/enums";
 
-const parsePrice = (priceString: string): number => {
-  return Number(priceString.replace(/[€,]/g, ""));
-};
-
 export const filterProperties = (
   properties: Property[],
   filters: PropertyFilterValues
@@ -17,8 +13,7 @@ export const filterProperties = (
     }
 
     // Filter by price
-    const propertyPrice = parsePrice(property.price);
-    if (propertyPrice < filters.priceMin || propertyPrice > filters.priceMax) {
+    if (property.price < filters.priceMin || property.price > filters.priceMax) {
       return false;
     }
 

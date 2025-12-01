@@ -6,7 +6,8 @@ export const allProperties: Property[] = [
     id: 1,
     image:
       "https://images.unsplash.com/photo-1640432342662-70534bc21f0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxCZXJsaW4lMjBhbHRiYXUlMjBidWlsZGluZ3xlbnwxfHx8fDE3NTk5MTE5Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    price: "€750,000",
+    price: 750000,
+    currency: "EUR",
     title: "Elegant Altbau Apartment",
     location: "Prenzlauer Berg",
     beds: 3,
@@ -20,7 +21,8 @@ export const allProperties: Property[] = [
     id: 2,
     image:
       "https://images.unsplash.com/photo-1751998816246-c63d182770c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBhcGFydG1lbnQlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NTk4NjMwMDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    price: "€1,200,000",
+    price: 1200000,
+    currency: "EUR",
     title: "Luxury Penthouse",
     location: "Charlottenburg",
     beds: 4,
@@ -34,7 +36,8 @@ export const allProperties: Property[] = [
     id: 3,
     image:
       "https://images.unsplash.com/photo-1664813954641-1ffcb7b55fd1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBCZXJsaW4lMjBhcGFydG1lbnR8ZW58MXx8fHwxNzU5OTExOTI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    price: "€580,000",
+    price: 580000,
+    currency: "EUR",
     title: "Modern Loft Space",
     location: "Kreuzberg",
     beds: 2,
@@ -48,7 +51,8 @@ export const allProperties: Property[] = [
     id: 4,
     image:
       "https://images.unsplash.com/photo-1707299231603-6c0a93e0f7fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwbGl2aW5nJTIwcm9vbXxlbnwxfHx8fDE3NTk4OTM0MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    price: "€890,000",
+    price: 890000,
+    currency: "EUR",
     title: "Spacious Family Home",
     location: "Mitte",
     beds: 3,
@@ -62,7 +66,8 @@ export const allProperties: Property[] = [
     id: 5,
     image:
       "https://images.unsplash.com/photo-1569613003769-58b298f206e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxCZXJsaW4lMjBzdHJlZXQlMjB2aWV3fGVufDF8fHx8MTc1OTkxMTkyOXww&ixlib=rb-4.1.0&q=80&w=1080",
-    price: "€620,000",
+    price: 620000,
+    currency: "EUR",
     title: "Charming Courtyard Apartment",
     location: "Friedrichshain",
     beds: 2,
@@ -76,7 +81,8 @@ export const allProperties: Property[] = [
     id: 6,
     image:
       "https://images.unsplash.com/photo-1640432342662-70534bc21f0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxCZXJsaW4lMjBhbHRiYXUlMjBidWlsZGluZ3xlbnwxfHx8fDE3NTk5MTE5Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    price: "€1,450,000",
+    price: 1450000,
+    currency: "EUR",
     title: "Premium Corner Unit",
     location: "Charlottenburg",
     beds: 4,

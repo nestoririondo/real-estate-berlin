@@ -3,7 +3,8 @@ import { PropertyType } from "./enums";
 export interface Property {
   id: number;
   image: string;
-  price: string;
+  price: number;
+  currency?: string;
   title: string;
   location: string;
   beds: number;

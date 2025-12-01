@@ -29,7 +29,7 @@
   },
   "properties": {
     "title": "Properties",
-    "showing": "Showing {count} of {total} properties",
+    "showing": "{count} properties in Berlin",
     "noResults": "No properties match your filters",
     "tryAdjusting": "Try adjusting your search criteria",
     "beds": "{count} beds",

@@ -29,7 +29,7 @@
   },
   "properties": {
     "title": "Immobilien",
-    "showing": "{count} von {total} Immobilien angezeigt",
+    "showing": "{count} Immobilien in Berlin",
     "noResults": "Keine Immobilien entsprechen Ihren Filtern",
     "tryAdjusting": "Versuchen Sie, Ihre Suchkriterien anzupassen",
     "beds": "{count} Schlafzimmer",

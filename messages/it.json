@@ -29,7 +29,7 @@
   },
   "properties": {
     "title": "Immobili",
-    "showing": "Mostra {count} di {total} immobili",
+    "showing": "{count} immobili a Berlino",
     "noResults": "Nessun immobile corrisponde ai tuoi filtri",
     "tryAdjusting": "Prova ad aggiustare i tuoi criteri di ricerca",
     "beds": "{count} camere",

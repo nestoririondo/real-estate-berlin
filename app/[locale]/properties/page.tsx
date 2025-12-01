@@ -17,7 +17,11 @@ const Properties = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">{t("title")}</h1>
+      <h1 className="text-4xl font-bold mb-8">
+        {t("showing", {
+          count: filteredProperties.length,
+        })}
+      </h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Filter Sidebar */}
@@ -27,12 +31,6 @@ const Properties = () => {
 
         {/* Properties Grid */}
         <div className="lg:col-span-3">
-          <p className="text-muted-foreground mb-6">
-            {t("showing", {
-              count: filteredProperties.length,
-              total: allProperties.length,
-            })}
-          </p>
           {filteredProperties.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredProperties.map((property) => (
