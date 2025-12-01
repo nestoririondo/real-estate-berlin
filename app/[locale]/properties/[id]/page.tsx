@@ -3,6 +3,7 @@ import { PropertyGallery } from "@/components/properties/PropertyGallery";
 import { PropertyDetails } from "@/components/properties/PropertyDetails";
 import { PropertyMap } from "@/components/properties/PropertyMap";
 import { ContactForm } from "@/components/properties/ContactForm";
+import { BackButton } from "@/components/ui/back-button";
 import { Bed, Bath, Square, MapPin } from "lucide-react";
 import { allProperties } from "@/lib/data/properties";
 import type { Property } from "@/types/property";
@@ -36,6 +37,8 @@ const PropertyPage = async ({ params }: PropertyPageProps) => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <BackButton />
+
       {/* Header Section */}
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-2">{property.title}</h1>

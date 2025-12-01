@@ -12,7 +12,8 @@
     "buy": "Kaufen",
     "rent": "Mieten",
     "new": "Neu",
-    "available": "Verfügbar"
+    "available": "Verfügbar",
+    "back": "Zurück"
   },
   "filter": {
     "type": "Typ",
