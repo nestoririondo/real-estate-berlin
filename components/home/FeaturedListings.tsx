@@ -32,7 +32,7 @@ const FeaturedListings = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: [0.42, 0, 0.58, 1], // easeOut cubic bezier
       },
     },
   };
@@ -45,7 +45,7 @@ const FeaturedListings = () => {
           className="flex justify-between items-end mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: [0.42, 0, 0.58, 1] }}
         >
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Properties</h2>
