@@ -8,6 +8,7 @@ import { Home, Tag, Wrench, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { useTranslations, useLocale } from "next-intl";
 
 const iconMap = {
   buy: Home,
@@ -17,6 +18,8 @@ const iconMap = {
 };
 
 const ServicesSection = () => {
+  const t = useTranslations("home");
+  const locale = useLocale();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -52,9 +55,9 @@ const ServicesSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("servicesTitle")}</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive real estate services tailored to your needs
+            {t("servicesSubtitle")}
           </p>
         </motion.div>
 
@@ -69,8 +72,8 @@ const ServicesSection = () => {
             return (
               <motion.div key={service.id} variants={itemVariants}>
                 <Card className="flex flex-col h-full">
-                  <CardHeader>
-                    <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <CardHeader className="flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
                       <Icon className="h-6 w-6 text-primary" />
                     </div>
                     <CardTitle className="text-xl">{service.title}</CardTitle>
@@ -93,7 +96,7 @@ const ServicesSection = () => {
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
           <Button asChild size="lg">
-            <Link href="/services">See All Our Services</Link>
+            <Link href={`/${locale}/services`}>{t("seeAllServices")}</Link>
           </Button>
         </motion.div>
       </div>

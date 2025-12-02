@@ -8,7 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
-import { Mail, Phone, MessageSquare } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Mail, Phone, MessageSquare, Clock, CheckCircle2 } from "lucide-react";
 
 interface ContactFormProps {
   propertyId: number;
@@ -56,8 +57,25 @@ const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
   return (
     <Card className="sticky top-8">
       <CardHeader>
-        <CardTitle className="text-2xl">{t("title")}</CardTitle>
-        <p className="text-sm text-muted-foreground mt-2">
+        <div className="flex items-center gap-4 mb-4">
+          <Avatar className="h-16 w-16">
+            <AvatarImage src="/fabrizio-avatar.jpg" alt="Fabrizio" />
+            <AvatarFallback className="bg-primary/20 text-primary text-xl font-semibold">
+              F
+            </AvatarFallback>
+          </Avatar>
+          <div className="flex-1">
+            <CardTitle className="text-2xl mb-1">{t("title")}</CardTitle>
+            <p className="text-sm text-muted-foreground">
+              {t("agentName")} • {t("agentTitle")}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-primary bg-primary/10 px-3 py-2 rounded-md">
+          <Clock className="h-4 w-4" />
+          <span>{t("responseTime")}</span>
+        </div>
+        <p className="text-sm text-muted-foreground mt-3">
           {t("subtitle")}
         </p>
       </CardHeader>
@@ -65,12 +83,16 @@ const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
         {isSubmitted ? (
           <div className="text-center py-8">
             <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-              <Mail className="h-8 w-8 text-primary" />
+              <CheckCircle2 className="h-8 w-8 text-primary" />
             </div>
             <h3 className="text-lg font-semibold mb-2">{t("sent")}</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground mb-4">
               {t("sentDescription")}
             </p>
+            <div className="flex items-center justify-center gap-2 text-sm text-primary">
+              <Clock className="h-4 w-4" />
+              <span>{t("responsePromise")}</span>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -80,7 +102,7 @@ const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
                 id="name"
                 name="name"
                 type="text"
-                placeholder="Your name"
+                placeholder={t("namePlaceholder")}
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -93,7 +115,7 @@ const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="your.email@example.com"
+                placeholder={t("emailPlaceholder")}
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -101,12 +123,12 @@ const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="phone">{t("phone")}</Label>
+              <Label htmlFor="phone">{t("phone")} <span className="text-muted-foreground text-xs">({t("optional")})</span></Label>
               <Input
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder="+49 123 456 789"
+                placeholder={t("phonePlaceholder")}
                 value={formData.phone}
                 onChange={handleChange}
               />
@@ -117,7 +139,7 @@ const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
               <Textarea
                 id="message"
                 name="message"
-                placeholder="Tell us about your interest in this property..."
+                placeholder={t("messagePlaceholder")}
                 value={formData.message}
                 onChange={handleChange}
                 rows={5}
@@ -125,9 +147,12 @@ const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
               />
             </div>
 
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
+            <Button type="submit" className="w-full" disabled={isSubmitting} size="lg">
               {isSubmitting ? (
-                t("sending")
+                <>
+                  <MessageSquare className="h-4 w-4 mr-2 animate-pulse" />
+                  {t("sending")}
+                </>
               ) : (
                 <>
                   <MessageSquare className="h-4 w-4 mr-2" />
@@ -135,6 +160,10 @@ const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
                 </>
               )}
             </Button>
+            
+            <p className="text-xs text-center text-muted-foreground">
+              {t("privacyNote")}
+            </p>
           </form>
         )}
 

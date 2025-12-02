@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 
 interface Testimonial {
   id: number;
@@ -44,6 +45,7 @@ const testimonials: Testimonial[] = [
 ];
 
 const TestimonialsSection = () => {
+  const t = useTranslations("home");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -79,9 +81,9 @@ const TestimonialsSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("testimonialsTitle")}</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Don't just take our word for it - hear from our satisfied clients
+            {t("testimonialsSubtitle")}
           </p>
         </motion.div>
 

@@ -1,8 +1,13 @@
+"use client";
+
 import { Separator } from "@/components/ui/separator";
 import { MapPin, Phone, Mail } from "lucide-react";
 import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 
 const Footer = () => {
+  const t = useTranslations("footer");
+  const locale = useLocale();
   return (
     <footer className="border-t bg-muted/30">
       <div className="container mx-auto px-4 py-12">
@@ -11,7 +16,7 @@ const Footer = () => {
           <div>
             <h6 className="font-semibold mb-4 flex items-center gap-2">
               <MapPin className="h-5 w-5" />
-              Location
+              {t("location")}
             </h6>
             <p className="text-muted-foreground">
               Leipziger Platz 15<br />
@@ -23,7 +28,7 @@ const Footer = () => {
           <div>
             <h6 className="font-semibold mb-4 flex items-center gap-2">
               <Phone className="h-5 w-5" />
-              Contact
+              {t("contact")}
             </h6>
             <div className="space-y-2 text-muted-foreground">
               <p>
@@ -41,15 +46,15 @@ const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h6 className="font-semibold mb-4">Legal</h6>
+            <h6 className="font-semibold mb-4">{t("legal")}</h6>
             <ul className="space-y-2 text-muted-foreground">
               <li>
-                <Link href="/impressum" className="hover:text-primary transition-colors">
+                <Link href={`/${locale}/impressum`} className="hover:text-primary transition-colors">
                   Impressum
                 </Link>
               </li>
               <li>
-                <Link href="/datenschutz" className="hover:text-primary transition-colors">
+                <Link href={`/${locale}/datenschutz`} className="hover:text-primary transition-colors">
                   Datenschutz
                 </Link>
               </li>
@@ -60,9 +65,9 @@ const Footer = () => {
         <Separator className="my-8" />
 
         <div className="text-center text-muted-foreground space-y-2">
-          <p>&copy; {new Date().getFullYear()} Real Estate In Berlin. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {t("rights")}</p>
           <p className="text-sm">
-            Website by{" "}
+            {t("websiteBy")}{" "}
             <a
               href="https://nestoririondo.com"
               target="_blank"

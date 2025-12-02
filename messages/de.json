@@ -50,28 +50,50 @@
     "location": "Standort"
   },
   "contact": {
-    "title": "Mitarbeiter kontaktieren",
-    "subtitle": "Interessiert an dieser Immobilie? Kontaktieren Sie uns.",
-    "name": "Name",
-    "email": "E-Mail",
-    "phone": "Telefon",
-    "message": "Nachricht",
-    "sendMessage": "Nachricht senden",
-    "sending": "Wird gesendet...",
-    "sent": "Nachricht gesendet!",
-    "sentDescription": "Wir melden uns so schnell wie möglich bei Ihnen.",
+    "title": "Kontakt aufnehmen",
+    "agentName": "Fabrizio",
+    "agentTitle": "Immobilienberater",
+    "responseTime": "Antwort innerhalb von 5 Minuten",
+    "subtitle": "Ich helfe Ihnen gerne dabei, Ihre perfekte Immobilie in Berlin zu finden. Fragen Sie mich alles!",
+    "name": "Ihr Name",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer",
+    "message": "Ihre Nachricht",
+    "optional": "optional",
+    "namePlaceholder": "Max Mustermann",
+    "emailPlaceholder": "max@beispiel.de",
+    "phonePlaceholder": "+49 123 456 789",
+    "messagePlaceholder": "Hallo Fabrizio, ich interessiere mich für diese Immobilie und würde gerne eine Besichtigung vereinbaren. Könnten Sie mir mehr erzählen über...",
+    "sendMessage": "Nachricht an Fabrizio senden",
+    "sending": "Ihre Nachricht wird gesendet...",
+    "sent": "Nachricht erfolgreich gesendet!",
+    "sentDescription": "Fabrizio wird sich innerhalb von 5 Minuten bei Ihnen melden.",
+    "responsePromise": "Sie hören sehr bald von uns!",
+    "privacyNote": "Ihre Daten sind sicher und werden nur verwendet, um Sie bezüglich dieser Immobilie zu kontaktieren.",
     "orContact": "Oder kontaktieren Sie uns direkt"
   },
   "home": {
     "title": "Ihr Immobilienberater in Berlin",
     "subtitle": "Qualität und persönlicher Service an erster Stelle.",
-    "browseProperties": "Immobilien durchsuchen"
+    "browseProperties": "Immobilien durchsuchen",
+    "featuredProperties": "Ausgewählte Immobilien",
+    "featuredPropertiesSubtitle": "Durchsuchen Sie unsere handverlesene Auswahl an Premium-Immobilien in Berlin",
+    "viewAllProperties": "Alle Immobilien anzeigen",
+    "testimonialsTitle": "Was Unsere Kunden Sagen",
+    "testimonialsSubtitle": "Nehmen Sie nicht nur unser Wort dafür - hören Sie von unseren zufriedenen Kunden",
+    "servicesTitle": "Unsere Dienstleistungen",
+    "servicesSubtitle": "Umfassende Immobiliendienstleistungen, die auf Ihre Bedürfnisse zugeschnitten sind",
+    "seeAllServices": "Alle Dienstleistungen anzeigen"
   },
   "footer": {
     "product": "Produkt",
     "resources": "Ressourcen",
     "stayUpdated": "Bleiben Sie auf dem Laufenden",
-    "rights": "© 2025 Shadcn UI Blocks. Alle Rechte vorbehalten."
+    "rights": "Real Estate In Berlin. Alle Rechte vorbehalten.",
+    "location": "Standort",
+    "contact": "Kontakt",
+    "legal": "Rechtliches",
+    "websiteBy": "Website von"
   }
 }
 

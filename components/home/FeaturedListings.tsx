@@ -8,8 +8,11 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { useTranslations, useLocale } from "next-intl";
 
 const FeaturedListings = () => {
+  const t = useTranslations("home");
+  const locale = useLocale();
   // Get first 4 properties for featured section
   const featuredProperties = allProperties.slice(0, 4);
   const ref = useRef(null);
@@ -48,14 +51,14 @@ const FeaturedListings = () => {
           transition={{ duration: 0.6, ease: [0.42, 0, 0.58, 1] }}
         >
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Properties</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("featuredProperties")}</h2>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Browse our hand-picked selection of premium properties in Berlin
+              {t("featuredPropertiesSubtitle")}
             </p>
           </div>
           <Button asChild variant="link" className="hidden md:flex">
-            <Link href="/properties" className="flex items-center gap-2">
-              View All Properties
+            <Link href={`/${locale}/properties`} className="flex items-center gap-2">
+              {t("viewAllProperties")}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -81,7 +84,7 @@ const FeaturedListings = () => {
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
           <Button asChild>
-            <Link href="/properties">View All Properties</Link>
+            <Link href={`/${locale}/properties`}>{t("viewAllProperties")}</Link>
           </Button>
         </motion.div>
       </div>

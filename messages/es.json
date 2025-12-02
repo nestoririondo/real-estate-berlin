@@ -50,28 +50,50 @@
     "location": "Ubicación"
   },
   "contact": {
-    "title": "Contactar agente",
-    "subtitle": "¿Interesado en esta propiedad? Póngase en contacto con nosotros.",
-    "name": "Nombre",
-    "email": "Correo electrónico",
-    "phone": "Teléfono",
-    "message": "Mensaje",
-    "sendMessage": "Enviar mensaje",
-    "sending": "Enviando...",
-    "sent": "¡Mensaje enviado!",
-    "sentDescription": "Nos pondremos en contacto con usted lo antes posible.",
+    "title": "Ponerse en Contacto",
+    "agentName": "Fabrizio",
+    "agentTitle": "Consultor Inmobiliario",
+    "responseTime": "Respuesta en 5 minutos",
+    "subtitle": "Estoy aquí para ayudarte a encontrar tu propiedad perfecta en Berlín. ¡Pregúntame lo que quieras!",
+    "name": "Tu Nombre",
+    "email": "Correo Electrónico",
+    "phone": "Número de Teléfono",
+    "message": "Tu Mensaje",
+    "optional": "opcional",
+    "namePlaceholder": "Juan Pérez",
+    "emailPlaceholder": "juan@ejemplo.com",
+    "phonePlaceholder": "+49 123 456 789",
+    "messagePlaceholder": "Hola Fabrizio, estoy interesado en esta propiedad y me gustaría programar una visita. ¿Podrías contarme más sobre...",
+    "sendMessage": "Enviar Mensaje a Fabrizio",
+    "sending": "Enviando tu mensaje...",
+    "sent": "¡Mensaje Enviado con Éxito!",
+    "sentDescription": "Fabrizio te responderá en 5 minutos.",
+    "responsePromise": "¡Te contactaremos muy pronto!",
+    "privacyNote": "Tu información está segura y solo se usará para contactarte sobre esta propiedad.",
     "orContact": "O contáctenos directamente"
   },
   "home": {
     "title": "Su Consultor Inmobiliario En Berlín",
     "subtitle": "Calidad y servicio personal en primer lugar.",
-    "browseProperties": "Explorar Propiedades"
+    "browseProperties": "Explorar Propiedades",
+    "featuredProperties": "Propiedades Destacadas",
+    "featuredPropertiesSubtitle": "Explora nuestra selección cuidadosamente elegida de propiedades premium en Berlín",
+    "viewAllProperties": "Ver Todas las Propiedades",
+    "testimonialsTitle": "Lo Que Dicen Nuestros Clientes",
+    "testimonialsSubtitle": "No solo confíe en nuestra palabra - escuche a nuestros clientes satisfechos",
+    "servicesTitle": "Nuestros Servicios",
+    "servicesSubtitle": "Servicios inmobiliarios integrales adaptados a sus necesidades",
+    "seeAllServices": "Ver Todos Nuestros Servicios"
   },
   "footer": {
     "product": "Producto",
     "resources": "Recursos",
     "stayUpdated": "Manténgase actualizado",
-    "rights": "© 2025 Shadcn UI Blocks. Todos los derechos reservados."
+    "rights": "Real Estate In Berlin. Todos los derechos reservados.",
+    "location": "Ubicación",
+    "contact": "Contacto",
+    "legal": "Legal",
+    "websiteBy": "Sitio web por"
   }
 }
 
