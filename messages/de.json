@@ -29,6 +29,7 @@
   },
   "properties": {
     "title": "Immobilien",
+    "allProperties": "Alle Immobilien",
     "showing": "{count} Immobilien in Berlin",
     "noResults": "Keine Immobilien entsprechen Ihren Filtern",
     "tryAdjusting": "Versuchen Sie, Ihre Suchkriterien anzupassen",

@@ -16,7 +16,7 @@ const Hero = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden">
+    <section className="relative py-30 md:py-50 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

@@ -141,7 +141,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
               setIsOpen(!isOpen);
             }
           }}
-          className="flex items-center gap-2 text-2xl font-semibold lg:cursor-default lg:pointer-events-none"
+          className="flex items-center gap-2 text-lg font-semibold lg:cursor-default lg:pointer-events-none"
         >
           {tCommon("filter")}
           <span className="lg:hidden">

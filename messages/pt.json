@@ -29,6 +29,7 @@
   },
   "properties": {
     "title": "Propriedades",
+    "allProperties": "Todas as Propriedades",
     "showing": "{count} propriedades em Berlim",
     "noResults": "Nenhuma propriedade corresponde aos seus filtros",
     "tryAdjusting": "Tente ajustar seus critérios de busca",

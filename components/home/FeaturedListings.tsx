@@ -56,7 +56,7 @@ const FeaturedListings = () => {
               {t("featuredPropertiesSubtitle")}
             </p>
           </div>
-          <Button asChild variant="link" className="hidden md:flex">
+          <Button asChild variant="link" className="hidden md:flex text-base">
             <Link href={`/${locale}/properties`} className="flex items-center gap-2">
               {t("viewAllProperties")}
               <ArrowRight className="h-4 w-4" />
@@ -83,8 +83,11 @@ const FeaturedListings = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
-          <Button asChild>
-            <Link href={`/${locale}/properties`}>{t("viewAllProperties")}</Link>
+          <Button asChild variant="link" className="text-base">
+            <Link href={`/${locale}/properties`} className="flex items-center gap-2">
+              {t("viewAllProperties")}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </Button>
         </motion.div>
       </div>

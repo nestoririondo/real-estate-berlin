@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
@@ -9,16 +9,15 @@ interface BackButtonProps {
   fallbackUrl?: string;
 }
 
-const BackButton = ({ fallbackUrl = "/properties" }: BackButtonProps) => {
+const BackButton = ({ fallbackUrl }: BackButtonProps) => {
   const router = useRouter();
-  const t = useTranslations("common");
+  const locale = useLocale();
+  const t = useTranslations("properties");
 
   const handleBack = () => {
-    if (window.history.length > 1) {
-      router.back();
-    } else {
-      router.push(fallbackUrl);
-    }
+    // Always go to properties page with locale
+    const propertiesUrl = fallbackUrl || `/${locale}/properties`;
+    router.push(propertiesUrl);
   };
 
   return (
@@ -28,7 +27,7 @@ const BackButton = ({ fallbackUrl = "/properties" }: BackButtonProps) => {
       className="gap-2 mb-4"
     >
       <ArrowLeft className="h-4 w-4" />
-      {t("back")}
+      {t("allProperties")}
     </Button>
   );
 };
