@@ -37,7 +37,7 @@ const ServicesSection = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: [0.42, 0, 0.58, 1], // easeOut cubic bezier
+        ease: [0.42, 0, 0.58, 1] as const, // easeOut cubic bezier
       },
     },
   };
