@@ -49,8 +49,8 @@ const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
     setIsSubmitted(true);
     setFormData({ name: "", email: "", phone: "", message: "" });
 
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
+    // Reset success message after 10 seconds
+    setTimeout(() => setIsSubmitted(false), 10000);
   };
 
   return (

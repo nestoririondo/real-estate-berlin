@@ -8,9 +8,10 @@ interface PropertyMapProps {
   lat: number;
   lng: number;
   title: string;
+  location?: string;
 }
 
-const PropertyMap = ({ lat, lng, title }: PropertyMapProps) => {
+const PropertyMap = ({ lat, lng, title, location }: PropertyMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -93,8 +94,10 @@ const PropertyMap = ({ lat, lng, title }: PropertyMapProps) => {
   return (
     <>
       <div>
-        <h3 className="text-lg font-semibold mb-2"> {t("location")}</h3>
-        <div className="flex items-center gap-2"></div>
+        <h3 className="text-lg font-semibold mb-2">{t("location")}</h3>
+        {location && (
+          <p className="text-muted-foreground mb-4">{location}</p>
+        )}
 
         {isLoading && (
           <div className="w-full h-[400px] rounded-lg overflow-hidden flex items-center justify-center bg-muted">

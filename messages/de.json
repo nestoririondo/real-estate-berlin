@@ -2,7 +2,7 @@
   "nav": {
     "home": "Startseite",
     "properties": "Immobilien",
-    "about": "Über uns",
+    "services": "Dienstleistungen",
     "contact": "Kontakt"
   },
   "common": {
@@ -61,6 +61,11 @@
     "sent": "Nachricht gesendet!",
     "sentDescription": "Wir melden uns so schnell wie möglich bei Ihnen.",
     "orContact": "Oder kontaktieren Sie uns direkt"
+  },
+  "home": {
+    "title": "Ihr Immobilienberater in Berlin",
+    "subtitle": "Qualität und persönlicher Service an erster Stelle.",
+    "browseProperties": "Immobilien durchsuchen"
   },
   "footer": {
     "product": "Produkt",

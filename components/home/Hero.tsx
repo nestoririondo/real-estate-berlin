@@ -1,97 +1,75 @@
-import { Star } from "lucide-react";
-import React from "react";
+"use client";
 
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useTranslations, useLocale } from "next-intl";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { ArrowRight } from "lucide-react";
 
-interface Hero7Props {
-  heading?: string;
-  description?: string;
-  button?: {
-    text: string;
-    url: string;
-  };
-  reviews?: {
-    count: number;
-    rating?: number;
-    avatars: {
-      src: string;
-      alt: string;
-    }[];
-  };
-}
+const Hero = () => {
+  const t = useTranslations("home");
+  const locale = useLocale();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-const Hero = ({
-  heading = "A Collection of Components Built With Shadcn & Tailwind",
-  description = "Finely crafted components built with React, Tailwind and Shadcn UI. Developers can copy and paste these blocks directly into their project.",
-  button = {
-    text: "Discover all components",
-    url: "https://www.shadcnblocks.com",
-  },
-  reviews = {
-    count: 200,
-    rating: 5.0,
-    avatars: [
-      {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp",
-        alt: "Avatar 1",
-      },
-      {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp",
-        alt: "Avatar 2",
-      },
-      {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-3.webp",
-        alt: "Avatar 3",
-      },
-      {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-4.webp",
-        alt: "Avatar 4",
-      },
-      {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-5.webp",
-        alt: "Avatar 5",
-      },
-    ],
-  },
-}: Hero7Props) => {
   return (
-    <section className="py-32">
-      <div className="text-center">
-        <div className="mx-auto flex max-w-5xl flex-col">
-          <h1 className="text-3xl font-semibold lg:text-6xl">{heading}</h1>
-          <p className="text-muted-foreground text-balance lg:text-lg">
-            {description}
-          </p>
-        </div>
-        <Button asChild size="lg" className="mt-10">
-          <a href={button.url}>{button.text}</a>
-        </Button>
-        <div className="mx-auto mt-10 flex w-fit flex-col items-center gap-4 sm:flex-row">
-          <span className="mx-4 inline-flex items-center -space-x-4">
-            {reviews.avatars.map((avatar, index) => (
-              <Avatar key={index} className="size-14 border">
-                <AvatarImage src={avatar.src} alt={avatar.alt} />
-              </Avatar>
-            ))}
-          </span>
-          <div>
-            <div className="flex items-center gap-1">
-              {[...Array(5)].map((_, index) => (
-                <Star
-                  key={index}
-                  className="size-5 fill-yellow-400 text-yellow-400"
-                />
-              ))}
-              <span className="mr-1 font-semibold">
-                {reviews.rating?.toFixed(1)}
-              </span>
-            </div>
-            <p className="text-muted-foreground text-left font-medium">
-              from {reviews.count}+ reviews
-            </p>
-          </div>
-        </div>
+    <section className="relative py-20 md:py-32 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/header-pages-berlin-4577624_1920.jpg"
+          alt="Berlin skyline"
+          fill
+          className="object-cover"
+          priority
+          quality={90}
+        />
+        {/* Dark overlay for text readability */}
+        {/* <div className="absolute inset-0 bg-black/20" /> */}
+      </div>
+      
+      {/* Content */}
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          ref={ref}
+          className="text-center max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <motion.h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-white"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          >
+            {t("title")}
+          </motion.h1>
+          <motion.p
+            className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          >
+            {t("subtitle")}
+          </motion.p>
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          >
+            <Button asChild size="lg" className="text-base">
+              <Link href={`/${locale}/properties`} className="flex items-center gap-2">
+                {t("browseProperties")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

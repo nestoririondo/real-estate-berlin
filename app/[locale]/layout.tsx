@@ -43,7 +43,7 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
   const messages = await getMessages({ locale });
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className="dark">
       <head>
         <script
           dangerouslySetInnerHTML={{

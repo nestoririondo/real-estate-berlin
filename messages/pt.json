@@ -2,7 +2,7 @@
   "nav": {
     "home": "Início",
     "properties": "Propriedades",
-    "about": "Sobre",
+    "services": "Serviços",
     "contact": "Contato"
   },
   "common": {
@@ -61,6 +61,11 @@
     "sent": "Mensagem enviada!",
     "sentDescription": "Entraremos em contato o mais breve possível.",
     "orContact": "Ou entre em contato diretamente"
+  },
+  "home": {
+    "title": "Seu Consultor Imobiliário Em Berlim",
+    "subtitle": "Qualidade e serviço pessoal em primeiro lugar.",
+    "browseProperties": "Explorar Propriedades"
   },
   "footer": {
     "product": "Produto",

@@ -2,7 +2,7 @@
   "nav": {
     "home": "Home",
     "properties": "Properties",
-    "about": "About",
+    "services": "Services",
     "contact": "Contact"
   },
   "common": {
@@ -61,6 +61,11 @@
     "sent": "Message Sent!",
     "sentDescription": "We'll get back to you as soon as possible.",
     "orContact": "Or contact us directly"
+  },
+  "home": {
+    "title": "Your Real Estate Consultant In Berlin",
+    "subtitle": "Quality and personal service in the first place.",
+    "browseProperties": "Browse Properties"
   },
   "footer": {
     "product": "Product",

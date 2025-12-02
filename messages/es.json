@@ -2,7 +2,7 @@
   "nav": {
     "home": "Inicio",
     "properties": "Propiedades",
-    "about": "Acerca de",
+    "services": "Servicios",
     "contact": "Contacto"
   },
   "common": {
@@ -61,6 +61,11 @@
     "sent": "¡Mensaje enviado!",
     "sentDescription": "Nos pondremos en contacto con usted lo antes posible.",
     "orContact": "O contáctenos directamente"
+  },
+  "home": {
+    "title": "Su Consultor Inmobiliario En Berlín",
+    "subtitle": "Calidad y servicio personal en primer lugar.",
+    "browseProperties": "Explorar Propiedades"
   },
   "footer": {
     "product": "Producto",

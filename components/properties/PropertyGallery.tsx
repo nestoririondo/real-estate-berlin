@@ -64,7 +64,7 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
       </div>
 
       {/* Thumbnail Grid */}
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-5 gap-4">
         {images.map((image, index) => (
           <button
             key={index}

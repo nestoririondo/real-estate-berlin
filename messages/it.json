@@ -2,7 +2,7 @@
   "nav": {
     "home": "Home",
     "properties": "Immobili",
-    "about": "Chi siamo",
+    "services": "Servizi",
     "contact": "Contatti"
   },
   "common": {
@@ -61,6 +61,11 @@
     "sent": "Messaggio inviato!",
     "sentDescription": "Ti risponderemo il prima possibile.",
     "orContact": "Oppure contattaci direttamente"
+  },
+  "home": {
+    "title": "Il Tuo Consulente Immobiliare A Berlino",
+    "subtitle": "Qualità e servizio personale al primo posto.",
+    "browseProperties": "Esplora Immobili"
   },
   "footer": {
     "product": "Prodotto",

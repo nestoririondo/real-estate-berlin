@@ -25,15 +25,26 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
   const t = useTranslations("filter");
   const tCommon = useTranslations("common");
   const [isOpen, setIsOpen] = useState(false);
+  const [enableTransition, setEnableTransition] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   // Set initial state based on screen size
   useEffect(() => {
+    // Set initial state without transition
+    const isDesktop = window.innerWidth >= 1024;
+    setIsOpen(isDesktop);
+    setMounted(true);
+
+    // Enable transitions after initial state is set
+    requestAnimationFrame(() => {
+      setEnableTransition(true);
+    });
+
     const checkScreenSize = () => {
       const isDesktop = window.innerWidth >= 1024; // lg breakpoint
       setIsOpen(isDesktop);
     };
 
-    checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
@@ -120,12 +131,17 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
   };
 
   return (
-    <div className="w-full rounded-lg border bg-card shadow-sm">
+    <div className={`w-full rounded-lg border bg-card shadow-sm ${!mounted ? 'opacity-0' : 'opacity-100'}`}>
       {/* Header - Always Visible */}
-      <div className={`flex items-center justify-between transition-all ${isOpen ? 'p-6 pb-0' : 'p-6 lg:pb-0'}`}>
+      <div className={`flex items-center justify-between ${isOpen ? 'p-6 pb-0' : 'p-6'}`}>
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 text-2xl font-semibold lg:cursor-default"
+          onClick={() => {
+            // Only allow toggle on mobile (below lg breakpoint)
+            if (window.innerWidth < 1024) {
+              setIsOpen(!isOpen);
+            }
+          }}
+          className="flex items-center gap-2 text-2xl font-semibold lg:cursor-default lg:pointer-events-none"
         >
           {tCommon("filter")}
           <span className="lg:hidden">
@@ -146,7 +162,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
 
       {/* Collapsible Content */}
       <div
-        className={`grid transition-all duration-300 ease-in-out ${
+        className={`grid ${enableTransition ? 'transition-all duration-300 ease-in-out' : ''} ${
           isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
