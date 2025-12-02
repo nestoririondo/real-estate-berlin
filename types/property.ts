@@ -7,6 +7,7 @@ export interface Property {
   currency?: string;
   title: string;
   location: string;
+  neighborhood: string;
   beds: number;
   baths: number;
   sqm: number;

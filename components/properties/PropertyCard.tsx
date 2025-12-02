@@ -59,7 +59,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-1 text-muted-foreground">
               <MapPin className="h-4 w-4" />
-              <span className="text-sm">{property.location}</span>
+              <span className="text-sm">{property.neighborhood}</span>
             </div>
             <PropertyStats
               beds={property.beds}
