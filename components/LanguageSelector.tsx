@@ -40,7 +40,7 @@ const LanguageSelector = () => {
         <Globe className="h-4 w-4 mr-2" />
         <SelectValue />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="z-[70]">
         {locales.map((loc) => (
           <SelectItem key={loc} value={loc}>
             {languageNames[loc]}

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
@@ -12,11 +13,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { cn } from "@/lib/utils";
 
@@ -101,6 +97,9 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
 export const NavBar = React.forwardRef<HTMLElement, NavbarProps>(
   ({ className, logo = <Logo />, logoHref = "#", ...props }, ref) => {
     const [isMobile, setIsMobile] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
+    const [shouldAnimate, setShouldAnimate] = useState(false);
     const containerRef = useRef<HTMLElement>(null);
     const pathname = usePathname();
     const t = useTranslations("nav");
@@ -113,6 +112,25 @@ export const NavBar = React.forwardRef<HTMLElement, NavbarProps>(
       { href: `/${locale}#about`, label: t("about") },
       { href: `/${locale}#contact`, label: t("contact") },
     ];
+
+    const handleCloseMenu = () => {
+      setIsClosing(true);
+      setShouldAnimate(false);
+      setTimeout(() => {
+        setIsMenuOpen(false);
+        setIsClosing(false);
+      }, 300); // Match animation duration
+    };
+
+    const handleOpenMenu = () => {
+      setIsMenuOpen(true);
+      // Trigger animation on next frame
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setShouldAnimate(true);
+        });
+      });
+    };
 
     useEffect(() => {
       if (typeof window === "undefined") return;
@@ -154,7 +172,7 @@ export const NavBar = React.forwardRef<HTMLElement, NavbarProps>(
       <header
         ref={combinedRef}
         className={cn(
-          "sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 [&_*]:no-underline",
+          "sticky top-0 z-[60] w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 [&_*]:no-underline",
           className
         )}
         {...(props as any)}
@@ -162,41 +180,73 @@ export const NavBar = React.forwardRef<HTMLElement, NavbarProps>(
         <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between gap-4">
           {/* Left side */}
           <div className="flex items-center gap-2">
-            {/* Mobile menu trigger */}
+            {/* Mobile menu */}
             {isMobile && (
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    className="group h-9 w-9 hover:bg-accent hover:text-accent-foreground"
-                    variant="ghost"
-                    size="icon"
+              <>
+                {/* Hamburger button - placeholder in normal flow */}
+                <div className="h-9 w-9">
+                  <button
+                    onClick={() => isMenuOpen ? handleCloseMenu() : handleOpenMenu()}
+                    aria-expanded={isMenuOpen}
+                    className="group h-9 w-9 flex items-center justify-center hover:bg-accent hover:text-accent-foreground rounded-md transition-colors relative"
                   >
                     <HamburgerIcon />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent align="start" className="w-64 p-1">
-                  <NavigationMenu className="max-w-none">
-                    <NavigationMenuList className="flex-col items-start gap-0">
-                      {navigationLinks.map((link, index) => {
-                        const isActive = link.href === pathname || link.active;
-                        return (
-                          <NavigationMenuItem key={index} className="w-full">
-                            <Link
-                              href={link.href || "#"}
-                              className={cn(
-                                "flex w-full items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer no-underline",
-                                isActive && "bg-accent text-accent-foreground"
-                              )}
-                            >
-                              {link.label}
-                            </Link>
-                          </NavigationMenuItem>
-                        );
-                      })}
-                    </NavigationMenuList>
-                  </NavigationMenu>
-                </PopoverContent>
-              </Popover>
+                  </button>
+                </div>
+
+                {/* Backdrop overlay, menu, and floating hamburger - rendered via portal */}
+                {typeof document !== 'undefined' && createPortal(
+                  <>
+                    {(isMenuOpen || isClosing) && (
+                      <>
+                        {/* Backdrop - covers entire page */}
+                        <div
+                          className={cn(
+                            "fixed inset-0 bg-black/30 z-[55] transition-opacity duration-300",
+                            isClosing ? "opacity-0" : "animate-in fade-in"
+                          )}
+                          onClick={handleCloseMenu}
+                        />
+
+                        {/* Dropdown menu */}
+                        <div
+                          className={cn(
+                            "fixed left-0 right-0 top-16 z-[56] bg-background shadow-lg border-b transition-transform duration-300 ease-out origin-top scale-y-0",
+                            shouldAnimate && !isClosing && "scale-y-100"
+                          )}
+                        >
+                          {navigationLinks.map((link) => {
+                            const isActive = link.href === pathname;
+                            return (
+                              <Link
+                                key={link.href}
+                                href={link.href || "#"}
+                                onClick={handleCloseMenu}
+                                className={cn(
+                                  "block w-full text-left px-6 py-4 text-lg font-semibold hover:bg-accent transition-colors border-b last:border-b-0",
+                                  isActive && "bg-accent text-accent-foreground"
+                                )}
+                              >
+                                {link.label}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </>
+                    )}
+
+                    {/* Floating hamburger button - always on top */}
+                    <button
+                      onClick={() => isMenuOpen ? handleCloseMenu() : handleOpenMenu()}
+                      aria-expanded={isMenuOpen}
+                      className="group fixed top-4 left-4 h-9 w-9 flex items-center justify-center hover:bg-accent hover:text-accent-foreground rounded-md transition-colors z-[60] bg-background"
+                    >
+                      <HamburgerIcon />
+                    </button>
+                  </>,
+                  document.body
+                )}
+              </>
             )}
             {/* Main nav */}
             <div className="flex items-center gap-6">
