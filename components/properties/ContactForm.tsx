@@ -147,7 +147,7 @@ const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
               />
             </div>
 
-            <Button type="submit" className="w-full" disabled={isSubmitting} size="lg">
+            <Button type="submit" className="w-full transition-transform duration-200 hover:scale-105 disabled:hover:scale-100" disabled={isSubmitting} size="lg">
               {isSubmitting ? (
                 <>
                   <MessageSquare className="h-4 w-4 mr-2 animate-pulse" />

@@ -62,7 +62,7 @@ const Hero = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
-            <Button asChild size="lg" className="text-base">
+            <Button asChild size="lg" className="text-base transition-transform duration-200 hover:scale-105">
               <Link href={`/${locale}/properties`} className="flex items-center gap-2">
                 {t("browseProperties")}
                 <ArrowRight className="h-4 w-4" />

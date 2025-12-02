@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { services } from "@/lib/data/services";
-import { Home, Tag, Wrench, Users } from "lucide-react";
+import { Home, Tag, Wrench, Users, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -95,8 +95,11 @@ const ServicesSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
-          <Button asChild size="lg">
-            <Link href={`/${locale}/services`}>{t("seeAllServices")}</Link>
+          <Button asChild variant="link" className="text-base">
+            <Link href={`/${locale}/services`} className="flex items-center gap-2">
+              {t("seeAllServices")}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </Button>
         </motion.div>
       </div>
