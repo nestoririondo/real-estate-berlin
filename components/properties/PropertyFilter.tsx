@@ -138,7 +138,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
   return (
     <div className={`w-full rounded-lg border bg-card shadow-sm ${!mounted ? 'opacity-0' : 'opacity-100'}`}>
       {/* Header - Always Visible */}
-      <div className={`flex items-center border-3 justify-between ${isOpen ? 'p-6 pb-0' : 'p-6'}`}>
+      <div className={`flex items-center justify-between ${isOpen ? 'p-6 pb-0' : 'p-6'}`}>
         <button
           onClick={() => {
             // Only allow toggle on mobile (below lg breakpoint)

@@ -14,7 +14,7 @@ const Hero = () => {
   const t = useTranslations("home");
   const locale = useLocale();
   const { ref, isInView } = useInViewAnimation();
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   // Avoid hydration mismatch - this pattern is necessary for theme switching
@@ -29,23 +29,52 @@ const Hero = () => {
   // Light mode image (sunset Berlin)
   const lightModeImage = "https://media.istockphoto.com/id/503874284/de/foto/berlin-skyline-mit-spree-bei-sonnenuntergang-deutschland.jpg?s=1024x1024&w=is&k=20&c=JfUhT6VazsIMjUoIsnTVi394JJcibNjVgNz5kpqYTD8=";
   
-  const currentTheme = mounted ? theme : "dark";
-  const heroImage = currentTheme === "dark" ? darkModeImage : lightModeImage;
+  // Use resolvedTheme to get the actual theme (light/dark) even when theme is "system"
+  // Default to "dark" during SSR to avoid hydration mismatch
+  const currentTheme = mounted ? (resolvedTheme || "dark") : "dark";
+  const isDark = currentTheme === "dark";
 
   return (
     <section className="relative py-30 md:py-50 overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image with crossfade transition */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src={heroImage}
-          alt="Berlin skyline"
-          fill
-          className="object-cover transition-opacity duration-500"
-          priority
-          quality={90}
+        {/* Dark mode image */}
+        <div
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            isDark ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={darkModeImage}
+            alt="Berlin skyline at night"
+            fill
+            className="object-cover"
+            priority
+            quality={90}
+          />
+        </div>
+        {/* Light mode image */}
+        <div
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            isDark ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          <Image
+            src={lightModeImage}
+            alt="Berlin skyline at sunset"
+            fill
+            className="object-cover"
+            priority
+            quality={90}
+          />
+        </div>
+        {/* Dark overlay for text readability - transitions smoothly */}
+        <div
+          className="absolute inset-0 transition-all duration-500"
+          style={{
+            backgroundColor: isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.4)",
+          }}
         />
-        {/* Dark overlay for text readability - lighter in light mode */}
-        <div className={`absolute inset-0 ${currentTheme === "dark" ? "bg-black/20" : "bg-black/40"}`} />
       </div>
       
       {/* Content */}

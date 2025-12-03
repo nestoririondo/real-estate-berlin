@@ -220,11 +220,6 @@ const NavBarComponent = React.forwardRef<HTMLElement, NavbarProps>(
                                 </Link>
                               );
                             })}
-                            {/* Mobile menu footer with theme toggle and language selector */}
-                            <div className="flex items-center justify-between gap-3 px-6 py-4 border-t bg-muted/30">
-                              <ThemeToggle />
-                              <LanguageSelector />
-                            </div>
                           </div>
                         </>
                       )}

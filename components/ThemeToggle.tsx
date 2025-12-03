@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const ThemeToggle = ({ className }: { className?: string }) => {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
   // Avoid hydration mismatch
@@ -16,9 +16,11 @@ const ThemeToggle = ({ className }: { className?: string }) => {
   }, []);
 
   const toggleTheme = React.useCallback(() => {
-    const currentTheme = theme || "dark";
-    setTheme(currentTheme === "dark" ? "light" : "dark");
-  }, [theme, setTheme]);
+    // Use resolvedTheme to determine current actual theme (handles "system" theme)
+    const currentResolved = resolvedTheme || "dark";
+    // Toggle between light and dark (if system, switch to opposite of current resolved theme)
+    setTheme(currentResolved === "dark" ? "light" : "dark");
+  }, [resolvedTheme, setTheme]);
 
   if (!mounted) {
     return (
@@ -34,7 +36,9 @@ const ThemeToggle = ({ className }: { className?: string }) => {
     );
   }
 
-  const currentTheme = theme || "dark";
+  // Use resolvedTheme to show correct icon (handles "system" theme)
+  const currentResolved = resolvedTheme || "dark";
+  const isDark = currentResolved === "dark";
 
   return (
     <Button
@@ -42,9 +46,9 @@ const ThemeToggle = ({ className }: { className?: string }) => {
       size="icon"
       onClick={toggleTheme}
       className={cn("h-9 w-9", className)}
-      aria-label={currentTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
-      {currentTheme === "dark" ? (
+      {isDark ? (
         <Sun className="h-4 w-4 transition-all" />
       ) : (
         <Moon className="h-4 w-4 transition-all" />
