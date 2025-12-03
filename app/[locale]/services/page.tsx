@@ -23,7 +23,7 @@ const ServicesPage = async ({ params }: ServicesPageProps) => {
       />
 
       {/* Social Proof / Stats Section */}
-      <ServiceStats locale={locale} />
+      <ServiceStats />
 
       {/* Services Grid with Enhanced Details */}
       <ServicesSection

@@ -7,6 +7,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Footer from "@/components/Footer";
 import { NavBar } from "@/components/NavBar";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,7 +44,7 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
   const messages = await getMessages({ locale });
 
   return (
-    <html lang={locale} className="dark">
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -67,13 +68,15 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextIntlClientProvider messages={messages}>
-          <header>
-            <NavBar />
-          </header>
-          {children}
-          <Footer />
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider messages={messages}>
+            <header>
+              <NavBar />
+            </header>
+            {children}
+            <Footer />
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

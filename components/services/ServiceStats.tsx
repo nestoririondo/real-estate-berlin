@@ -7,11 +7,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { CountUp } from "@/components/ui/count-up";
 
-interface ServiceStatsProps {
-  locale: string;
-}
-
-export const ServiceStats = ({}: ServiceStatsProps) => {
+export const ServiceStats = () => {
   const t = useTranslations("services");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });

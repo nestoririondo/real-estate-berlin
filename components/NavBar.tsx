@@ -14,6 +14,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { LanguageSelector } from "@/components/LanguageSelector";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 // Hamburger icon component
@@ -168,7 +169,9 @@ const NavBarComponent = React.forwardRef<HTMLElement, NavbarProps>(
                 {/* Hamburger button - placeholder in normal flow */}
                 <div className="h-9 w-9">
                   <button
-                    onClick={() => isMenuOpen ? handleCloseMenu() : handleOpenMenu()}
+                    onClick={() =>
+                      isMenuOpen ? handleCloseMenu() : handleOpenMenu()
+                    }
                     aria-expanded={isMenuOpen}
                     className="group h-9 w-9 flex items-center justify-center hover:bg-accent hover:text-accent-foreground rounded-md transition-colors relative"
                   >
@@ -177,60 +180,68 @@ const NavBarComponent = React.forwardRef<HTMLElement, NavbarProps>(
                 </div>
 
                 {/* Backdrop overlay, menu, and floating hamburger - rendered via portal */}
-                {typeof document !== 'undefined' && createPortal(
-                  <>
-                    {(isMenuOpen || isClosing) && (
-                      <>
-                        {/* Backdrop - covers entire page */}
-                        <div
-                          className={cn(
-                            "fixed inset-0 bg-black/30 z-[55] transition-opacity duration-300",
-                            isClosing ? "opacity-0" : "animate-in fade-in"
-                          )}
-                          onClick={handleCloseMenu}
-                        />
+                {typeof document !== "undefined" &&
+                  createPortal(
+                    <>
+                      {(isMenuOpen || isClosing) && (
+                        <>
+                          {/* Backdrop - covers entire page */}
+                          <div
+                            className={cn(
+                              "fixed inset-0 bg-black/30 z-[55] transition-opacity duration-300",
+                              isClosing ? "opacity-0" : "animate-in fade-in"
+                            )}
+                            onClick={handleCloseMenu}
+                          />
 
-                        {/* Dropdown menu */}
-                        <div
-                          className={cn(
-                            "fixed left-0 right-0 top-16 z-[56] bg-background shadow-lg border-b transition-transform duration-300 ease-out origin-top scale-y-0",
-                            shouldAnimate && !isClosing && "scale-y-100"
-                          )}
-                        >
-                          {navigationLinks.map((link) => {
-                            const isActive = link.href === pathname;
-                            return (
-                              <Link
-                                key={link.href}
-                                href={link.href || "#"}
-                                onClick={handleCloseMenu}
-                                className={cn(
-                                  "block w-full text-left px-6 py-4 text-lg font-semibold transition-colors border-b last:border-b-0",
-                                  "hover:bg-accent/50",
-                                  isActive 
-                                    ? "bg-accent/30 text-primary border-l-4 border-l-primary" 
-                                    : "text-foreground"
-                                )}
-                              >
-                                {link.label}
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      </>
-                    )}
+                          {/* Dropdown menu */}
+                          <div
+                            className={cn(
+                              "fixed left-0 right-0 top-16 z-[56] bg-background shadow-lg border-b transition-transform duration-300 ease-out origin-top scale-y-0",
+                              shouldAnimate && !isClosing && "scale-y-100"
+                            )}
+                          >
+                            {navigationLinks.map((link) => {
+                              const isActive = link.href === pathname;
+                              return (
+                                <Link
+                                  key={link.href}
+                                  href={link.href || "#"}
+                                  onClick={handleCloseMenu}
+                                  className={cn(
+                                    "block w-full text-left px-6 py-4 text-lg font-semibold transition-colors border-b",
+                                    "hover:bg-accent/50",
+                                    isActive
+                                      ? "bg-accent/30 text-primary border-l-4 border-l-primary"
+                                      : "text-foreground"
+                                  )}
+                                >
+                                  {link.label}
+                                </Link>
+                              );
+                            })}
+                            {/* Mobile menu footer with theme toggle and language selector */}
+                            <div className="flex items-center justify-between gap-3 px-6 py-4 border-t bg-muted/30">
+                              <ThemeToggle />
+                              <LanguageSelector />
+                            </div>
+                          </div>
+                        </>
+                      )}
 
-                    {/* Floating hamburger button - always on top */}
-                    <button
-                      onClick={() => isMenuOpen ? handleCloseMenu() : handleOpenMenu()}
-                      aria-expanded={isMenuOpen}
-                      className="group fixed top-4 left-4 h-9 w-9 flex items-center justify-center hover:bg-accent hover:text-accent-foreground rounded-md transition-colors z-[60] bg-background"
-                    >
-                      <HamburgerIcon />
-                    </button>
-                  </>,
-                  document.body
-                )}
+                      {/* Floating hamburger button - always on top */}
+                      <button
+                        onClick={() =>
+                          isMenuOpen ? handleCloseMenu() : handleOpenMenu()
+                        }
+                        aria-expanded={isMenuOpen}
+                        className="group fixed top-4 left-4 h-9 w-9 flex items-center justify-center hover:bg-accent hover:text-accent-foreground rounded-md transition-colors z-[60] bg-background"
+                      >
+                        <HamburgerIcon />
+                      </button>
+                    </>,
+                    document.body
+                  )}
               </>
             )}
             {/* Main nav */}
@@ -257,8 +268,8 @@ const NavBarComponent = React.forwardRef<HTMLElement, NavbarProps>(
                                 "focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background",
                                 "disabled:pointer-events-none disabled:opacity-50",
                                 "before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-primary before:scale-x-0 before:transition-transform before:duration-300",
-                                isActive 
-                                  ? "text-primary focus:text-primary bg-accent/30 hover:bg-accent/40 focus:bg-accent/30" 
+                                isActive
+                                  ? "text-primary focus:text-primary bg-accent/30 hover:bg-accent/40 focus:bg-accent/30"
                                   : "text-foreground hover:bg-accent/50 hover:text-accent-foreground hover:before:scale-x-100"
                               )}
                               data-active={isActive}
@@ -276,6 +287,7 @@ const NavBarComponent = React.forwardRef<HTMLElement, NavbarProps>(
           </div>
           {/* Right side */}
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <LanguageSelector />
           </div>
         </div>
