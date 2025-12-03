@@ -86,6 +86,156 @@
     "servicesSubtitle": "Umfassende Immobiliendienstleistungen, die auf Ihre Bedürfnisse zugeschnitten sind",
     "seeAllServices": "Alle Dienstleistungen anzeigen"
   },
+  "services": {
+    "heroTitle": "Professionelle Immobiliendienstleistungen in Berlin",
+    "heroSubtitle": "Ihr vertrauensvoller Partner für Kauf, Verkauf, Renovierung und Beratung von Immobilien in Berlin. Wir machen Immobilien einfach.",
+    "benefit1": "Kostenlose Beratung",
+    "benefit2": "5-Minuten Antwortzeit",
+    "benefit3": "500+ erfolgreiche Transaktionen",
+    "servicesTitle": "Unsere umfassenden Dienstleistungen",
+    "servicesSubtitle": "Von der Immobiliensuche bis zur Renovierung - wir kümmern uns um jeden Aspekt Ihrer Immobilienreise",
+    "keyBenefits": "Hauptvorteile",
+    "ourProcess": "Unser Prozess",
+    "ctaTitle": "Bereit loszulegen?",
+    "ctaSubtitle": "Lassen Sie uns besprechen, wie wir Ihnen helfen können, Ihre Immobilienziele in Berlin zu erreichen",
+    "ctaButton": "Kostenlose Beratung erhalten",
+    "ctaButtonSecondary": "Immobilien durchsuchen",
+    "stats": {
+      "properties": "500+",
+      "propertiesLabel": "Verkaufte Immobilien",
+      "clients": "300+",
+      "clientsLabel": "Zufriedene Kunden",
+      "satisfaction": "98%",
+      "satisfactionLabel": "Zufriedenheitsrate",
+      "experience": "15+",
+      "experienceLabel": "Jahre Erfahrung"
+    },
+    "buy": {
+      "badge": "Beliebteste",
+      "benefits": [
+        "Zugang zu exklusiven Off-Market-Angeboten",
+        "Expertenverhandlung für den besten Preis",
+        "Vollständige Unterstützung von der Suche bis zum Abschluss",
+        "Markteinblicke und Stadtteil-Expertise"
+      ],
+      "process": [
+        "Erstberatung zur Ermittlung Ihrer Bedürfnisse",
+        "Immobiliensuche basierend auf Ihren Kriterien",
+        "Geführte Besichtigungen ausgewählter Immobilien",
+        "Angebotsverhandlung und Preisoptimierung",
+        "Rechtliche Unterstützung und Abschlusshilfe"
+      ],
+      "cta": "Immobiliensuche starten"
+    },
+    "sell": {
+      "badge": "Schnell & Effizient",
+      "benefits": [
+        "Kostenlose Immobilienbewertung und Marktanalyse",
+        "Professionelle Fotografie und Marketing",
+        "Großes Netzwerk potenzieller Käufer",
+        "Schneller Abschlussprozess"
+      ],
+      "process": [
+        "Immobilienbewertung und Marktanalyse",
+        "Professionelle Inszenierung und Fotografie",
+        "Strategisches Marketing und Listing",
+        "Käuferprüfung und Verhandlungen",
+        "Reibungsloser Abschluss und Übergabe"
+      ],
+      "cta": "Immobilienbewertung erhalten"
+    },
+    "renovate": {
+      "badge": "Schlüsselfertige Lösung",
+      "benefits": [
+        "End-to-End-Projektmanagement",
+        "Vertrauensvolles Handwerkernetzwerk",
+        "Qualitätssicherung und Inspektionen",
+        "Budgetplanung und Kostenkontrolle"
+      ],
+      "process": [
+        "Erstbewertung und Planung",
+        "Designberatung und Genehmigung",
+        "Handwerkerauswahl und Angebote",
+        "Projektmanagement und Überwachung",
+        "Endinspektion und Übergabe"
+      ],
+      "cta": "Renovierung planen"
+    },
+    "consulting": {
+      "badge": "Expertenberatung",
+      "benefits": [
+        "Personalisierte Strategieentwicklung",
+        "Marktanalyse und Investitionsberatung",
+        "Rechtliche und finanzielle Beratung",
+        "Laufende Unterstützung und Beratung"
+      ],
+      "process": [
+        "Verständnis Ihrer Ziele und Situation",
+        "Marktforschung und Analyse",
+        "Strategieentwicklung und Empfehlungen",
+        "Umsetzungsunterstützung",
+        "Laufende Beratung und Anpassungen"
+      ],
+      "cta": "Beratung vereinbaren"
+    }
+  },
+  "contactPage": {
+    "heroTitle": "Beginnen Sie Ihre Immobilienreise",
+    "heroSubtitle": "Kontaktieren Sie unser Expertenteam. Wir helfen Ihnen dabei, Ihre perfekte Immobilie in Berlin zu finden.",
+    "trustBadge1": "5-Minuten Antwortzeit",
+    "trustBadge2": "Kostenlose Beratung",
+    "trustBadge3": "500+ zufriedene Kunden",
+    "formTitle": "Senden Sie uns eine Nachricht",
+    "formSubtitle": "Füllen Sie das Formular unten aus und wir melden uns innerhalb von 5 Minuten bei Ihnen.",
+    "responseTime": "Antwort in 5 Min",
+    "service": "Service-Interesse",
+    "servicePlaceholder": "Womit können wir Ihnen helfen?",
+    "services": {
+      "buy": "Immobilie kaufen",
+      "sell": "Immobilie verkaufen",
+      "renovate": "Renovierungsdienstleistungen",
+      "consulting": "Beratung",
+      "other": "Anderes"
+    },
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "message": "Nachricht",
+    "optional": "optional",
+    "namePlaceholder": "Ihr vollständiger Name",
+    "emailPlaceholder": "ihre.email@beispiel.de",
+    "phonePlaceholder": "+49 123 456 789",
+    "messagePlaceholder": "Erzählen Sie uns von Ihren Immobilienbedürfnissen...",
+    "sendButton": "Nachricht senden",
+    "sending": "Wird gesendet...",
+    "successTitle": "Nachricht erfolgreich gesendet!",
+    "successMessage": "Vielen Dank für Ihre Kontaktaufnahme. Wir melden uns innerhalb von 5 Minuten bei Ihnen.",
+    "privacyNote": "Ihre Informationen sind sicher und verschlüsselt",
+    "formPrivacyNote": "Ihre Informationen sind sicher und werden nur verwendet, um Sie zu kontaktieren.",
+    "info": {
+      "location": "Standort",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "hours": "Geschäftszeiten",
+      "languages": "Sprachen, die wir sprechen",
+      "viewOnMap": "Auf Karte anzeigen",
+      "availableNow": "Jetzt verfügbar",
+      "closed": "Geschlossen",
+      "teamImagePlaceholder": "Teamfoto Platzhalter"
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "subtitle": "Finden Sie Antworten auf häufige Fragen zu unseren Dienstleistungen",
+      "question1": "Wie schnell werden Sie auf meine Anfrage antworten?",
+      "answer1": "Wir garantieren eine Antwort innerhalb von 5 Minuten während der Geschäftszeiten. Unser Team ist bestrebt, schnelle und hilfreiche Unterstützung zu bieten.",
+      "question2": "Bieten Sie kostenlose Beratungen an?",
+      "answer2": "Ja! Wir bieten kostenlose Erstberatungen für alle unsere Dienstleistungen an. Dies gibt Ihnen die Möglichkeit, Ihre Bedürfnisse zu besprechen und zu erfahren, wie wir helfen können.",
+      "question3": "Welche Bereiche Berlins decken Sie ab?",
+      "answer3": "Wir decken alle Bereiche Berlins ab, einschließlich Prenzlauer Berg, Charlottenburg, Kreuzberg, Mitte, Friedrichshain und viele weitere Stadtteile.",
+      "question4": "Können Sie bei der Immobilienfinanzierung helfen?",
+      "answer4": "Während wir keine Finanzierung direkt anbieten, arbeiten wir mit vertrauenswürdigen Finanzpartnern zusammen und können Sie durch den Finanzierungsprozess führen."
+    }
+  },
   "footer": {
     "product": "Produkt",
     "resources": "Ressourcen",

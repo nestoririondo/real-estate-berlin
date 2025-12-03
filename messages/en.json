@@ -86,6 +86,156 @@
     "servicesSubtitle": "Comprehensive real estate services tailored to your needs",
     "seeAllServices": "See All Our Services"
   },
+  "services": {
+    "heroTitle": "Expert Real Estate Services in Berlin",
+    "heroSubtitle": "Your trusted partner for buying, selling, renovating, and consulting on properties in Berlin. We make real estate simple.",
+    "benefit1": "Free Consultation",
+    "benefit2": "5-Minute Response Time",
+    "benefit3": "500+ Successful Transactions",
+    "servicesTitle": "Our Comprehensive Services",
+    "servicesSubtitle": "From property search to renovation, we handle every aspect of your real estate journey",
+    "keyBenefits": "Key Benefits",
+    "ourProcess": "Our Process",
+    "ctaTitle": "Ready to Get Started?",
+    "ctaSubtitle": "Let's discuss how we can help you achieve your real estate goals in Berlin",
+    "ctaButton": "Get Free Consultation",
+    "ctaButtonSecondary": "Browse Properties",
+    "stats": {
+      "properties": "500+",
+      "propertiesLabel": "Properties Sold",
+      "clients": "300+",
+      "clientsLabel": "Happy Clients",
+      "satisfaction": "98%",
+      "satisfactionLabel": "Satisfaction Rate",
+      "experience": "15+",
+      "experienceLabel": "Years Experience"
+    },
+    "buy": {
+      "badge": "Most Popular",
+      "benefits": [
+        "Access to exclusive off-market listings",
+        "Expert negotiation to get the best price",
+        "Full support from search to closing",
+        "Market insights and neighborhood expertise"
+      ],
+      "process": [
+        "Initial consultation to understand your needs",
+        "Property search based on your criteria",
+        "Guided viewings of selected properties",
+        "Offer negotiation and price optimization",
+        "Legal support and closing assistance"
+      ],
+      "cta": "Start Your Property Search"
+    },
+    "sell": {
+      "badge": "Fast & Efficient",
+      "benefits": [
+        "Free property valuation and market analysis",
+        "Professional photography and marketing",
+        "Wide network of potential buyers",
+        "Fast closing process"
+      ],
+      "process": [
+        "Property evaluation and market analysis",
+        "Professional staging and photography",
+        "Strategic marketing and listing",
+        "Buyer screening and negotiations",
+        "Smooth closing and handover"
+      ],
+      "cta": "Get Your Property Valuation"
+    },
+    "renovate": {
+      "badge": "Turnkey Solution",
+      "benefits": [
+        "End-to-end project management",
+        "Trusted contractor network",
+        "Quality assurance and inspections",
+        "Budget planning and cost control"
+      ],
+      "process": [
+        "Initial assessment and planning",
+        "Design consultation and approval",
+        "Contractor selection and quotes",
+        "Project management and supervision",
+        "Final inspection and handover"
+      ],
+      "cta": "Plan Your Renovation"
+    },
+    "consulting": {
+      "badge": "Expert Advice",
+      "benefits": [
+        "Personalized strategy development",
+        "Market analysis and investment advice",
+        "Legal and financial guidance",
+        "Ongoing support and consultation"
+      ],
+      "process": [
+        "Understanding your goals and situation",
+        "Market research and analysis",
+        "Strategy development and recommendations",
+        "Implementation support",
+        "Ongoing consultation and adjustments"
+      ],
+      "cta": "Schedule Consultation"
+    }
+  },
+  "contactPage": {
+    "heroTitle": "Let's Start Your Real Estate Journey",
+    "heroSubtitle": "Get in touch with our expert team. We're here to help you find your perfect property in Berlin.",
+    "trustBadge1": "5-Minute Response Time",
+    "trustBadge2": "Free Consultation",
+    "trustBadge3": "500+ Happy Clients",
+    "formTitle": "Send Us a Message",
+    "formSubtitle": "Fill out the form below and we'll get back to you within 5 minutes.",
+    "responseTime": "Response in 5 min",
+    "service": "Service Interest",
+    "servicePlaceholder": "What can we help you with?",
+    "services": {
+      "buy": "Buying a Property",
+      "sell": "Selling a Property",
+      "renovate": "Renovation Services",
+      "consulting": "Consulting",
+      "other": "Other"
+    },
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "optional": "optional",
+    "namePlaceholder": "Your full name",
+    "emailPlaceholder": "your.email@example.com",
+    "phonePlaceholder": "+49 123 456 789",
+    "messagePlaceholder": "Tell us about your real estate needs...",
+    "sendButton": "Send Message",
+    "sending": "Sending...",
+    "successTitle": "Message Sent Successfully!",
+    "successMessage": "Thank you for contacting us. We'll get back to you within 5 minutes.",
+    "privacyNote": "Your information is secure and encrypted",
+    "formPrivacyNote": "Your information is secure and will only be used to contact you.",
+    "info": {
+      "location": "Location",
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Business Hours",
+      "languages": "Languages We Speak",
+      "viewOnMap": "View on Map",
+      "availableNow": "Available Now",
+      "closed": "Closed",
+      "teamImagePlaceholder": "Team Photo Placeholder"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find answers to common questions about our services",
+      "question1": "How quickly will you respond to my inquiry?",
+      "answer1": "We guarantee a response within 5 minutes during business hours. Our team is committed to providing prompt and helpful assistance.",
+      "question2": "Do you offer free consultations?",
+      "answer2": "Yes! We offer free initial consultations for all our services. This gives you the opportunity to discuss your needs and learn how we can help.",
+      "question3": "What areas of Berlin do you cover?",
+      "answer3": "We cover all areas of Berlin, including Prenzlauer Berg, Charlottenburg, Kreuzberg, Mitte, Friedrichshain, and many more neighborhoods.",
+      "question4": "Can you help with property financing?",
+      "answer4": "While we don't provide financing directly, we work with trusted financial partners and can guide you through the financing process."
+    }
+  },
   "footer": {
     "product": "Product",
     "resources": "Resources",

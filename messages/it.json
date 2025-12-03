@@ -86,6 +86,156 @@
     "servicesSubtitle": "Servizi immobiliari completi su misura per le tue esigenze",
     "seeAllServices": "Vedi Tutti I Nostri Servizi"
   },
+  "services": {
+    "heroTitle": "Servizi Immobiliari Esperti a Berlino",
+    "heroSubtitle": "Il tuo partner di fiducia per acquistare, vendere, ristrutturare e consulenza su immobili a Berlino. Rendiamo gli immobili semplici.",
+    "benefit1": "Consulenza Gratuita",
+    "benefit2": "Tempo di Risposta 5 Minuti",
+    "benefit3": "500+ Transazioni Riuscite",
+    "servicesTitle": "I Nostri Servizi Completi",
+    "servicesSubtitle": "Dalla ricerca di immobili alla ristrutturazione, gestiamo ogni aspetto del tuo percorso immobiliare",
+    "keyBenefits": "Vantaggi Principali",
+    "ourProcess": "Il Nostro Processo",
+    "ctaTitle": "Pronto per Iniziare?",
+    "ctaSubtitle": "Parliamo di come possiamo aiutarti a raggiungere i tuoi obiettivi immobiliari a Berlino",
+    "ctaButton": "Ottieni Consulenza Gratuita",
+    "ctaButtonSecondary": "Esplora Immobili",
+    "stats": {
+      "properties": "500+",
+      "propertiesLabel": "Immobili Venduti",
+      "clients": "300+",
+      "clientsLabel": "Clienti Soddisfatti",
+      "satisfaction": "98%",
+      "satisfactionLabel": "Tasso di Soddisfazione",
+      "experience": "15+",
+      "experienceLabel": "Anni di Esperienza"
+    },
+    "buy": {
+      "badge": "Più Popolare",
+      "benefits": [
+        "Accesso a listini esclusivi fuori mercato",
+        "Negoziazione esperta per ottenere il miglior prezzo",
+        "Supporto completo dalla ricerca alla chiusura",
+        "Approfondimenti di mercato e competenza sui quartieri"
+      ],
+      "process": [
+        "Consulenza iniziale per capire le tue esigenze",
+        "Ricerca immobiliare basata sui tuoi criteri",
+        "Visite guidate di immobili selezionati",
+        "Negoziazione offerte e ottimizzazione prezzi",
+        "Supporto legale e assistenza alla chiusura"
+      ],
+      "cta": "Inizia la Ricerca Immobiliare"
+    },
+    "sell": {
+      "badge": "Veloce ed Efficiente",
+      "benefits": [
+        "Valutazione gratuita e analisi di mercato",
+        "Fotografia professionale e marketing",
+        "Vasta rete di potenziali acquirenti",
+        "Processo di chiusura rapido"
+      ],
+      "process": [
+        "Valutazione immobile e analisi di mercato",
+        "Allestimento e fotografia professionale",
+        "Marketing strategico e inserimento",
+        "Scrematura acquirenti e negoziazioni",
+        "Chiusura fluida e consegna"
+      ],
+      "cta": "Ottieni Valutazione Immobile"
+    },
+    "renovate": {
+      "badge": "Soluzione Chiavi in Mano",
+      "benefits": [
+        "Gestione progetti end-to-end",
+        "Rete di appaltatori fidati",
+        "Garanzia di qualità e ispezioni",
+        "Pianificazione budget e controllo costi"
+      ],
+      "process": [
+        "Valutazione iniziale e pianificazione",
+        "Consulenza design e approvazione",
+        "Selezione appaltatori e preventivi",
+        "Gestione e supervisione progetto",
+        "Ispezione finale e consegna"
+      ],
+      "cta": "Pianifica la Tua Ristrutturazione"
+    },
+    "consulting": {
+      "badge": "Consulenza Esperta",
+      "benefits": [
+        "Sviluppo strategia personalizzata",
+        "Analisi di mercato e consulenza investimenti",
+        "Guida legale e finanziaria",
+        "Supporto e consulenza continui"
+      ],
+      "process": [
+        "Comprensione dei tuoi obiettivi e situazione",
+        "Ricerca e analisi di mercato",
+        "Sviluppo strategia e raccomandazioni",
+        "Supporto implementazione",
+        "Consulenza e aggiustamenti continui"
+      ],
+      "cta": "Prenota Consulenza"
+    }
+  },
+  "contactPage": {
+    "heroTitle": "Iniziamo il Tuo Viaggio Immobiliare",
+    "heroSubtitle": "Mettiti in contatto con il nostro team di esperti. Siamo qui per aiutarti a trovare la tua proprietà perfetta a Berlino.",
+    "trustBadge1": "Tempo di Risposta 5 Minuti",
+    "trustBadge2": "Consulenza Gratuita",
+    "trustBadge3": "500+ Clienti Soddisfatti",
+    "formTitle": "Inviaci un Messaggio",
+    "formSubtitle": "Compila il modulo qui sotto e ti risponderemo entro 5 minuti.",
+    "responseTime": "Risposta in 5 min",
+    "service": "Interesse nel Servizio",
+    "servicePlaceholder": "Come possiamo aiutarti?",
+    "services": {
+      "buy": "Acquistare un Immobile",
+      "sell": "Vendere un Immobile",
+      "renovate": "Servizi di Ristrutturazione",
+      "consulting": "Consulenza",
+      "other": "Altro"
+    },
+    "name": "Nome",
+    "email": "E-mail",
+    "phone": "Telefono",
+    "message": "Messaggio",
+    "optional": "opzionale",
+    "namePlaceholder": "Il tuo nome completo",
+    "emailPlaceholder": "tua.email@esempio.com",
+    "phonePlaceholder": "+49 123 456 789",
+    "messagePlaceholder": "Raccontaci delle tue esigenze immobiliari...",
+    "sendButton": "Invia Messaggio",
+    "sending": "Invio in corso...",
+    "successTitle": "Messaggio Inviato con Successo!",
+    "successMessage": "Grazie per averci contattato. Ti risponderemo entro 5 minuti.",
+    "privacyNote": "Le tue informazioni sono sicure e crittografate",
+    "formPrivacyNote": "Le tue informazioni sono sicure e verranno utilizzate solo per contattarti.",
+    "info": {
+      "location": "Posizione",
+      "phone": "Telefono",
+      "email": "E-mail",
+      "hours": "Orari di Apertura",
+      "languages": "Lingue che Parliamo",
+      "viewOnMap": "Visualizza sulla Mappa",
+      "availableNow": "Disponibile Ora",
+      "closed": "Chiuso",
+      "teamImagePlaceholder": "Segnaposto Foto del Team"
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "subtitle": "Trova risposte alle domande comuni sui nostri servizi",
+      "question1": "Quanto velocemente risponderete alla mia richiesta?",
+      "answer1": "Garantiamo una risposta entro 5 minuti durante gli orari di ufficio. Il nostro team si impegna a fornire assistenza tempestiva e utile.",
+      "question2": "Offrite consulenze gratuite?",
+      "answer2": "Sì! Offriamo consulenze iniziali gratuite per tutti i nostri servizi. Questo ti dà l'opportunità di discutere le tue esigenze e scoprire come possiamo aiutare.",
+      "question3": "Quali aree di Berlino coprite?",
+      "answer3": "Copriamo tutte le aree di Berlino, inclusi Prenzlauer Berg, Charlottenburg, Kreuzberg, Mitte, Friedrichshain e molti altri quartieri.",
+      "question4": "Potete aiutare con il finanziamento immobiliare?",
+      "answer4": "Sebbene non forniamo finanziamenti direttamente, lavoriamo con partner finanziari fidati e possiamo guidarti attraverso il processo di finanziamento."
+    }
+  },
   "footer": {
     "product": "Prodotto",
     "resources": "Risorse",

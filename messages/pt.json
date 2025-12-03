@@ -86,6 +86,156 @@
     "servicesSubtitle": "Serviços imobiliários abrangentes adaptados às suas necessidades",
     "seeAllServices": "Ver Todos os Nossos Serviços"
   },
+  "services": {
+    "heroTitle": "Serviços Imobiliários Especializados em Berlim",
+    "heroSubtitle": "Seu parceiro de confiança para comprar, vender, renovar e consultar propriedades em Berlim. Tornamos imóveis simples.",
+    "benefit1": "Consulta Gratuita",
+    "benefit2": "Tempo de Resposta 5 Minutos",
+    "benefit3": "500+ Transações Bem-Sucedidas",
+    "servicesTitle": "Nossos Serviços Abrangentes",
+    "servicesSubtitle": "Da busca de propriedades à renovação, cuidamos de todos os aspectos da sua jornada imobiliária",
+    "keyBenefits": "Benefícios Principais",
+    "ourProcess": "Nosso Processo",
+    "ctaTitle": "Pronto para Começar?",
+    "ctaSubtitle": "Vamos discutir como podemos ajudá-lo a alcançar seus objetivos imobiliários em Berlim",
+    "ctaButton": "Obter Consulta Gratuita",
+    "ctaButtonSecondary": "Explorar Propriedades",
+    "stats": {
+      "properties": "500+",
+      "propertiesLabel": "Propriedades Vendidas",
+      "clients": "300+",
+      "clientsLabel": "Clientes Satisfeitos",
+      "satisfaction": "98%",
+      "satisfactionLabel": "Taxa de Satisfação",
+      "experience": "15+",
+      "experienceLabel": "Anos de Experiência"
+    },
+    "buy": {
+      "badge": "Mais Popular",
+      "benefits": [
+        "Acesso a listagens exclusivas fora do mercado",
+        "Negociação especializada para obter o melhor preço",
+        "Suporte completo da busca ao fechamento",
+        "Insights de mercado e expertise em bairros"
+      ],
+      "process": [
+        "Consulta inicial para entender suas necessidades",
+        "Busca de propriedades com base em seus critérios",
+        "Visitas guiadas de propriedades selecionadas",
+        "Negociação de ofertas e otimização de preços",
+        "Suporte jurídico e assistência no fechamento"
+      ],
+      "cta": "Iniciar Busca de Propriedades"
+    },
+    "sell": {
+      "badge": "Rápido e Eficiente",
+      "benefits": [
+        "Avaliação gratuita e análise de mercado",
+        "Fotografia profissional e marketing",
+        "Ampla rede de compradores potenciais",
+        "Processo de fechamento rápido"
+      ],
+      "process": [
+        "Avaliação e análise de mercado",
+        "Preparação e fotografia profissional",
+        "Marketing estratégico e listagem",
+        "Triagem de compradores e negociações",
+        "Fechamento tranquilo e entrega"
+      ],
+      "cta": "Obter Avaliação da Propriedade"
+    },
+    "renovate": {
+      "badge": "Solução Chave na Mão",
+      "benefits": [
+        "Gerenciamento de projetos de ponta a ponta",
+        "Rede de contratados confiáveis",
+        "Garantia de qualidade e inspeções",
+        "Planejamento orçamentário e controle de custos"
+      ],
+      "process": [
+        "Avaliação inicial e planejamento",
+        "Consulta de design e aprovação",
+        "Seleção de contratados e orçamentos",
+        "Gerenciamento e supervisão do projeto",
+        "Inspeção final e entrega"
+      ],
+      "cta": "Planejar Sua Renovação"
+    },
+    "consulting": {
+      "badge": "Aconselhamento Especializado",
+      "benefits": [
+        "Desenvolvimento de estratégia personalizada",
+        "Análise de mercado e aconselhamento de investimento",
+        "Orientação jurídica e financeira",
+        "Suporte e consultoria contínuos"
+      ],
+      "process": [
+        "Compreensão de seus objetivos e situação",
+        "Pesquisa e análise de mercado",
+        "Desenvolvimento de estratégia e recomendações",
+        "Suporte na implementação",
+        "Consultoria e ajustes contínuos"
+      ],
+      "cta": "Agendar Consultoria"
+    }
+  },
+  "contactPage": {
+    "heroTitle": "Vamos Começar Sua Jornada Imobiliária",
+    "heroSubtitle": "Entre em contato com nossa equipe de especialistas. Estamos aqui para ajudá-lo a encontrar sua propriedade perfeita em Berlim.",
+    "trustBadge1": "Tempo de Resposta 5 Minutos",
+    "trustBadge2": "Consulta Gratuita",
+    "trustBadge3": "500+ Clientes Satisfeitos",
+    "formTitle": "Envie-nos uma Mensagem",
+    "formSubtitle": "Preencha o formulário abaixo e entraremos em contato em 5 minutos.",
+    "responseTime": "Resposta em 5 min",
+    "service": "Interesse no Serviço",
+    "servicePlaceholder": "Como podemos ajudá-lo?",
+    "services": {
+      "buy": "Comprar uma Propriedade",
+      "sell": "Vender uma Propriedade",
+      "renovate": "Serviços de Renovação",
+      "consulting": "Consultoria",
+      "other": "Outro"
+    },
+    "name": "Nome",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "message": "Mensagem",
+    "optional": "opcional",
+    "namePlaceholder": "Seu nome completo",
+    "emailPlaceholder": "seu.email@exemplo.com",
+    "phonePlaceholder": "+49 123 456 789",
+    "messagePlaceholder": "Conte-nos sobre suas necessidades imobiliárias...",
+    "sendButton": "Enviar Mensagem",
+    "sending": "Enviando...",
+    "successTitle": "Mensagem Enviada com Sucesso!",
+    "successMessage": "Obrigado por entrar em contato. Entraremos em contato em 5 minutos.",
+    "privacyNote": "Suas informações estão seguras e criptografadas",
+    "formPrivacyNote": "Suas informações estão seguras e serão usadas apenas para contatá-lo.",
+    "info": {
+      "location": "Localização",
+      "phone": "Telefone",
+      "email": "E-mail",
+      "hours": "Horário Comercial",
+      "languages": "Idiomas que Falamos",
+      "viewOnMap": "Ver no Mapa",
+      "availableNow": "Disponível Agora",
+      "closed": "Fechado",
+      "teamImagePlaceholder": "Marcador de Posição da Foto da Equipe"
+    },
+    "faq": {
+      "title": "Perguntas Frequentes",
+      "subtitle": "Encontre respostas para perguntas comuns sobre nossos serviços",
+      "question1": "Com que rapidez você responderá à minha consulta?",
+      "answer1": "Garantimos uma resposta em 5 minutos durante o horário comercial. Nossa equipe está comprometida em fornecer assistência rápida e útil.",
+      "question2": "Vocês oferecem consultas gratuitas?",
+      "answer2": "Sim! Oferecemos consultas iniciais gratuitas para todos os nossos serviços. Isso lhe dá a oportunidade de discutir suas necessidades e aprender como podemos ajudar.",
+      "question3": "Quais áreas de Berlim vocês cobrem?",
+      "answer3": "Cobrimos todas as áreas de Berlim, incluindo Prenzlauer Berg, Charlottenburg, Kreuzberg, Mitte, Friedrichshain e muitos outros bairros.",
+      "question4": "Vocês podem ajudar com financiamento de propriedades?",
+      "answer4": "Embora não forneçamos financiamento diretamente, trabalhamos com parceiros financeiros confiáveis e podemos orientá-lo através do processo de financiamento."
+    }
+  },
   "footer": {
     "product": "Produto",
     "resources": "Recursos",
