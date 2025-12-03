@@ -133,7 +133,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
   return (
     <div className={`w-full rounded-lg border bg-card shadow-sm ${!mounted ? 'opacity-0' : 'opacity-100'}`}>
       {/* Header - Always Visible */}
-      <div className={`flex items-center justify-between ${isOpen ? 'p-6 pb-0' : 'p-6'}`}>
+      <div className={`flex items-center border-3 justify-between ${isOpen ? 'p-6 pb-0' : 'p-6'}`}>
         <button
           onClick={() => {
             // Only allow toggle on mobile (below lg breakpoint)
@@ -152,8 +152,8 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
             )}
           </span>
         </button>
-        {isOpen && hasActiveFilters() && (
-          <Button variant="outline" size="sm" onClick={resetFilters} className="gap-2">
+        {isOpen && (
+          <Button variant="outline" size="sm" onClick={resetFilters} className={`gap-2 ${!hasActiveFilters() ? 'invisible' : ''}`}>
             <RotateCcw className="h-4 w-4" />
             {tCommon("reset")}
           </Button>
