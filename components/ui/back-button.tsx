@@ -22,9 +22,9 @@ const BackButton = ({ fallbackUrl }: BackButtonProps) => {
 
   return (
     <Button
-      variant="ghost"
+      variant="secondary"
       onClick={handleBack}
-      className="gap-2 mb-4 group"
+      className="gap-2 mb-4 group text-lg"
     >
       <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
       {t("allProperties")}

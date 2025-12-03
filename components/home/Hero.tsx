@@ -39,7 +39,7 @@ const Hero = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-white"
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
@@ -47,7 +47,7 @@ const Hero = () => {
             {t("title")}
           </motion.h1>
           <motion.p
-            className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
+            className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -60,7 +60,7 @@ const Hero = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
-            <Button asChild size="lg" className="text-base transition-transform duration-200 hover:scale-105 group">
+            <Button asChild size="lg" className="text-lg transition-transform duration-200 hover:scale-105 group">
               <Link href={`/${locale}/properties`} className="flex items-center gap-2">
                 {t("browseProperties")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />

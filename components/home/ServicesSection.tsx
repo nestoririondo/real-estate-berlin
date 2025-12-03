@@ -55,8 +55,8 @@ const ServicesSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("servicesTitle")}</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">{t("servicesTitle")}</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             {t("servicesSubtitle")}
           </p>
         </motion.div>
@@ -76,10 +76,10 @@ const ServicesSection = () => {
                     <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
                       <Icon className="h-6 w-6 text-primary" />
                     </div>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                    <CardTitle className="text-2xl">{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1">
-                    <CardDescription className="text-sm leading-relaxed">
+                    <CardDescription className="text-base leading-relaxed">
                       {service.description}
                     </CardDescription>
                   </CardContent>
@@ -95,12 +95,12 @@ const ServicesSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
-          <Button asChild variant="link" className="text-base">
-            <Link href={`/${locale}/services`} className="flex items-center gap-2">
-              {t("seeAllServices")}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
+        <Button asChild variant="secondary" className="text-lg group">
+          <Link href={`/${locale}/services`} className="flex items-center gap-2">
+            {t("seeAllServices")}
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </Button>
         </motion.div>
       </div>
     </section>

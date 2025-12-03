@@ -51,15 +51,15 @@ const FeaturedListings = () => {
           transition={{ duration: 0.6, ease: [0.42, 0, 0.58, 1] }}
         >
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("featuredProperties")}</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t("featuredProperties")}</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl">
               {t("featuredPropertiesSubtitle")}
             </p>
           </div>
-          <Button asChild variant="link" className="hidden md:flex text-base">
+          <Button asChild variant="secondary" className="hidden md:flex text-lg group">
             <Link href={`/${locale}/properties`} className="flex items-center gap-2">
               {t("viewAllProperties")}
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
         </motion.div>
@@ -83,10 +83,10 @@ const FeaturedListings = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
-          <Button asChild variant="link" className="text-base">
+          <Button asChild variant="secondary" className="text-lg group">
             <Link href={`/${locale}/properties`} className="flex items-center gap-2">
               {t("viewAllProperties")}
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
         </motion.div>

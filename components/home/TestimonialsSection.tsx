@@ -81,8 +81,8 @@ const TestimonialsSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("testimonialsTitle")}</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">{t("testimonialsTitle")}</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             {t("testimonialsSubtitle")}
           </p>
         </motion.div>
@@ -105,7 +105,7 @@ const TestimonialsSection = () => {
                   </div>
 
                   {/* Testimonial Content */}
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <p className="text-base text-muted-foreground mb-6 leading-relaxed">
                     &quot;{testimonial.content}&quot;
                   </p>
 
@@ -121,8 +121,8 @@ const TestimonialsSection = () => {
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="font-semibold">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                      <p className="font-semibold text-base">{testimonial.name}</p>
+                      <p className="text-base text-muted-foreground">{testimonial.role}</p>
                     </div>
                   </div>
                 </CardContent>
