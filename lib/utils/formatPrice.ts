@@ -5,15 +5,15 @@
  * @param locale - Locale for formatting (default: "de-DE" for German formatting)
  * @returns Formatted price string
  */
-export function formatPrice(
+export const formatPrice = (
   price: number,
   currency: string = "EUR",
   locale: string = "de-DE"
-): string {
+): string => {
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(price);
-}
+};

@@ -5,11 +5,11 @@
  * @param allValue - The "ALL" constant value
  * @returns New array of selected values
  */
-export function toggleFilterValue<T>(
+export const toggleFilterValue = <T>(
   currentValues: T[],
   toggleValue: T,
   allValue: T
-): T[] {
+): T[] => {
   // If "All" is currently selected
   if (currentValues.includes(allValue)) {
     // If clicking "All" when it's already selected, do nothing
@@ -35,4 +35,4 @@ export function toggleFilterValue<T>(
 
   // Add it
   return [...currentValues, toggleValue];
-}
+};

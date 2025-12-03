@@ -39,8 +39,11 @@ export const isBusinessOpen = (): boolean => {
 
 /**
  * Format business hours for display
+ * @param _locale - Locale parameter (reserved for future use)
  */
-export const formatBusinessHours = (locale: string = "en"): string[] => {
+export const formatBusinessHours = (_locale: string = "en"): string[] => {
+  // Locale parameter reserved for future localization support
+  void _locale;
   const formatTime = (hour: number): string => {
     const period = hour >= 12 ? "PM" : "AM";
     const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;

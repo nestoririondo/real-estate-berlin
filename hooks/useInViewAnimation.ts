@@ -10,12 +10,12 @@ type MarginType = NonNullable<UseInViewOptions>["margin"];
  * @param once - Whether to trigger only once (default: true)
  * @returns Object with ref and isInView boolean
  */
-export function useInViewAnimation(
+export const useInViewAnimation = (
   margin: MarginType = "-100px",
   once: boolean = true
-) {
+) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, margin });
   return { ref, isInView };
-}
+};
 

@@ -20,31 +20,6 @@ const PropertyMap = ({ lat, lng, title, location }: PropertyMapProps) => {
   useEffect(() => {
     if (!mapRef.current) return;
 
-    // Check if Google Maps is already loaded
-    if (typeof google !== "undefined" && google.maps) {
-      initializeMap();
-    } else {
-      // Wait for Google Maps to load
-      const checkGoogleMaps = setInterval(() => {
-        if (typeof google !== "undefined" && google.maps) {
-          clearInterval(checkGoogleMaps);
-          initializeMap();
-        }
-      }, 100);
-
-      // Timeout after 10 seconds
-      const timeout = setTimeout(() => {
-        clearInterval(checkGoogleMaps);
-        setError("Failed to load Google Maps");
-        setIsLoading(false);
-      }, 10000);
-
-      return () => {
-        clearInterval(checkGoogleMaps);
-        clearTimeout(timeout);
-      };
-    }
-
     const initializeMap = () => {
       if (!mapRef.current) return;
 
@@ -88,6 +63,31 @@ const PropertyMap = ({ lat, lng, title, location }: PropertyMapProps) => {
         setError("Failed to initialize map");
         setIsLoading(false);
       }
+    };
+
+    // Check if Google Maps is already loaded
+    if (typeof google !== "undefined" && google.maps) {
+      initializeMap();
+    } else {
+      // Wait for Google Maps to load
+      const checkGoogleMaps = setInterval(() => {
+        if (typeof google !== "undefined" && google.maps) {
+          clearInterval(checkGoogleMaps);
+          initializeMap();
+        }
+      }, 100);
+
+      // Timeout after 10 seconds
+      const timeout = setTimeout(() => {
+        clearInterval(checkGoogleMaps);
+        setError("Failed to load Google Maps");
+        setIsLoading(false);
+      }, 10000);
+
+      return () => {
+        clearInterval(checkGoogleMaps);
+        clearTimeout(timeout);
+      };
     }
   }, [lat, lng, title]);
 

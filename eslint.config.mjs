@@ -23,8 +23,26 @@ const eslintConfig = defineConfig([
       "func-style": ["error", "expression", { allowArrowFunctions: true }],
       "prefer-const": "error",
       "prefer-arrow-callback": "error",
-      // Enforce named exports instead of default exports
-      // Disabled for Next.js which requires default exports for pages and layouts
+      // Disable default export rule for Next.js components (pages, layouts, etc. require default exports)
+      "import/no-default-export": "off",
+    },
+  },
+  {
+    // Exclude Next.js special files from func-style rule (they can use function declarations)
+    files: [
+      "app/**/page.tsx",
+      "app/**/page.ts",
+      "app/**/layout.tsx",
+      "app/**/layout.ts",
+      "app/**/loading.tsx",
+      "app/**/loading.ts",
+      "app/**/error.tsx",
+      "app/**/error.ts",
+      "app/**/not-found.tsx",
+      "app/**/not-found.ts",
+    ],
+    rules: {
+      "func-style": "off",
       "import/no-default-export": "off",
     },
   },

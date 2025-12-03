@@ -16,9 +16,11 @@ export interface PropertyExtras {
 /**
  * Get mock extended details for a property
  * TODO: Replace with actual API call
+ * @param _propertyId - Property ID (reserved for future API integration)
  */
-export function getPropertyExtras(propertyId: number): PropertyExtras {
+export const getPropertyExtras = (_propertyId: number): PropertyExtras => {
   // In a real app, this would be fetched from an API based on propertyId
+  void _propertyId;
   return {
     yearBuilt: 1920,
     propertyType: "Apartment",
@@ -42,4 +44,4 @@ export function getPropertyExtras(propertyId: number): PropertyExtras {
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
     ],
   };
-}
+};
