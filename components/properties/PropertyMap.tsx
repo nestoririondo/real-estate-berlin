@@ -45,7 +45,7 @@ const PropertyMap = ({ lat, lng, title, location }: PropertyMapProps) => {
       };
     }
 
-    function initializeMap() {
+    const initializeMap = () => {
       if (!mapRef.current) return;
 
       try {
@@ -84,7 +84,7 @@ const PropertyMap = ({ lat, lng, title, location }: PropertyMapProps) => {
         });
 
         setIsLoading(false);
-      } catch (err) {
+      } catch {
         setError("Failed to initialize map");
         setIsLoading(false);
       }

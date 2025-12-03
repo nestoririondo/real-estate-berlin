@@ -5,15 +5,13 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
+import { useInViewAnimation } from "@/hooks/useInViewAnimation";
 
 const Hero = () => {
   const t = useTranslations("home");
   const locale = useLocale();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, isInView } = useInViewAnimation();
 
   return (
     <section className="relative py-30 md:py-50 overflow-hidden">
@@ -62,10 +60,10 @@ const Hero = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
-            <Button asChild size="lg" className="text-base transition-transform duration-200 hover:scale-105">
+            <Button asChild size="lg" className="text-base transition-transform duration-200 hover:scale-105 group">
               <Link href={`/${locale}/properties`} className="flex items-center gap-2">
                 {t("browseProperties")}
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
           </motion.div>

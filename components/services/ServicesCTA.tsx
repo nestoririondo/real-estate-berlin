@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import Link from "next/link";
 
 interface ServicesCTAProps {
   locale: string;
@@ -16,7 +15,6 @@ interface ServicesCTAProps {
 }
 
 export const ServicesCTA = ({
-  locale,
   title,
   subtitle,
   primaryButton,

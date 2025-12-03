@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   description: "Find your perfect property in Berlin",
 };
 
-export function generateStaticParams() {
+export const generateStaticParams = () => {
   return locales.map((locale) => ({ locale }));
-}
+};
 
 interface LocaleLayoutProps {
   children: React.ReactNode;

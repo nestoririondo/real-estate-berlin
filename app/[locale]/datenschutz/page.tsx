@@ -8,7 +8,7 @@ const DatenschutzPage = () => {
           <section>
             <h2 className="text-2xl font-semibold mb-4">Datenschutzerklärung</h2>
             <p className="leading-relaxed">
-              Mit dieser Datenschutzerklärung möchten wir Sie über Art, Umfang und Zweck der Verarbeitung von personenbezogenen Daten (im Folgenden auch nur als "Daten" bezeichnet) aufklären. Personenbezogene Daten sind alle Daten, die einen persönlichen Bezug zu Ihnen aufweisen, z. B. Name, Adresse, E-Mail-Adresse oder Ihr Nutzerverhalten. Die Datenschutzerklärung gilt für alle von uns vorgenommene Daten-Verarbeitungsvorgänge sowohl im Rahmen unserer Kerntätigkeit als auch für die von uns vorgehaltenen Online-Medien.
+              Mit dieser Datenschutzerklärung möchten wir Sie über Art, Umfang und Zweck der Verarbeitung von personenbezogenen Daten (im Folgenden auch nur als &quot;Daten&quot; bezeichnet) aufklären. Personenbezogene Daten sind alle Daten, die einen persönlichen Bezug zu Ihnen aufweisen, z. B. Name, Adresse, E-Mail-Adresse oder Ihr Nutzerverhalten. Die Datenschutzerklärung gilt für alle von uns vorgenommene Daten-Verarbeitungsvorgänge sowohl im Rahmen unserer Kerntätigkeit als auch für die von uns vorgehaltenen Online-Medien.
             </p>
           </section>
 
@@ -137,7 +137,7 @@ const DatenschutzPage = () => {
             </p>
             <div className="mt-4">
               <p className="font-semibold mb-2">Mailchimp</p>
-              <p>Dienstanbieter: "Mailchimp" – Rocket Science Group LLC, 675 Ponce De Leon Ave NE #5000, Atlanta, GA 30308, USA</p>
+              <p>Dienstanbieter: &quot;Mailchimp&quot; – Rocket Science Group LLC, 675 Ponce De Leon Ave NE #5000, Atlanta, GA 30308, USA</p>
               <p>Internetseite: <a href="https://mailchimp.com" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://mailchimp.com</a></p>
               <p>Datenschutzerklärung: <a href="https://mailchimp.com/legal/privacy/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://mailchimp.com/legal/privacy/</a></p>
             </div>

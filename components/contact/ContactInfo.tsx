@@ -1,23 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   MapPin,
   MessageSquare,
   Clock,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { getBusinessHoursDisplay } from "@/constants/businessHours";
+import { useInViewAnimation } from "@/hooks/useInViewAnimation";
 
 export const ContactInfo = () => {
   const t = useTranslations("contactPage");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, isInView } = useInViewAnimation();
 
 
   return (

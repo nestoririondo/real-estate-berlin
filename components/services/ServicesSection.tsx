@@ -65,7 +65,7 @@ export const ServicesSection = ({
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {services.map((service, index) => (
+          {services.map((service) => (
             <motion.div key={service.id} variants={itemVariants}>
               <ServiceCard service={service} locale={locale} />
             </motion.div>

@@ -1,9 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import type React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -14,11 +11,12 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { isBusinessOpen } from "@/constants/businessHours";
+import { useInViewAnimation } from "@/hooks/useInViewAnimation";
+import { staggerContainerVariants } from "@/lib/utils/animations";
 
 export const ContactInfoCards = () => {
   const t = useTranslations("contactPage");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, isInView } = useInViewAnimation();
 
   const available = isBusinessOpen();
 
@@ -83,16 +81,6 @@ export const ContactInfoCards = () => {
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
   const itemVariants = {
     hidden: { opacity: 0, y: 20, scale: 0.95 },
     visible: {
@@ -107,13 +95,13 @@ export const ContactInfoCards = () => {
   };
 
   return (
-    <motion.div
-      ref={ref}
-      variants={containerVariants}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      className="grid grid-cols-1 md:grid-cols-2 gap-4"
-    >
+      <motion.div
+        ref={ref}
+        variants={staggerContainerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+      >
       {contactItems.map((item, index) => {
         const Icon = item.icon;
         return (

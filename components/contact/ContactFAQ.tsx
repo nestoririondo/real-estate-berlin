@@ -1,17 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useInViewAnimation } from "@/hooks/useInViewAnimation";
+import { staggerContainerVariants, fadeInUpSmallVariants } from "@/lib/utils/animations";
 
 export const ContactFAQ = () => {
   const t = useTranslations("contactPage");
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, isInView } = useInViewAnimation();
 
   const faqs = [
     {
@@ -32,27 +32,6 @@ export const ContactFAQ = () => {
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.42, 0, 0.58, 1] as const,
-      },
-    },
-  };
 
   return (
     <section className="py-16 md:py-24 bg-muted/30" ref={ref}>
@@ -81,12 +60,12 @@ export const ContactFAQ = () => {
 
           <motion.div
             className="space-y-4"
-            variants={containerVariants}
+            variants={staggerContainerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
             {faqs.map((faq, index) => (
-              <motion.div key={index} variants={itemVariants}>
+              <motion.div key={index} variants={fadeInUpSmallVariants}>
                 <Card className="overflow-hidden">
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}

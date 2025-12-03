@@ -1,18 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useInViewAnimation } from "@/hooks/useInViewAnimation";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
-  Mail,
-  Phone,
-  MessageSquare,
   CheckCircle2,
   Clock,
   Shield,
@@ -23,8 +20,7 @@ import { useTranslations } from "next-intl";
 
 export const ContactForm = () => {
   const t = useTranslations("contactPage");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, isInView } = useInViewAnimation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",

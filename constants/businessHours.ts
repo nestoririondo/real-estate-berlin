@@ -1,7 +1,7 @@
 export interface BusinessHours {
   [key: number]: {
-    open: number; // Hour in 24-hour format (0-23)
-    close: number; // Hour in 24-hour format (0-23)
+    open?: number; // Hour in 24-hour format (0-23)
+    close?: number; // Hour in 24-hour format (0-23)
     closed?: boolean;
   };
 }
@@ -30,7 +30,7 @@ export const isBusinessOpen = (): boolean => {
 
   const dayHours = BUSINESS_HOURS[day];
 
-  if (!dayHours || dayHours.closed) {
+  if (!dayHours || dayHours.closed || dayHours.open === undefined || dayHours.close === undefined) {
     return false;
   }
 
@@ -54,8 +54,8 @@ export const formatBusinessHours = (locale: string = "en"): string[] => {
   ];
 
   const hours = [
-    `${formatTime(BUSINESS_HOURS[1].open)} - ${formatTime(BUSINESS_HOURS[1].close)}`,
-    `${formatTime(BUSINESS_HOURS[6].open)} - ${formatTime(BUSINESS_HOURS[6].close)}`,
+    `${formatTime(BUSINESS_HOURS[1].open!)} - ${formatTime(BUSINESS_HOURS[1].close!)}`,
+    `${formatTime(BUSINESS_HOURS[6].open!)} - ${formatTime(BUSINESS_HOURS[6].close!)}`,
     "Closed",
   ];
 
@@ -75,11 +75,11 @@ export const getBusinessHoursDisplay = (): Array<{ day: string; hours: string }>
   return [
     {
       day: "Monday - Friday",
-      hours: `${formatTime(BUSINESS_HOURS[1].open)} - ${formatTime(BUSINESS_HOURS[1].close)}`,
+      hours: `${formatTime(BUSINESS_HOURS[1].open!)} - ${formatTime(BUSINESS_HOURS[1].close!)}`,
     },
     {
       day: "Saturday",
-      hours: `${formatTime(BUSINESS_HOURS[6].open)} - ${formatTime(BUSINESS_HOURS[6].close)}`,
+      hours: `${formatTime(BUSINESS_HOURS[6].open!)} - ${formatTime(BUSINESS_HOURS[6].close!)}`,
     },
     {
       day: "Sunday",

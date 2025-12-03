@@ -11,7 +11,7 @@ interface ServiceStatsProps {
   locale: string;
 }
 
-export const ServiceStats = ({ locale }: ServiceStatsProps) => {
+export const ServiceStats = ({}: ServiceStatsProps) => {
   const t = useTranslations("services");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });

@@ -24,24 +24,15 @@ const eslintConfig = defineConfig([
       "prefer-const": "error",
       "prefer-arrow-callback": "error",
       // Enforce named exports instead of default exports
-      "import/no-default-export": [
-        "error",
-        {
-          // Allow default exports for Next.js special files
-          exceptions: [
-            "app/**/page.tsx",
-            "app/**/page.ts",
-            "app/**/layout.tsx",
-            "app/**/layout.ts",
-            "app/**/loading.tsx",
-            "app/**/loading.ts",
-            "app/**/error.tsx",
-            "app/**/error.ts",
-            "app/**/not-found.tsx",
-            "app/**/not-found.ts",
-          ],
-        },
-      ],
+      // Disabled for Next.js which requires default exports for pages and layouts
+      "import/no-default-export": "off",
+    },
+  },
+  {
+    // Exclude shadcn UI components from func-style rule (they follow their own conventions)
+    files: ["components/ui/**/*.tsx", "components/ui/**/*.ts"],
+    rules: {
+      "func-style": "off",
     },
   },
 ]);

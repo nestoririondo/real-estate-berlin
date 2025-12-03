@@ -3,9 +3,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Home, Tag, Wrench, Users, ArrowRight, CheckCircle2, Clock, Euro } from "lucide-react";
+import { Home, Tag, Wrench, Users, ArrowRight, CheckCircle2, Clock } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import type { Service } from "@/lib/data/services";

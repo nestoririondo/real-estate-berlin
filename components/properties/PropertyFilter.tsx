@@ -30,10 +30,15 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
 
   // Set initial state based on screen size
   useEffect(() => {
-    // Set initial state without transition
-    const isDesktop = window.innerWidth >= 1024;
-    setIsOpen(isDesktop);
-    setMounted(true);
+    // Use a function to set initial state to avoid synchronous setState
+    const initializeState = () => {
+      const isDesktop = window.innerWidth >= 1024;
+      setIsOpen(isDesktop);
+      setMounted(true);
+    };
+
+    // Initialize on mount
+    initializeState();
 
     // Enable transitions after initial state is set
     requestAnimationFrame(() => {

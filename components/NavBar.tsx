@@ -7,7 +7,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
-import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -33,7 +32,7 @@ const HamburgerIcon = ({
     strokeLinecap="round"
     strokeLinejoin="round"
     xmlns="http://www.w3.org/2000/svg"
-    {...(props as any)}
+    {...(props as React.SVGProps<SVGSVGElement>)}
   >
     <path
       d="M4 12L20 12"
@@ -62,7 +61,7 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
   logoHref?: string;
 }
 
-export const NavBar = React.forwardRef<HTMLElement, NavbarProps>(
+const NavBarComponent = React.forwardRef<HTMLElement, NavbarProps>(
   ({ className, logo, logoHref, ...props }, ref) => {
     const [isMobile, setIsMobile] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -158,7 +157,7 @@ export const NavBar = React.forwardRef<HTMLElement, NavbarProps>(
           "sticky top-0 z-[60] w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 [&_*]:no-underline",
           className
         )}
-        {...(props as any)}
+        {...(props as React.HTMLAttributes<HTMLElement>)}
       >
         <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between gap-4">
           {/* Left side */}
@@ -284,3 +283,7 @@ export const NavBar = React.forwardRef<HTMLElement, NavbarProps>(
     );
   }
 );
+
+NavBarComponent.displayName = "NavBar";
+
+export const NavBar = NavBarComponent;
