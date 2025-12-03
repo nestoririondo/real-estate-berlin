@@ -136,4 +136,17 @@
     transition-duration: 500ms;
     transition-timing-function: ease;
   }
+  
+  /* Initial theme based on system preference - prevents flash */
+  @media (prefers-color-scheme: dark) {
+    html:not(.light) {
+      color-scheme: dark;
+    }
+  }
+  
+  @media (prefers-color-scheme: light) {
+    html:not(.dark) {
+      color-scheme: light;
+    }
+  }
 }

@@ -41,8 +41,8 @@ const Hero = () => {
         {/* Dark mode image */}
         <div
           className={`absolute inset-0 transition-opacity duration-500 ${
-            isDark ? "opacity-100" : "opacity-0"
-          }`}
+            mounted && isDark ? "opacity-100" : "opacity-0"
+          } dark:opacity-100`}
         >
           <Image
             src={darkModeImage}
@@ -56,8 +56,8 @@ const Hero = () => {
         {/* Light mode image */}
         <div
           className={`absolute inset-0 transition-opacity duration-500 ${
-            isDark ? "opacity-0" : "opacity-100"
-          }`}
+            mounted && !isDark ? "opacity-100" : "opacity-0"
+          } dark:opacity-0`}
         >
           <Image
             src={lightModeImage}
@@ -70,10 +70,9 @@ const Hero = () => {
         </div>
         {/* Dark overlay for text readability - transitions smoothly */}
         <div
-          className="absolute inset-0 transition-all duration-500"
-          style={{
-            backgroundColor: isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.4)",
-          }}
+          className={`absolute inset-0 transition-all duration-500 ${
+            mounted && isDark ? "bg-black/20" : "bg-black/40"
+          } dark:bg-black/20`}
         />
       </div>
       
