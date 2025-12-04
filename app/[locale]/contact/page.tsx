@@ -26,18 +26,18 @@ const ContactPage = async ({ params }: ContactPageProps) => {
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Left Side - Maps and Team Image */}
-            <div className="lg:col-span-1 space-y-6">
-              <ContactInfo />
-            </div>
-
-            {/* Right Side - Form and Info Cards in Bento Layout */}
-            <div className="lg:col-span-2 space-y-6">
+            {/* Right Side - Form and Info Cards in Bento Layout (First on mobile) */}
+            <div className="lg:col-span-2 space-y-6 order-1 lg:order-2">
               {/* Contact Form */}
               <ContactForm />
               
               {/* Contact Info Cards in Bento Grid */}
               <ContactInfoCards />
+            </div>
+
+            {/* Left Side - Maps and Team Image (Second on mobile) */}
+            <div className="lg:col-span-1 space-y-6 order-2 lg:order-1">
+              <ContactInfo />
             </div>
           </div>
         </div>
