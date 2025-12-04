@@ -224,16 +224,6 @@ const NavBarComponent = React.forwardRef<HTMLElement, NavbarProps>(
                         </>
                       )}
 
-                      {/* Floating hamburger button - always on top */}
-                      <button
-                        onClick={() =>
-                          isMenuOpen ? handleCloseMenu() : handleOpenMenu()
-                        }
-                        aria-expanded={isMenuOpen}
-                        className="group fixed top-4 left-4 h-9 w-9 flex items-center justify-center hover:bg-accent hover:text-accent-foreground rounded-md transition-colors z-[60] bg-background"
-                      >
-                        <HamburgerIcon />
-                      </button>
                     </>,
                     document.body
                   )}
