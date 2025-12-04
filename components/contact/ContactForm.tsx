@@ -48,8 +48,6 @@ export const ContactForm = () => {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    console.log("Form submitted:", formData);
-
     setIsSubmitting(false);
     setIsSubmitted(true);
     setFormData({ name: "", email: "", phone: "", message: "", service: "" });

@@ -5,17 +5,11 @@ import { PropertyMap } from "@/components/properties/PropertyMap";
 import { PropertyStats } from "@/components/properties/PropertyStats";
 import { ContactForm } from "@/components/properties/ContactForm";
 import { BackButton } from "@/components/ui/back-button";
+import { Badge } from "@/components/ui/badge";
 import { MapPin } from "lucide-react";
-import { allProperties } from "@/lib/data/properties";
-import { getPropertyExtras } from "@/lib/data/mockPropertyExtras";
+import { getPropertyById } from "@/lib/services/propertyService";
 import { formatPrice } from "@/lib/utils/formatPrice";
-import type { Property } from "@/types/property";
-
-// Mock function - replace with actual API call
-const getProperty = async (id: string): Promise<Property | null> => {
-  const property = allProperties.find((p) => p.id === Number(id));
-  return property || null;
-};
+import { getTranslations } from "next-intl/server";
 
 interface PropertyPageProps {
   params: Promise<{ id: string; locale: string }>;
@@ -23,14 +17,21 @@ interface PropertyPageProps {
 
 const PropertyPage = async ({ params }: PropertyPageProps) => {
   const { id, locale } = await params;
-  const property = await getProperty(id);
+  const t = await getTranslations({ locale, namespace: "common" });
+  
+  // Fetch property from API using service layer
+  const property = await getPropertyById(id, locale === "de" ? "de" : "en");
 
   if (!property) {
     notFound();
   }
 
-  const propertyExtras = getPropertyExtras(property.id);
-  const galleryImages = [property.image, ...propertyExtras.galleryImages];
+  // Use images from API (property.images array), fallback to single image
+  const galleryImages = property.images && property.images.length > 0
+    ? property.images
+    : property.image
+    ? [property.image]
+    : [];
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -64,8 +65,18 @@ const PropertyPage = async ({ params }: PropertyPageProps) => {
                 />
               </div>
               <div className="lg:text-right">
+                {property.type === "rent" && (
+                  <Badge className="mb-2 text-sm font-semibold bg-secondary text-secondary-foreground border border-border">
+                    {t("rent")}
+                  </Badge>
+                )}
                 <p className="text-4xl font-bold text-primary">
                   {formatPrice(property.price, property.currency, locale)}
+                  {property.type === "rent" && (
+                    <span className="text-xl font-normal ml-2 opacity-75">
+                      {locale === "de" ? " / Monat" : " / month"}
+                    </span>
+                  )}
                 </p>
               </div>
             </div>
@@ -74,13 +85,20 @@ const PropertyPage = async ({ params }: PropertyPageProps) => {
           {/* Property Details */}
           <PropertyDetails property={property} />
 
-          {/* Property Map */}
-          {property.coordinates && (
+          {/* Property Map - Show if we have coordinates OR address information */}
+          {(property.coordinates || property.street || property.location) && (
             <PropertyMap
-              lat={property.coordinates.lat}
-              lng={property.coordinates.lng}
+              lat={property.coordinates?.lat}
+              lng={property.coordinates?.lng}
               title={property.title}
               location={property.location}
+              address={{
+                street: property.street,
+                house_number: property.house_number,
+                zip_code: property.zip_code,
+                city: property.city,
+                country: property.country,
+              }}
             />
           )}
         </div>

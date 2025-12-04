@@ -35,13 +35,23 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2">
-            {property.isNew && (
-              <Badge className="bg-primary text-primary-foreground">
-                {t("new")}
-              </Badge>
-            )}
+            <div className="flex items-center gap-2">
+              {property.isNew && (
+                <Badge className="bg-primary text-primary-foreground">
+                  {t("new")}
+                </Badge>
+              )}
+              {property.type === "rent" && (
+                <Badge className="text-xs font-semibold bg-secondary text-secondary-foreground border border-border">
+                  {t("rent")}
+                </Badge>
+              )}
+            </div>
             <Badge className="bg-background/95 text-foreground backdrop-blur-sm text-base font-bold px-3 py-1 ml-auto">
               {formatPrice(property.price, property.currency, locale)}
+              {property.type === "rent" && (
+                <span className="text-xs font-normal ml-1 opacity-75">/mo</span>
+              )}
             </Badge>
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogOverlay, DialogPortal, DialogTitle } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
@@ -15,6 +15,9 @@ interface PropertyGalleryProps {
 const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const thumbnailScrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
 
   const nextImage = () => {
     setSelectedImage((prev) => (prev + 1) % images.length);
@@ -23,6 +26,54 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
   const prevImage = () => {
     setSelectedImage((prev) => (prev - 1 + images.length) % images.length);
   };
+
+  const checkScrollButtons = () => {
+    if (!thumbnailScrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = thumbnailScrollRef.current;
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+  };
+
+  const scrollThumbnails = (direction: "left" | "right") => {
+    if (!thumbnailScrollRef.current) return;
+    const scrollAmount = 240; // Scroll by approximately 3 thumbnails (80px + 12px gap)
+    const currentScroll = thumbnailScrollRef.current.scrollLeft;
+    const newScroll = direction === "left" 
+      ? currentScroll - scrollAmount 
+      : currentScroll + scrollAmount;
+    
+    thumbnailScrollRef.current.scrollTo({
+      left: newScroll,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    checkScrollButtons();
+    const scrollContainer = thumbnailScrollRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", checkScrollButtons);
+      // Check on resize
+      window.addEventListener("resize", checkScrollButtons);
+      return () => {
+        scrollContainer.removeEventListener("scroll", checkScrollButtons);
+        window.removeEventListener("resize", checkScrollButtons);
+      };
+    }
+  }, [images]);
+
+  // Scroll to selected thumbnail when it changes
+  useEffect(() => {
+    if (!thumbnailScrollRef.current) return;
+    const thumbnailWidth = 80; // w-20 = 80px
+    const gap = 12; // gap-3 = 12px
+    const scrollPosition = selectedImage * (thumbnailWidth + gap) - (thumbnailScrollRef.current.clientWidth / 2) + (thumbnailWidth / 2);
+    
+    thumbnailScrollRef.current.scrollTo({
+      left: Math.max(0, scrollPosition),
+      behavior: "smooth",
+    });
+  }, [selectedImage]);
 
   return (
     <div className="space-y-4">
@@ -63,28 +114,65 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
         </Button>
       </div>
 
-      {/* Thumbnail Grid */}
-      <div className="grid grid-cols-5 gap-4">
-        {images.map((image, index) => (
-          <button
-            key={index}
-            onClick={() => setSelectedImage(index)}
-            className={cn(
-              "relative w-full h-20 rounded-md overflow-hidden border-2 transition-all",
-              selectedImage === index
-                ? "border-primary"
-                : "border-transparent hover:border-primary/50"
-            )}
+      {/* Thumbnail Scrollable Strip with Navigation Buttons */}
+      <div className="relative">
+        {/* Left Scroll Button */}
+        {canScrollLeft && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg border border-border h-9 w-9 rounded-full"
+            onClick={() => scrollThumbnails("left")}
           >
-            <Image
-              src={image}
-              alt={`${title} - Thumbnail ${index + 1}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 20vw, 13vw"
-            />
-          </button>
-        ))}
+            <ChevronLeft className="h-5 w-5" />
+          </Button>
+        )}
+        
+        {/* Right Scroll Button */}
+        {canScrollRight && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg border border-border h-9 w-9 rounded-full"
+            onClick={() => scrollThumbnails("right")}
+          >
+            <ChevronRight className="h-5 w-5" />
+          </Button>
+        )}
+
+        {/* Scrollable Thumbnail Container */}
+        <div 
+          ref={thumbnailScrollRef}
+          className="overflow-x-auto scrollbar-hide scroll-smooth px-10"
+          style={{ 
+            WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS/iPad
+            scrollbarWidth: "none", // Firefox
+            msOverflowStyle: "none", // IE/Edge
+          }}
+        >
+          <div className="flex gap-3 min-w-max py-1">
+            {images.map((image, index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedImage(index)}
+                className={cn(
+                  "relative w-20 h-20 flex-shrink-0 rounded-md overflow-hidden border-2 transition-all",
+                  selectedImage === index
+                    ? "border-primary"
+                    : "border-transparent hover:border-primary/50"
+                )}
+              >
+                <Image
+                  src={image}
+                  alt={`${title} - Thumbnail ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="80px"
+                />
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Full Screen Dialog */}

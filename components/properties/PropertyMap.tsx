@@ -5,28 +5,100 @@ import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 interface PropertyMapProps {
-  lat: number;
-  lng: number;
+  lat?: number;
+  lng?: number;
   title: string;
   location?: string;
+  address?: {
+    street?: string;
+    house_number?: string;
+    zip_code?: string;
+    city?: string;
+    country?: string;
+  };
 }
 
-const PropertyMap = ({ lat, lng, title, location }: PropertyMapProps) => {
+const PropertyMap = ({ lat, lng, title, location, address }: PropertyMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [coordinates, setCoordinates] = useState<{ lat: number; lng: number } | null>(null);
   const t = useTranslations("property");
 
   useEffect(() => {
     if (!mapRef.current) return;
 
-    const initializeMap = () => {
+    // Build address string for geocoding
+    const buildAddressString = (): string | null => {
+      if (location) return location;
+      
+      if (address) {
+        const parts = [
+          address.street,
+          address.house_number,
+          address.zip_code,
+          address.city,
+          address.country,
+        ].filter(Boolean);
+        
+        return parts.length > 0 ? parts.join(", ") : null;
+      }
+      
+      return null;
+    };
+
+    const geocodeAddress = async (addressString: string): Promise<{ lat: number; lng: number } | null> => {
+      if (typeof google === "undefined" || !google.maps) {
+        return null;
+      }
+
+      return new Promise((resolve) => {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ address: addressString }, (results, status) => {
+          if (status === "OK" && results && results[0]) {
+            const location = results[0].geometry.location;
+            resolve({
+              lat: location.lat(),
+              lng: location.lng(),
+            });
+          } else {
+            resolve(null);
+          }
+        });
+      });
+    };
+
+    const initializeMap = async () => {
       if (!mapRef.current) return;
 
       try {
+        let mapLat = lat;
+        let mapLng = lng;
+
+        // If no coordinates, try to geocode the address
+        if (!mapLat || !mapLng) {
+          const addressString = buildAddressString();
+          if (addressString) {
+            const geocoded = await geocodeAddress(addressString);
+            if (geocoded) {
+              mapLat = geocoded.lat;
+              mapLng = geocoded.lng;
+              setCoordinates(geocoded);
+            } else {
+              setError("Could not find location");
+              setIsLoading(false);
+              return;
+            }
+          } else {
+            setError("No location information available");
+            setIsLoading(false);
+            return;
+          }
+        }
+
         // Initialize the map
         const map = new google.maps.Map(mapRef.current, {
-          center: { lat, lng },
+          center: { lat: mapLat, lng: mapLng },
           zoom: 15,
           mapTypeControl: false,
           streetViewControl: true,
@@ -43,7 +115,7 @@ const PropertyMap = ({ lat, lng, title, location }: PropertyMapProps) => {
 
         // Add a marker
         const marker = new google.maps.Marker({
-          position: { lat, lng },
+          position: { lat: mapLat, lng: mapLng },
           map,
           title,
           animation: google.maps.Animation.DROP,
@@ -59,7 +131,7 @@ const PropertyMap = ({ lat, lng, title, location }: PropertyMapProps) => {
         });
 
         setIsLoading(false);
-      } catch {
+      } catch (err) {
         setError("Failed to initialize map");
         setIsLoading(false);
       }
@@ -89,7 +161,7 @@ const PropertyMap = ({ lat, lng, title, location }: PropertyMapProps) => {
         clearTimeout(timeout);
       };
     }
-  }, [lat, lng, title]);
+  }, [lat, lng, title, location, address]);
 
   return (
     <>

@@ -43,9 +43,6 @@ const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    // In real app, send to API
-    console.log("Form submitted:", { ...formData, propertyId, propertyTitle });
-
     setIsSubmitting(false);
     setIsSubmitted(true);
     setFormData({ name: "", email: "", phone: "", message: "" });

@@ -1,19 +1,47 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { PropertyFilter } from "@/components/properties/PropertyFilter";
 import { PropertyCard } from "@/components/properties/PropertyCard";
 import type { PropertyFilterValues } from "@/types/filter";
 import { filterProperties } from "@/lib/utils/propertyFilter";
 import { DEFAULT_FILTERS } from "@/constants/filterDefaults";
-import { allProperties } from "@/lib/data/properties";
+import { useProperties } from "@/hooks/useProperties";
 
 const Properties = () => {
   const t = useTranslations("properties");
+  const locale = useLocale();
   const [filters, setFilters] = useState<PropertyFilterValues>(DEFAULT_FILTERS);
 
-  const filteredProperties = filterProperties(allProperties, filters);
+  // Fetch properties from API (via API route -> service layer -> API client)
+  const { properties, loading, error } = useProperties({
+    locale: locale === "de" ? "de" : "en",
+  });
+
+  // Filter the fetched properties
+  const filteredProperties = filterProperties(properties, filters);
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center py-16">
+          <p className="text-muted-foreground text-lg">{"Loading properties..."}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center py-16">
+          <p className="text-destructive text-lg mb-2">{t("error") || "Error"}</p>
+          <p className="text-muted-foreground text-sm">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
