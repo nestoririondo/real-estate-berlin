@@ -15,7 +15,7 @@ const DatenschutzPage = () => {
           <section>
             <h3 className="text-xl font-semibold mb-4">Wer bei uns für die Datenverarbeitung verantwortlich ist</h3>
             <p className="mb-2"><strong>Verantwortlich für die Datenverarbeitung ist:</strong></p>
-            <p>Realestate in Berlin</p>
+            <p>Real Estate in Berlin</p>
             <p>Fabrizio Selvaggi</p>
             <p>Leipziger Platz 15</p>
             <p>10117 Berlin</p>

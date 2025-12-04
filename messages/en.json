@@ -35,7 +35,8 @@
     "tryAdjusting": "Try adjusting your search criteria",
     "beds": "{count} beds",
     "baths": "{count} baths",
-    "sqm": "{count}m²"
+    "sqm": "{count}m²",
+    "loading": "Loading..."
   },
   "property": {
     "details": "Property Details",

@@ -5,7 +5,6 @@ import { useTranslations, useLocale } from "next-intl";
 import { PropertyFilter } from "@/components/properties/PropertyFilter";
 import { PropertyCard } from "@/components/properties/PropertyCard";
 import { PropertyCardSkeleton } from "@/components/properties/PropertyCardSkeleton";
-import { Skeleton } from "@/components/ui/skeleton";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import type { PropertyFilterValues } from "@/types/filter";
@@ -65,7 +64,18 @@ const Properties = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       {loading ? (
-        <Skeleton className="h-10 w-64 mb-8" />
+        <motion.h1
+          className="text-4xl font-bold mb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          {t("loading") || "Loading..."}
+        </motion.h1>
       ) : (
         <h1 className="text-4xl font-bold mb-8">
           {t("showing", {

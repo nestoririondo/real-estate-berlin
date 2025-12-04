@@ -26,7 +26,7 @@ export interface PropstackResponse {
 export const fetchPropertiesFromAPI = async (
   params?: FetchPropertiesParams
 ): Promise<PropstackResponse> => {
-  const apiKey = process.env.PROPSTACK_API_KEY || process.env.NEXT_PUBLIC_PROPSTACK_API_KEY;
+  const apiKey = process.env.NEXT_PUBLIC_PROPSTACK_API_KEY;
   
   if (!apiKey) {
     throw new Error("PROPSTACK_API_KEY is not set");

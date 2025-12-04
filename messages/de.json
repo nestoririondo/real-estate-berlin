@@ -35,7 +35,8 @@
     "tryAdjusting": "Versuchen Sie, Ihre Suchkriterien anzupassen",
     "beds": "{count} Schlafzimmer",
     "baths": "{count} Badezimmer",
-    "sqm": "{count}m²"
+    "sqm": "{count}m²",
+    "loading": "Lädt..."
   },
   "property": {
     "details": "Immobiliendetails",

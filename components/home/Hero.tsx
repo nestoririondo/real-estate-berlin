@@ -24,7 +24,7 @@ const Hero = () => {
     setMounted(true);
   }, []);
 
-  // Dark mode image (night Berlin)
+  // Dark mode image (night Berlin) - using absolute path from public folder
   const darkModeImage = "/header-pages-berlin-4577624_1920.jpg";
   // Light mode image (sunset Berlin)
   const lightModeImage = "https://media.istockphoto.com/id/503874284/de/foto/berlin-skyline-mit-spree-bei-sonnenuntergang-deutschland.jpg?s=1024x1024&w=is&k=20&c=JfUhT6VazsIMjUoIsnTVi394JJcibNjVgNz5kpqYTD8=";
@@ -51,6 +51,7 @@ const Hero = () => {
             className="object-cover"
             priority
             quality={90}
+            unoptimized={true}
           />
         </div>
         {/* Light mode image */}

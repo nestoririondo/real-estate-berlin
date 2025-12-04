@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogOverlay, DialogPortal, DialogTitle } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
@@ -12,20 +12,56 @@ interface PropertyGalleryProps {
   title: string;
 }
 
+// Generate a simple blur placeholder (light gray)
+const blurDataURL = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
+
 const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const thumbnailScrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0])); // Track loaded images
+  const preloadedImagesRef = useRef<Set<number>>(new Set()); // Track preloaded images with ref
+
+  // Preload adjacent images
+  const preloadImage = useCallback((index: number) => {
+    if (index < 0 || index >= images.length) return;
+    
+    // Check if already preloaded using ref
+    if (preloadedImagesRef.current.has(index)) return;
+    
+    // Preload the image
+    const img = new window.Image();
+    img.src = images[index];
+    preloadedImagesRef.current.add(index);
+  }, [images]);
 
   const nextImage = () => {
-    setSelectedImage((prev) => (prev + 1) % images.length);
+    const next = (selectedImage + 1) % images.length;
+    setSelectedImage(next);
+    // Preload next and previous images
+    preloadImage((next + 1) % images.length);
+    preloadImage((next - 1 + images.length) % images.length);
   };
 
   const prevImage = () => {
-    setSelectedImage((prev) => (prev - 1 + images.length) % images.length);
+    const prev = (selectedImage - 1 + images.length) % images.length;
+    setSelectedImage(prev);
+    // Preload next and previous images
+    preloadImage((prev + 1) % images.length);
+    preloadImage((prev - 1 + images.length) % images.length);
   };
+
+  // Preload images when dialog opens
+  useEffect(() => {
+    if (isDialogOpen) {
+      // Preload current, next, and previous images
+      preloadImage(selectedImage);
+      preloadImage((selectedImage + 1) % images.length);
+      preloadImage((selectedImage - 1 + images.length) % images.length);
+    }
+  }, [isDialogOpen, selectedImage, images.length, preloadImage]);
 
   const checkScrollButtons = () => {
     if (!thumbnailScrollRef.current) return;
@@ -79,15 +115,19 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
     <div className="space-y-4">
       {/* Main Image */}
       <div
-        className="relative w-full h-[500px] rounded-lg overflow-hidden group cursor-pointer"
+        className="relative w-full h-[500px] rounded-lg overflow-hidden group cursor-pointer bg-muted"
         onClick={() => setIsDialogOpen(true)}
       >
         <Image
           src={images[selectedImage]}
           alt={`${title} - Image ${selectedImage + 1}`}
           fill
-          className="object-cover"
+          className="object-cover transition-opacity duration-300"
           sizes="(max-width: 768px) 100vw, 66vw"
+          placeholder="blur"
+          blurDataURL={blurDataURL}
+          priority={selectedImage === 0}
+          onLoad={() => setLoadedImages((prev) => new Set([...prev, selectedImage]))}
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors pointer-events-none" />
         <Button
@@ -166,8 +206,17 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
                   src={image}
                   alt={`${title} - Thumbnail ${index + 1}`}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-opacity duration-200"
                   sizes="80px"
+                  placeholder="blur"
+                  blurDataURL={blurDataURL}
+                  loading={index < 6 ? "eager" : "lazy"}
+                  onMouseEnter={() => {
+                    // Preload on hover for faster main image switching
+                    if (index !== selectedImage) {
+                      preloadImage(index);
+                    }
+                  }}
                 />
               </button>
             ))}
@@ -197,16 +246,19 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
 
             {/* Main Image Area */}
             <div
-              className="relative w-full flex-1 pointer-events-auto"
+              className="relative w-full flex-1 pointer-events-auto bg-black"
               onClick={() => setIsDialogOpen(false)}
             >
               <Image
                 src={images[selectedImage]}
                 alt={`${title} - Image ${selectedImage + 1}`}
                 fill
-                className="object-contain"
+                className="object-contain transition-opacity duration-300"
                 sizes="100vw"
                 priority
+                placeholder="blur"
+                blurDataURL={blurDataURL}
+                onLoad={() => setLoadedImages((prev) => new Set([...prev, selectedImage]))}
               />
               <Button
                 variant="ghost"
@@ -260,8 +312,11 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
                     src={image}
                     alt={`${title} - Thumbnail ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-opacity duration-200"
                     sizes="96px"
+                    placeholder="blur"
+                    blurDataURL={blurDataURL}
+                    loading="lazy"
                   />
                 </button>
               ))}
