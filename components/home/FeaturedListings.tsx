@@ -87,24 +87,26 @@ const FeaturedListings = () => {
           </Button>
         </motion.div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView && !loading ? "visible" : "hidden"}
-        >
-          {loading ? (
-            Array.from({ length: 4 }).map((_, index) => (
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+            {Array.from({ length: 4 }).map((_, index) => (
               <PropertyCardSkeleton key={index} />
-            ))
-          ) : (
-            featuredProperties.map((property) => (
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            {featuredProperties.map((property) => (
               <motion.div key={property.id} variants={itemVariants}>
                 <PropertyCard property={property} />
               </motion.div>
-            ))
-          )}
-        </motion.div>
+            ))}
+          </motion.div>
+        )}
 
         <motion.div
           className="text-center md:hidden"
