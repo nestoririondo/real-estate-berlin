@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { PropertyFilter } from "@/components/properties/PropertyFilter";
 import { PropertyCard } from "@/components/properties/PropertyCard";
+import { PropertyCardSkeleton } from "@/components/properties/PropertyCardSkeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 import type { PropertyFilterValues } from "@/types/filter";
 import { filterProperties } from "@/lib/utils/propertyFilter";
 import { DEFAULT_FILTERS } from "@/constants/filterDefaults";
@@ -22,16 +24,6 @@ const Properties = () => {
   // Filter the fetched properties
   const filteredProperties = filterProperties(properties, filters);
 
-  if (loading) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center py-16">
-          <p className="text-muted-foreground text-lg">{"Loading properties..."}</p>
-        </div>
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -45,11 +37,15 @@ const Properties = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">
-        {t("showing", {
-          count: filteredProperties.length,
-        })}
-      </h1>
+      {loading ? (
+        <Skeleton className="h-10 w-64 mb-8" />
+      ) : (
+        <h1 className="text-4xl font-bold mb-8">
+          {t("showing", {
+            count: filteredProperties.length,
+          })}
+        </h1>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Filter Sidebar */}
@@ -59,7 +55,13 @@ const Properties = () => {
 
         {/* Properties Grid */}
         <div className="lg:col-span-3">
-          {filteredProperties.length > 0 ? (
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {Array.from({ length: 6 }).map((_, index) => (
+                <PropertyCardSkeleton key={index} />
+              ))}
+            </div>
+          ) : filteredProperties.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredProperties.map((property) => (
                 <PropertyCard key={property.id} property={property} />

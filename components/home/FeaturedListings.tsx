@@ -3,20 +3,43 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PropertyCard } from "@/components/properties/PropertyCard";
-import { allProperties } from "@/lib/data/properties";
+import { PropertyCardSkeleton } from "@/components/properties/PropertyCardSkeleton";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { useProperties } from "@/hooks/useProperties";
 
 const FeaturedListings = () => {
   const t = useTranslations("home");
   const locale = useLocale();
-  // Get first 4 properties for featured section
-  const featuredProperties = allProperties.slice(0, 4);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  // Fetch properties from API
+  const { properties, loading } = useProperties({
+    locale: locale === "de" ? "de" : "en",
+  });
+
+  // Get last 4 properties (most recent) - sort by created_at or updated_at if available
+  const featuredProperties = useMemo(() => {
+    if (!properties || properties.length === 0) return [];
+    
+    // Sort by created_at (most recent first), fallback to updated_at, then take first 4
+    const sorted = [...properties].sort((a, b) => {
+      const dateA = a.created_at ? new Date(a.created_at).getTime() : 0;
+      const dateB = b.created_at ? new Date(b.created_at).getTime() : 0;
+      if (dateA !== dateB) return dateB - dateA; // Most recent first
+      
+      // Fallback to updated_at
+      const updatedA = a.updated_at ? new Date(a.updated_at).getTime() : 0;
+      const updatedB = b.updated_at ? new Date(b.updated_at).getTime() : 0;
+      return updatedB - updatedA;
+    });
+    
+    return sorted.slice(0, 4);
+  }, [properties]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -68,13 +91,19 @@ const FeaturedListings = () => {
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8"
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView && !loading ? "visible" : "hidden"}
         >
-          {featuredProperties.map((property) => (
-            <motion.div key={property.id} variants={itemVariants}>
-              <PropertyCard property={property} />
-            </motion.div>
-          ))}
+          {loading ? (
+            Array.from({ length: 4 }).map((_, index) => (
+              <PropertyCardSkeleton key={index} />
+            ))
+          ) : (
+            featuredProperties.map((property) => (
+              <motion.div key={property.id} variants={itemVariants}>
+                <PropertyCard property={property} />
+              </motion.div>
+            ))
+          )}
         </motion.div>
 
         <motion.div
