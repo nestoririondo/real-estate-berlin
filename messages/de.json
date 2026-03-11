@@ -92,7 +92,8 @@
     "servicesSubtitle": "Umfassende Immobiliendienstleistungen, die auf Ihre Bedürfnisse zugeschnitten sind",
     "seeAllServices": "Alle Dienstleistungen anzeigen",
     "about": {
-      "title": "Ihr Berlin-Experte",
+      "title": "Ihr",
+      "titleHighlight": "Berlin-Experte",
       "description": "Mit über 15 Jahren Erfahrung auf dem Berliner Immobilienmarkt biete ich einen persönlichen Service, um Ihnen zu helfen, die perfekte Immobilie zu finden. Als IVD-Mitglied und mehrsprachiger Berater verbinde ich Kulturen und mache Ihre Immobilienreise nahtlos.",
       "founderImageAlt": "Fabrizio - Immobilienberater",
       "cta": "Kontakt aufnehmen",

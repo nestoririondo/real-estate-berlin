@@ -92,7 +92,8 @@
     "servicesSubtitle": "Comprehensive real estate services tailored to your needs",
     "seeAllServices": "See All Our Services",
     "about": {
-      "title": "Meet Your Berlin Expert",
+      "title": "Meet Your",
+      "titleHighlight": "Berlin Expert",
       "description": "With over 15 years of experience in the Berlin real estate market, I provide personalized service to help you find the perfect property. As an IVD member and multilingual consultant, I bridge cultures and make your real estate journey seamless.",
       "founderImageAlt": "Fabrizio - Real Estate Consultant",
       "cta": "Get in Touch",

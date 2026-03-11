@@ -6,7 +6,7 @@ import { PropertyStats } from "@/components/properties/PropertyStats";
 import { ContactForm } from "@/components/properties/ContactForm";
 import { BackButton } from "@/components/ui/back-button";
 import { Badge } from "@/components/ui/badge";
-import { MapPin } from "lucide-react";
+import { MapPin, Home } from "lucide-react";
 import { getPropertyById } from "@/lib/services/propertyService";
 import { formatPrice } from "@/lib/utils/formatPrice";
 import { getTranslations } from "next-intl/server";
@@ -65,11 +65,19 @@ const PropertyPage = async ({ params }: PropertyPageProps) => {
                 />
               </div>
               <div className="lg:text-right">
-                {property.type === "rent" && (
-                  <Badge className="mb-2 text-sm font-semibold bg-secondary text-secondary-foreground border border-border">
-                    {t("rent")}
-                  </Badge>
-                )}
+                <div className="flex flex-wrap gap-2 lg:justify-end mb-2">
+                  {property.type === "rent" && (
+                    <Badge className="text-sm font-semibold bg-secondary text-secondary-foreground border border-border">
+                      {t("rent")}
+                    </Badge>
+                  )}
+                  {property.rented && (
+                    <Badge className="flex items-center gap-1.5 text-sm bg-blue-100 dark:bg-blue-900/80 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-700">
+                      <Home className="h-4 w-4" />
+                      {t("rented")}
+                    </Badge>
+                  )}
+                </div>
                 <p className="text-4xl font-bold text-primary">
                   {formatPrice(property.price, property.currency, locale)}
                   {property.type === "rent" && (

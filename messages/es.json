@@ -92,7 +92,8 @@
     "servicesSubtitle": "Servicios inmobiliarios integrales adaptados a sus necesidades",
     "seeAllServices": "Ver Todos Nuestros Servicios",
     "about": {
-      "title": "Conozca a Su Experto en Berlín",
+      "title": "Conozca a Su",
+      "titleHighlight": "Experto en Berlín",
       "description": "Con más de 15 años de experiencia en el mercado inmobiliario de Berlín, ofrezco un servicio personalizado para ayudarle a encontrar la propiedad perfecta. Como miembro del IVD y consultor multilingüe, conecto culturas y hago que su experiencia inmobiliaria sea fluida.",
       "founderImageAlt": "Fabrizio - Consultor Inmobiliario",
       "cta": "Contactar",

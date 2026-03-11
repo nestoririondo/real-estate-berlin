@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, CheckCircle, XCircle } from "lucide-react";
+import { MapPin, Home } from "lucide-react";
 import { PropertyStats } from "./PropertyStats";
 import type { Property } from "@/types/property";
 import { cn } from "@/lib/utils";
@@ -19,9 +19,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
   const t = useTranslations("common");
   const locale = useLocale();
 
-  // Determine availability status
   const isRented = property.rented === true;
-  const isAvailable = !isRented;
 
   return (
     <Link href={`/${locale}/properties/${property.id}`}>
@@ -50,15 +48,10 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
                   {t("rent")}
                 </Badge>
               )}
-              {isAvailable ? (
-                <Badge className="bg-green-600 text-white flex items-center gap-1">
-                  <CheckCircle className="h-3 w-3" />
-                  {t("available")}
-                </Badge>
-              ) : (
-                <Badge className="bg-red-600 text-white flex items-center gap-1">
-                  <XCircle className="h-3 w-3" />
-                  {t("rented")}
+              {isRented && (
+                <Badge className="flex items-center gap-1 bg-blue-100 dark:bg-blue-900/80 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-700">
+                  <Home className="h-3.5 w-3.5" />
+                  <span className="text-xs">{t("rented")}</span>
                 </Badge>
               )}
             </div>

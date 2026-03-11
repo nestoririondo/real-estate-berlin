@@ -48,12 +48,18 @@ export const filterProperties = (
       const propertyNeighborhood = property.neighborhood?.toLowerCase() || "";
       const matchesNeighborhood = filters.neighborhood.some((district) => {
         const districtLower = district.toLowerCase();
-        // Check if the property neighborhood contains the district name or vice versa
-        // This allows matching sub-neighborhoods like "Prenzlauer Berg" to "Pankow"
-        return propertyNeighborhood.includes(districtLower) ||
-               districtLower.includes(propertyNeighborhood) ||
-               // Exact match
-               propertyNeighborhood === districtLower;
+        // Split compound district names (e.g., "Friedrichshain-Kreuzberg" -> ["friedrichshain", "kreuzberg"])
+        const districtParts = districtLower.split("-").map(p => p.trim());
+
+        // Check if property neighborhood matches any part of the district
+        return districtParts.some(part =>
+          propertyNeighborhood.includes(part) || part.includes(propertyNeighborhood)
+        ) ||
+        // Or exact match with full district name
+        propertyNeighborhood === districtLower ||
+        // Or property neighborhood contains full district
+        propertyNeighborhood.includes(districtLower) ||
+        districtLower.includes(propertyNeighborhood);
       });
       if (!matchesNeighborhood) return false;
     }

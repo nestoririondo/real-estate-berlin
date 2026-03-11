@@ -24,8 +24,12 @@ const Properties = () => {
     locale: locale === "de" ? "de" : "en",
   });
 
-  // Filter the fetched properties
-  const filteredProperties = filterProperties(properties, filters);
+  // Filter and sort properties (newest first)
+  const filteredProperties = filterProperties(properties, filters).sort((a, b) => {
+    const dateA = a.created_at ? new Date(a.created_at).getTime() : 0;
+    const dateB = b.created_at ? new Date(b.created_at).getTime() : 0;
+    return dateB - dateA; // Newest first
+  });
 
   // Animation variants
   const containerVariants = {

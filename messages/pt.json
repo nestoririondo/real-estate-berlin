@@ -92,7 +92,8 @@
     "servicesSubtitle": "Serviços imobiliários abrangentes adaptados às suas necessidades",
     "seeAllServices": "Ver Todos os Nossos Serviços",
     "about": {
-      "title": "Conheça Seu Especialista em Berlim",
+      "title": "Conheça Seu",
+      "titleHighlight": "Especialista em Berlim",
       "description": "Com mais de 15 anos de experiência no mercado imobiliário de Berlim, ofereço um serviço personalizado para ajudá-lo a encontrar a propriedade perfeita. Como membro do IVD e consultor multilíngue, conecto culturas e torno sua jornada imobiliária tranquila.",
       "founderImageAlt": "Fabrizio - Consultor Imobiliário",
       "cta": "Entre em Contato",
