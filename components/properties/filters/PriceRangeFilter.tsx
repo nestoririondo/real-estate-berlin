@@ -1,9 +1,22 @@
 import { useTranslations } from "next-intl";
 import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
-import { Input } from "@/components/ui/input";
 import { Euro } from "lucide-react";
 import { FILTER_LIMITS } from "@/constants/filterDefaults";
+import { cn } from "@/lib/utils";
+
+interface PriceRange {
+  label: string;
+  min: number;
+  max: number;
+}
+
+const PRICE_RANGES: PriceRange[] = [
+  { label: "filter.all", min: FILTER_LIMITS.PRICE_MIN, max: FILTER_LIMITS.PRICE_MAX },
+  { label: "< €200k", min: 0, max: 200000 },
+  { label: "€200k - €500k", min: 200000, max: 500000 },
+  { label: "€500k - €1M", min: 500000, max: 1000000 },
+  { label: "€1M+", min: 1000000, max: FILTER_LIMITS.PRICE_MAX },
+];
 
 interface PriceRangeFilterProps {
   minPrice: number;
@@ -17,52 +30,46 @@ const PriceRangeFilter = ({
   minPrice,
   maxPrice,
   onPriceRangeChange,
-  onMinChange,
-  onMaxChange,
 }: PriceRangeFilterProps) => {
   const t = useTranslations("filter");
+
+  const isRangeSelected = (range: PriceRange) => {
+    return minPrice === range.min && maxPrice === range.max;
+  };
+
+  const handleRangeClick = (range: PriceRange) => {
+    onPriceRangeChange([range.min, range.max]);
+  };
+
+  const getLabel = (range: PriceRange) => {
+    if (range.label === "filter.all") {
+      return t("all");
+    }
+    return range.label;
+  };
 
   return (
     <div className="space-y-3">
       <Label className="text-base font-medium flex items-center gap-2">
         <Euro className="h-4 w-4" />
-        {t("priceRange")}: €{minPrice.toLocaleString()} - €{maxPrice.toLocaleString()}
+        {t("priceRange")}
       </Label>
-      <Slider
-        value={[minPrice, maxPrice]}
-        onValueChange={onPriceRangeChange}
-        max={FILTER_LIMITS.PRICE_MAX}
-        min={FILTER_LIMITS.PRICE_MIN}
-        step={FILTER_LIMITS.PRICE_STEP}
-        className="w-full"
-      />
-      <div className="flex gap-4">
-        <div className="flex-1">
-          <Label htmlFor="price-min" className="text-sm text-muted-foreground">
-            {t("minPrice")}
-          </Label>
-          <Input
-            id="price-min"
-            type="number"
-            value={minPrice}
-            onChange={(e) => onMinChange(Number(e.target.value))}
-            min={0}
-            max={maxPrice}
-          />
-        </div>
-        <div className="flex-1">
-          <Label htmlFor="price-max" className="text-sm text-muted-foreground">
-            {t("maxPrice")}
-          </Label>
-          <Input
-            id="price-max"
-            type="number"
-            value={maxPrice}
-            onChange={(e) => onMaxChange(Number(e.target.value))}
-            min={minPrice}
-            max={FILTER_LIMITS.PRICE_MAX}
-          />
-        </div>
+      <div className="flex flex-wrap gap-2">
+        {PRICE_RANGES.map((range) => (
+          <button
+            key={range.label}
+            type="button"
+            onClick={() => handleRangeClick(range)}
+            className={cn(
+              "px-3 py-1.5 text-sm rounded-full border transition-colors",
+              isRangeSelected(range)
+                ? "bg-primary text-primary-foreground border-primary"
+                : "bg-background hover:bg-muted border-border"
+            )}
+          >
+            {getLabel(range)}
+          </button>
+        ))}
       </div>
     </div>
   );

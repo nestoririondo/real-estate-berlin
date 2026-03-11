@@ -87,15 +87,23 @@ const Hero = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <motion.h1
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-white drop-shadow-lg"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-tight text-white drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           >
-            {t("title")}
+            {t("brandName")}
           </motion.h1>
           <motion.p
-            className="text-xl md:text-2xl text-white/95 mb-8 max-w-2xl mx-auto drop-shadow-md"
+            className="text-2xl md:text-3xl lg:text-4xl font-medium text-white/95 mb-4 drop-shadow-md"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+          >
+            {t("title")}
+          </motion.p>
+          <motion.p
+            className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-md"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}

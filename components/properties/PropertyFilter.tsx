@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
-import { Home, Bed, MapPin, ChevronDown, ChevronUp, RotateCcw } from "lucide-react";
+import { Home, Bed, MapPin, ChevronDown, ChevronUp, RotateCcw, Globe } from "lucide-react";
 import type { PropertyFilterValues } from "@/types/filter";
-import { PropertyType, Neighborhood, Bedrooms } from "@/types/enums";
-import { FILTER_LIMITS, BEDROOM_OPTIONS } from "@/constants/filterDefaults";
+import { PropertyType, Neighborhood, Bedrooms, Location } from "@/types/enums";
+import { FILTER_LIMITS, BEDROOM_OPTIONS, LOCATION_OPTIONS } from "@/constants/filterDefaults";
 import { NEIGHBORHOODS } from "@/constants/neighborhoods";
 import { toggleFilterValue } from "@/lib/utils/filterToggle";
 import { PriceRangeFilter } from "./filters/PriceRangeFilter";
@@ -111,6 +111,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
 
   const resetFilters = () => {
     const resetFilters: PropertyFilterValues = {
+      location: Location.ALL,
       type: PropertyType.ALL,
       priceMin: FILTER_LIMITS.PRICE_MIN,
       priceMax: FILTER_LIMITS.PRICE_MAX,
@@ -125,6 +126,7 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
   // Check if filters have been changed from defaults
   const hasActiveFilters = () => {
     return (
+      filters.location !== Location.ALL ||
       filters.type !== PropertyType.ALL ||
       filters.priceMin !== FILTER_LIMITS.PRICE_MIN ||
       filters.priceMax !== FILTER_LIMITS.PRICE_MAX ||
@@ -174,6 +176,30 @@ const PropertyFilter = ({ filters, onFilterChange }: PropertyFilterProps) => {
         <div className="overflow-hidden">
           <div className="space-y-6 p-6">
             <Separator />
+
+      {/* Location Filter - Berlin / Leipzig / Abroad */}
+      <div className="space-y-3">
+        <Label className="text-base font-medium flex items-center gap-2">
+          <Globe className="h-4 w-4" />
+          {t("location")}
+        </Label>
+        <RadioGroup
+          value={filters.location}
+          onValueChange={(value) => updateFilter("location", value as Location)}
+          className="flex gap-4 flex-wrap"
+        >
+          {LOCATION_OPTIONS.map((loc) => (
+            <div key={loc} className="flex items-center space-x-2">
+              <RadioGroupItem value={loc} id={`loc-${loc}`} />
+              <Label htmlFor={`loc-${loc}`} className="cursor-pointer font-normal">
+                {translateEnumValue(loc)}
+              </Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+
+      <Separator />
 
       {/* Buy or Rent */}
       <div className="space-y-3">

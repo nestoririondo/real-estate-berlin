@@ -1,6 +1,7 @@
-import { PropertyType, Neighborhood, Bedrooms } from "./enums";
+import { PropertyType, Neighborhood, Bedrooms, Location } from "./enums";
 
 export interface PropertyFilterValues {
+  location: Location;
   type: PropertyType;
   priceMin: number;
   priceMax: number;

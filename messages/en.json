@@ -13,9 +13,12 @@
     "rent": "Rent",
     "new": "New",
     "available": "Available",
+    "rented": "Rented",
+    "sold": "Sold",
     "back": "Back"
   },
   "filter": {
+    "location": "Location",
     "type": "Type",
     "priceRange": "Price Range",
     "bedrooms": "Bedrooms",
@@ -25,7 +28,8 @@
     "maxPrice": "Max Price",
     "minSize": "Min Size (m²)",
     "maxSize": "Max Size (m²)",
-    "all": "All"
+    "all": "All",
+    "abroad": "Abroad"
   },
   "properties": {
     "title": "Properties",
@@ -75,7 +79,8 @@
     "orContact": "Or contact us directly"
   },
   "home": {
-    "title": "Your Real Estate Consultant In Berlin",
+    "brandName": "Real Estate in Berlin",
+    "title": "Your Trusted Real Estate Consultant",
     "subtitle": "Quality and personal service in the first place.",
     "browseProperties": "Browse Properties",
     "featuredProperties": "Featured Properties",
@@ -85,7 +90,31 @@
     "testimonialsSubtitle": "Don't just take our word for it - hear from our satisfied clients",
     "servicesTitle": "Our Services",
     "servicesSubtitle": "Comprehensive real estate services tailored to your needs",
-    "seeAllServices": "See All Our Services"
+    "seeAllServices": "See All Our Services",
+    "about": {
+      "title": "Meet Your Berlin Expert",
+      "description": "With over 15 years of experience in the Berlin real estate market, I provide personalized service to help you find the perfect property. As an IVD member and multilingual consultant, I bridge cultures and make your real estate journey seamless.",
+      "founderImageAlt": "Fabrizio - Real Estate Consultant",
+      "cta": "Get in Touch",
+      "highlights": {
+        "localExpertise": {
+          "title": "Local Expertise",
+          "description": "Deep knowledge of Berlin neighborhoods"
+        },
+        "multilingual": {
+          "title": "Multilingual",
+          "description": "English, German, Italian, Spanish, Portuguese"
+        },
+        "ivdMember": {
+          "title": "IVD Member",
+          "description": "Certified professional standards"
+        },
+        "personalService": {
+          "title": "Personal Service",
+          "description": "Direct contact, no intermediaries"
+        }
+      }
+    }
   },
   "services": {
     "heroTitle": "Expert Real Estate Services in Berlin",
@@ -102,14 +131,14 @@
     "ctaButton": "Get Free Consultation",
     "ctaButtonSecondary": "Browse Properties",
     "stats": {
-      "properties": "500+",
-      "propertiesLabel": "Properties Sold",
-      "clients": "300+",
-      "clientsLabel": "Happy Clients",
-      "satisfaction": "98%",
-      "satisfactionLabel": "Satisfaction Rate",
-      "experience": "15+",
-      "experienceLabel": "Years Experience"
+      "multilingualTitle": "Multilingual",
+      "multilingualDesc": "EN, DE, IT, ES, PT",
+      "ivdTitle": "IVD Member",
+      "ivdDesc": "Certified professional standards",
+      "networkTitle": "International Network",
+      "networkDesc": "Global property connections",
+      "experienceTitle": "15+ Years",
+      "experienceDesc": "Berlin real estate expertise"
     },
     "buy": {
       "badge": "Most Popular",
@@ -245,7 +274,11 @@
     "location": "Location",
     "contact": "Contact",
     "legal": "Legal",
-    "websiteBy": "Website by"
+    "websiteBy": "Website by",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Get the latest properties and market insights.",
+    "emailPlaceholder": "Your email",
+    "subscribed": "Thank you for subscribing!"
   }
 }
 

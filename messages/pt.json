@@ -13,9 +13,12 @@
     "rent": "Alugar",
     "new": "Novo",
     "available": "Disponível",
+    "rented": "Alugado",
+    "sold": "Vendido",
     "back": "Voltar"
   },
   "filter": {
+    "location": "Localização",
     "type": "Tipo",
     "priceRange": "Faixa de preço",
     "bedrooms": "Quartos",
@@ -25,7 +28,8 @@
     "maxPrice": "Preço máximo",
     "minSize": "Tamanho mínimo (m²)",
     "maxSize": "Tamanho máximo (m²)",
-    "all": "Todos"
+    "all": "Todos",
+    "abroad": "Exterior"
   },
   "properties": {
     "title": "Propriedades",
@@ -75,7 +79,8 @@
     "orContact": "Ou entre em contato diretamente"
   },
   "home": {
-    "title": "Seu Consultor Imobiliário Em Berlim",
+    "brandName": "Real Estate in Berlin",
+    "title": "Seu Consultor Imobiliário de Confiança",
     "subtitle": "Qualidade e serviço pessoal em primeiro lugar.",
     "browseProperties": "Explorar Propriedades",
     "featuredProperties": "Propriedades em Destaque",
@@ -85,7 +90,31 @@
     "testimonialsSubtitle": "Não acredite apenas na nossa palavra - ouça nossos clientes satisfeitos",
     "servicesTitle": "Nossos Serviços",
     "servicesSubtitle": "Serviços imobiliários abrangentes adaptados às suas necessidades",
-    "seeAllServices": "Ver Todos os Nossos Serviços"
+    "seeAllServices": "Ver Todos os Nossos Serviços",
+    "about": {
+      "title": "Conheça Seu Especialista em Berlim",
+      "description": "Com mais de 15 anos de experiência no mercado imobiliário de Berlim, ofereço um serviço personalizado para ajudá-lo a encontrar a propriedade perfeita. Como membro do IVD e consultor multilíngue, conecto culturas e torno sua jornada imobiliária tranquila.",
+      "founderImageAlt": "Fabrizio - Consultor Imobiliário",
+      "cta": "Entre em Contato",
+      "highlights": {
+        "localExpertise": {
+          "title": "Experiência Local",
+          "description": "Conhecimento profundo dos bairros de Berlim"
+        },
+        "multilingual": {
+          "title": "Multilíngue",
+          "description": "Inglês, Alemão, Italiano, Espanhol, Português"
+        },
+        "ivdMember": {
+          "title": "Membro IVD",
+          "description": "Padrões profissionais certificados"
+        },
+        "personalService": {
+          "title": "Serviço Pessoal",
+          "description": "Contato direto, sem intermediários"
+        }
+      }
+    }
   },
   "services": {
     "heroTitle": "Serviços Imobiliários Especializados em Berlim",
@@ -102,14 +131,14 @@
     "ctaButton": "Obter Consulta Gratuita",
     "ctaButtonSecondary": "Explorar Propriedades",
     "stats": {
-      "properties": "500+",
-      "propertiesLabel": "Propriedades Vendidas",
-      "clients": "300+",
-      "clientsLabel": "Clientes Satisfeitos",
-      "satisfaction": "98%",
-      "satisfactionLabel": "Taxa de Satisfação",
-      "experience": "15+",
-      "experienceLabel": "Anos de Experiência"
+      "multilingualTitle": "Multilíngue",
+      "multilingualDesc": "EN, DE, IT, ES, PT",
+      "ivdTitle": "Membro IVD",
+      "ivdDesc": "Padrões profissionais certificados",
+      "networkTitle": "Rede Internacional",
+      "networkDesc": "Conexões imobiliárias globais",
+      "experienceTitle": "15+ Anos",
+      "experienceDesc": "Experiência imobiliária em Berlim"
     },
     "buy": {
       "badge": "Mais Popular",
@@ -245,7 +274,11 @@
     "location": "Localização",
     "contact": "Contato",
     "legal": "Legal",
-    "websiteBy": "Site por"
+    "websiteBy": "Site por",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Receba as últimas propriedades e insights do mercado.",
+    "emailPlaceholder": "Seu email",
+    "subscribed": "Obrigado por se inscrever!"
   }
 }
 

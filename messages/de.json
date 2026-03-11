@@ -13,9 +13,12 @@
     "rent": "Mieten",
     "new": "Neu",
     "available": "Verfügbar",
+    "rented": "Vermietet",
+    "sold": "Verkauft",
     "back": "Zurück"
   },
   "filter": {
+    "location": "Standort",
     "type": "Typ",
     "priceRange": "Preisspanne",
     "bedrooms": "Schlafzimmer",
@@ -25,7 +28,8 @@
     "maxPrice": "Höchstpreis",
     "minSize": "Mindestgröße (m²)",
     "maxSize": "Maximalgröße (m²)",
-    "all": "Alle"
+    "all": "Alle",
+    "abroad": "Ausland"
   },
   "properties": {
     "title": "Immobilien",
@@ -75,7 +79,8 @@
     "orContact": "Oder kontaktieren Sie uns direkt"
   },
   "home": {
-    "title": "Ihr Immobilienberater in Berlin",
+    "brandName": "Real Estate in Berlin",
+    "title": "Ihr vertrauensvoller Immobilienberater",
     "subtitle": "Qualität und persönlicher Service an erster Stelle.",
     "browseProperties": "Immobilien durchsuchen",
     "featuredProperties": "Ausgewählte Immobilien",
@@ -85,7 +90,31 @@
     "testimonialsSubtitle": "Nehmen Sie nicht nur unser Wort dafür - hören Sie von unseren zufriedenen Kunden",
     "servicesTitle": "Unsere Dienstleistungen",
     "servicesSubtitle": "Umfassende Immobiliendienstleistungen, die auf Ihre Bedürfnisse zugeschnitten sind",
-    "seeAllServices": "Alle Dienstleistungen anzeigen"
+    "seeAllServices": "Alle Dienstleistungen anzeigen",
+    "about": {
+      "title": "Ihr Berlin-Experte",
+      "description": "Mit über 15 Jahren Erfahrung auf dem Berliner Immobilienmarkt biete ich einen persönlichen Service, um Ihnen zu helfen, die perfekte Immobilie zu finden. Als IVD-Mitglied und mehrsprachiger Berater verbinde ich Kulturen und mache Ihre Immobilienreise nahtlos.",
+      "founderImageAlt": "Fabrizio - Immobilienberater",
+      "cta": "Kontakt aufnehmen",
+      "highlights": {
+        "localExpertise": {
+          "title": "Lokale Expertise",
+          "description": "Tiefes Wissen über Berliner Stadtteile"
+        },
+        "multilingual": {
+          "title": "Mehrsprachig",
+          "description": "Englisch, Deutsch, Italienisch, Spanisch, Portugiesisch"
+        },
+        "ivdMember": {
+          "title": "IVD-Mitglied",
+          "description": "Zertifizierte professionelle Standards"
+        },
+        "personalService": {
+          "title": "Persönlicher Service",
+          "description": "Direkter Kontakt, keine Vermittler"
+        }
+      }
+    }
   },
   "services": {
     "heroTitle": "Professionelle Immobiliendienstleistungen in Berlin",
@@ -102,14 +131,14 @@
     "ctaButton": "Kostenlose Beratung erhalten",
     "ctaButtonSecondary": "Immobilien durchsuchen",
     "stats": {
-      "properties": "500+",
-      "propertiesLabel": "Verkaufte Immobilien",
-      "clients": "300+",
-      "clientsLabel": "Zufriedene Kunden",
-      "satisfaction": "98%",
-      "satisfactionLabel": "Zufriedenheitsrate",
-      "experience": "15+",
-      "experienceLabel": "Jahre Erfahrung"
+      "multilingualTitle": "Mehrsprachig",
+      "multilingualDesc": "EN, DE, IT, ES, PT",
+      "ivdTitle": "IVD-Mitglied",
+      "ivdDesc": "Zertifizierte professionelle Standards",
+      "networkTitle": "Internationales Netzwerk",
+      "networkDesc": "Globale Immobilienverbindungen",
+      "experienceTitle": "15+ Jahre",
+      "experienceDesc": "Berliner Immobilienexpertise"
     },
     "buy": {
       "badge": "Beliebteste",
@@ -245,7 +274,11 @@
     "location": "Standort",
     "contact": "Kontakt",
     "legal": "Rechtliches",
-    "websiteBy": "Website von"
+    "websiteBy": "Website von",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Erhalten Sie die neuesten Immobilien und Markteinblicke.",
+    "emailPlaceholder": "Ihre E-Mail",
+    "subscribed": "Danke für Ihre Anmeldung!"
   }
 }
 

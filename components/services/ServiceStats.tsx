@@ -1,44 +1,39 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Home, Users, TrendingUp, Award } from "lucide-react";
+import { Languages, Award, Globe, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { CountUp } from "@/components/ui/count-up";
 
 export const ServiceStats = () => {
   const t = useTranslations("services");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const stats = [
+  const features = [
     {
-      icon: Home,
-      value: 500,
-      suffix: "+",
-      label: t("stats.propertiesLabel"),
+      icon: Languages,
+      title: t("stats.multilingualTitle"),
+      description: t("stats.multilingualDesc"),
       delay: 0,
     },
     {
-      icon: Users,
-      value: 300,
-      suffix: "+",
-      label: t("stats.clientsLabel"),
+      icon: Award,
+      title: t("stats.ivdTitle"),
+      description: t("stats.ivdDesc"),
       delay: 0.1,
     },
     {
-      icon: TrendingUp,
-      value: 98,
-      suffix: "%",
-      label: t("stats.satisfactionLabel"),
+      icon: Globe,
+      title: t("stats.networkTitle"),
+      description: t("stats.networkDesc"),
       delay: 0.2,
     },
     {
-      icon: Award,
-      value: 15,
-      suffix: "+",
-      label: t("stats.experienceLabel"),
+      icon: Clock,
+      title: t("stats.experienceTitle"),
+      description: t("stats.experienceDesc"),
       delay: 0.3,
     },
   ];
@@ -74,8 +69,8 @@ export const ServiceStats = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
             return (
               <motion.div
                 key={index}
@@ -91,26 +86,18 @@ export const ServiceStats = () => {
                       : { scale: 0, rotate: -180 }
                   }
                   transition={{
-                    delay: stat.delay,
+                    delay: feature.delay,
                     duration: 0.5,
                     ease: [0.42, 0, 0.58, 1] as const,
                   }}
                 >
                   <Icon className="h-6 w-6 text-primary" />
                 </motion.div>
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                  <CountUp
-                    to={stat.value}
-                    from={0}
-                    duration={2}
-                    delay={stat.delay}
-                    startWhen={isInView}
-                    separator=","
-                  />
-                  {stat.suffix}
+                <div className="text-lg md:text-xl font-bold text-foreground mb-1">
+                  {feature.title}
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  {stat.label}
+                  {feature.description}
                 </div>
               </motion.div>
             );
@@ -120,4 +107,3 @@ export const ServiceStats = () => {
     </section>
   );
 };
-

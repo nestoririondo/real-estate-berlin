@@ -1,12 +1,25 @@
 import type { PropertyFilterValues } from "@/types/filter";
 import type { Property } from "@/types/property";
-import { PropertyType, Neighborhood, Bedrooms } from "@/types/enums";
+import { PropertyType, Neighborhood, Bedrooms, Location } from "@/types/enums";
 
 export const filterProperties = (
   properties: Property[],
   filters: PropertyFilterValues
 ): Property[] => {
   return properties.filter((property) => {
+    // Filter by location (Berlin/Leipzig/Abroad)
+    if (filters.location !== Location.ALL) {
+      const propertyCity = property.city?.toLowerCase() || "";
+      if (filters.location === Location.BERLIN) {
+        if (!propertyCity.includes("berlin")) return false;
+      } else if (filters.location === Location.LEIPZIG) {
+        if (!propertyCity.includes("leipzig")) return false;
+      } else if (filters.location === Location.ABROAD) {
+        // Abroad = not Berlin and not Leipzig
+        if (propertyCity.includes("berlin") || propertyCity.includes("leipzig")) return false;
+      }
+    }
+
     // Filter by type (buy/rent)
     if (filters.type !== PropertyType.ALL && property.type !== filters.type) {
       return false;
@@ -30,11 +43,19 @@ export const filterProperties = (
       if (!matchesBedroom) return false;
     }
 
-    // Filter by neighborhood
+    // Filter by neighborhood/district
     if (!filters.neighborhood.includes(Neighborhood.ALL)) {
-      if (!filters.neighborhood.includes(property.location as Neighborhood)) {
-        return false;
-      }
+      const propertyNeighborhood = property.neighborhood?.toLowerCase() || "";
+      const matchesNeighborhood = filters.neighborhood.some((district) => {
+        const districtLower = district.toLowerCase();
+        // Check if the property neighborhood contains the district name or vice versa
+        // This allows matching sub-neighborhoods like "Prenzlauer Berg" to "Pankow"
+        return propertyNeighborhood.includes(districtLower) ||
+               districtLower.includes(propertyNeighborhood) ||
+               // Exact match
+               propertyNeighborhood === districtLower;
+      });
+      if (!matchesNeighborhood) return false;
     }
 
     // Filter by size

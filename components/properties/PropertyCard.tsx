@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin } from "lucide-react";
+import { MapPin, CheckCircle, XCircle } from "lucide-react";
 import { PropertyStats } from "./PropertyStats";
 import type { Property } from "@/types/property";
 import { cn } from "@/lib/utils";
@@ -18,6 +18,10 @@ interface PropertyCardProps {
 const PropertyCard = ({ property }: PropertyCardProps) => {
   const t = useTranslations("common");
   const locale = useLocale();
+
+  // Determine availability status
+  const isRented = property.rented === true;
+  const isAvailable = !isRented;
 
   return (
     <Link href={`/${locale}/properties/${property.id}`}>
@@ -35,7 +39,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               {property.isNew && (
                 <Badge className="bg-primary text-primary-foreground">
                   {t("new")}
@@ -44,6 +48,17 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
               {property.type === "rent" && (
                 <Badge className="text-xs font-semibold bg-secondary text-secondary-foreground border border-border">
                   {t("rent")}
+                </Badge>
+              )}
+              {isAvailable ? (
+                <Badge className="bg-green-600 text-white flex items-center gap-1">
+                  <CheckCircle className="h-3 w-3" />
+                  {t("available")}
+                </Badge>
+              ) : (
+                <Badge className="bg-red-600 text-white flex items-center gap-1">
+                  <XCircle className="h-3 w-3" />
+                  {t("rented")}
                 </Badge>
               )}
             </div>

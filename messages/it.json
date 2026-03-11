@@ -13,9 +13,12 @@
     "rent": "Affitta",
     "new": "Nuovo",
     "available": "Disponibile",
+    "rented": "Affittato",
+    "sold": "Venduto",
     "back": "Indietro"
   },
   "filter": {
+    "location": "Località",
     "type": "Tipo",
     "priceRange": "Fascia di prezzo",
     "bedrooms": "Camere da letto",
@@ -25,7 +28,8 @@
     "maxPrice": "Prezzo massimo",
     "minSize": "Dimensione minima (m²)",
     "maxSize": "Dimensione massima (m²)",
-    "all": "Tutti"
+    "all": "Tutti",
+    "abroad": "Estero"
   },
   "properties": {
     "title": "Immobili",
@@ -75,7 +79,8 @@
     "orContact": "Oppure contattaci direttamente"
   },
   "home": {
-    "title": "Il Tuo Consulente Immobiliare A Berlino",
+    "brandName": "Real Estate in Berlin",
+    "title": "Il Tuo Consulente Immobiliare di Fiducia",
     "subtitle": "Qualità e servizio personale al primo posto.",
     "browseProperties": "Esplora Immobili",
     "featuredProperties": "Immobili in Evidenza",
@@ -85,7 +90,31 @@
     "testimonialsSubtitle": "Non fidarti solo della nostra parola - ascolta i nostri clienti soddisfatti",
     "servicesTitle": "I Nostri Servizi",
     "servicesSubtitle": "Servizi immobiliari completi su misura per le tue esigenze",
-    "seeAllServices": "Vedi Tutti I Nostri Servizi"
+    "seeAllServices": "Vedi Tutti I Nostri Servizi",
+    "about": {
+      "title": "Incontra il Tuo Esperto di Berlino",
+      "description": "Con oltre 15 anni di esperienza nel mercato immobiliare di Berlino, offro un servizio personalizzato per aiutarti a trovare la proprietà perfetta. Come membro IVD e consulente multilingue, collego culture e rendo il tuo percorso immobiliare senza intoppi.",
+      "founderImageAlt": "Fabrizio - Consulente Immobiliare",
+      "cta": "Contattami",
+      "highlights": {
+        "localExpertise": {
+          "title": "Esperienza Locale",
+          "description": "Profonda conoscenza dei quartieri di Berlino"
+        },
+        "multilingual": {
+          "title": "Multilingue",
+          "description": "Inglese, Tedesco, Italiano, Spagnolo, Portoghese"
+        },
+        "ivdMember": {
+          "title": "Membro IVD",
+          "description": "Standard professionali certificati"
+        },
+        "personalService": {
+          "title": "Servizio Personale",
+          "description": "Contatto diretto, nessun intermediario"
+        }
+      }
+    }
   },
   "services": {
     "heroTitle": "Servizi Immobiliari Esperti a Berlino",
@@ -102,14 +131,14 @@
     "ctaButton": "Ottieni Consulenza Gratuita",
     "ctaButtonSecondary": "Esplora Immobili",
     "stats": {
-      "properties": "500+",
-      "propertiesLabel": "Immobili Venduti",
-      "clients": "300+",
-      "clientsLabel": "Clienti Soddisfatti",
-      "satisfaction": "98%",
-      "satisfactionLabel": "Tasso di Soddisfazione",
-      "experience": "15+",
-      "experienceLabel": "Anni di Esperienza"
+      "multilingualTitle": "Multilingue",
+      "multilingualDesc": "EN, DE, IT, ES, PT",
+      "ivdTitle": "Membro IVD",
+      "ivdDesc": "Standard professionali certificati",
+      "networkTitle": "Rete Internazionale",
+      "networkDesc": "Connessioni immobiliari globali",
+      "experienceTitle": "15+ Anni",
+      "experienceDesc": "Esperienza immobiliare a Berlino"
     },
     "buy": {
       "badge": "Più Popolare",
@@ -245,7 +274,11 @@
     "location": "Posizione",
     "contact": "Contatti",
     "legal": "Legale",
-    "websiteBy": "Sito web di"
+    "websiteBy": "Sito web di",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Ricevi le ultime proprietà e approfondimenti sul mercato.",
+    "emailPlaceholder": "La tua email",
+    "subscribed": "Grazie per l'iscrizione!"
   }
 }
 

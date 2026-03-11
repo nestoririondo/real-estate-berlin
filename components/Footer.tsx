@@ -1,17 +1,36 @@
 "use client";
 
+import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Phone } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { MapPin, Phone, Mail, Send, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 
 const Footer = () => {
   const t = useTranslations("footer");
   const locale = useLocale();
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setLoading(true);
+    // Simulate API call - replace with actual newsletter signup logic
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setSubscribed(true);
+    setLoading(false);
+    setEmail("");
+  };
+
   return (
     <footer className="border-t bg-muted/30">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Location */}
           <div>
             <h6 className="font-semibold mb-4 flex items-center gap-2">
@@ -59,6 +78,37 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h6 className="font-semibold mb-4 flex items-center gap-2">
+              <Mail className="h-5 w-5" />
+              {t("newsletter")}
+            </h6>
+            <p className="text-sm text-muted-foreground mb-3">
+              {t("newsletterDesc")}
+            </p>
+            {subscribed ? (
+              <div className="flex items-center gap-2 text-green-600">
+                <CheckCircle className="h-5 w-5" />
+                <span className="text-sm">{t("subscribed")}</span>
+              </div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="flex gap-2">
+                <Input
+                  type="email"
+                  placeholder={t("emailPlaceholder")}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-1"
+                />
+                <Button type="submit" size="icon" disabled={loading}>
+                  <Send className="h-4 w-4" />
+                </Button>
+              </form>
+            )}
           </div>
         </div>
 

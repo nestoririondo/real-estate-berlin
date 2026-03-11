@@ -46,7 +46,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-muted/30">
+    <section className="py-16 md:py-24 bg-muted/50">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
