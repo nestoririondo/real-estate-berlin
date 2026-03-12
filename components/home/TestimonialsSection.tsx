@@ -73,7 +73,9 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
           </Avatar>
           <div>
             <p className="font-semibold text-base">{testimonial.name}</p>
-            <p className="text-base text-muted-foreground">{testimonial.role}</p>
+            <p className="text-base text-muted-foreground">
+              {testimonial.role}
+            </p>
           </div>
         </div>
       </CardContent>
@@ -96,7 +98,11 @@ const TestimonialsSection = () => {
           <motion.div
             className="absolute -left-8 top-0 w-16 h-16 bg-primary/10 rounded-lg hidden md:block"
             initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={
+              isInView
+                ? { opacity: 1, scale: 1, rotate: 0 }
+                : { opacity: 0, scale: 0.8, rotate: -5 }
+            }
             transition={{ duration: 0.5, delay: 0.1 }}
           />
 
@@ -107,7 +113,9 @@ const TestimonialsSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t("testimonialsTitle")}</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              {t("testimonialsTitle")}
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               {t("testimonialsSubtitle")}
             </p>
@@ -117,7 +125,9 @@ const TestimonialsSection = () => {
           <motion.div
             className="absolute -right-4 bottom-0 w-12 h-12 bg-muted rounded-lg hidden md:block"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            animate={
+              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+            }
             transition={{ duration: 0.5, delay: 0.2 }}
           />
         </div>
@@ -131,20 +141,27 @@ const TestimonialsSection = () => {
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
       >
-        <div
-          className={`flex testimonial-marquee ${isPaused ? "paused" : ""}`}
-        >
+        <div className={`flex testimonial-marquee ${isPaused ? "paused" : ""}`}>
           {/* First set of testimonials */}
           {testimonials.map((testimonial) => (
-            <TestimonialCard key={`first-${testimonial.id}`} testimonial={testimonial} />
+            <TestimonialCard
+              key={`first-${testimonial.id}`}
+              testimonial={testimonial}
+            />
           ))}
           {/* Second set (duplicate for seamless loop) */}
           {testimonials.map((testimonial) => (
-            <TestimonialCard key={`second-${testimonial.id}`} testimonial={testimonial} />
+            <TestimonialCard
+              key={`second-${testimonial.id}`}
+              testimonial={testimonial}
+            />
           ))}
           {/* Third set (extra buffer for smooth transition) */}
           {testimonials.map((testimonial) => (
-            <TestimonialCard key={`third-${testimonial.id}`} testimonial={testimonial} />
+            <TestimonialCard
+              key={`third-${testimonial.id}`}
+              testimonial={testimonial}
+            />
           ))}
         </div>
       </div>

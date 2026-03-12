@@ -135,7 +135,10 @@ const AboutSection = () => {
                     }
                     transition={{ duration: 0.4, delay: 1.2, ease: "easeOut" }}
                     // use CSS filter to tint the PNG; adjust hue-rotate to match your accent color
-                    style={{ transformOrigin: "left", filter: "hue-rotate(150deg)" }}
+                    style={{
+                      transformOrigin: "left",
+                      filter: "hue-rotate(150deg)",
+                    }}
                   />
                 </span>
               </h2>
