@@ -3,9 +3,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
 interface Testimonial {
@@ -44,47 +44,48 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-// Duplicate testimonials for seamless loop
-const duplicatedTestimonials = [...testimonials, ...testimonials];
+const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
+  <div className="shrink-0 w-[320px] md:w-[400px] px-3">
+    <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
+      <CardContent className="pt-6 flex-1">
+        {/* Rating */}
+        <div className="flex gap-1 mb-4">
+          {[...Array(testimonial.rating)].map((_, i) => (
+            <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+          ))}
+        </div>
+
+        {/* Testimonial Content */}
+        <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+          &quot;{testimonial.content}&quot;
+        </p>
+
+        {/* Author */}
+        <div className="flex items-center gap-3">
+          <Avatar>
+            <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+            <AvatarFallback className="bg-primary/10 text-primary">
+              {testimonial.name
+                .split(" ")
+                .map((n) => n[0])
+                .join("")}
+            </AvatarFallback>
+          </Avatar>
+          <div>
+            <p className="font-semibold text-base">{testimonial.name}</p>
+            <p className="text-base text-muted-foreground">{testimonial.role}</p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+);
 
 const TestimonialsSection = () => {
   const t = useTranslations("home");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isPaused, setIsPaused] = useState(false);
-  const controls = useAnimationControls();
-
-  // Start the carousel animation when in view
-  useEffect(() => {
-    if (isInView && !isPaused) {
-      controls.start({
-        x: "-50%",
-        transition: {
-          duration: 20,
-          ease: "linear",
-          repeat: Infinity,
-        },
-      });
-    }
-  }, [isInView, isPaused, controls]);
-
-  // Pause/resume animation on hover
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-    controls.stop();
-  };
-
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-    controls.start({
-      x: "-50%",
-      transition: {
-        duration: 20,
-        ease: "linear",
-        repeat: Infinity,
-      },
-    });
-  };
 
   return (
     <section className="py-16 md:py-24 overflow-hidden">
@@ -120,60 +121,54 @@ const TestimonialsSection = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           />
         </div>
+      </div>
 
-        {/* Auto-scrolling Carousel */}
+      {/* Full-width infinite carousel */}
+      <div
+        className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+      >
         <div
-          className="relative"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          className={`flex testimonial-marquee ${isPaused ? "paused" : ""}`}
         >
-          <motion.div
-            className="flex gap-6"
-            initial={{ x: 0 }}
-            animate={controls}
-          >
-            {duplicatedTestimonials.map((testimonial, index) => (
-              <div
-                key={`${testimonial.id}-${index}`}
-                className="flex-shrink-0 w-[320px] md:w-[400px]"
-              >
-                <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="pt-6 flex-1">
-                    {/* Rating */}
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 fill-primary text-primary" />
-                      ))}
-                    </div>
-
-                    {/* Testimonial Content */}
-                    <p className="text-base text-muted-foreground mb-6 leading-relaxed">
-                      &quot;{testimonial.content}&quot;
-                    </p>
-
-                    {/* Author */}
-                    <div className="flex items-center gap-3">
-                      <Avatar>
-                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                        <AvatarFallback className="bg-primary/10 text-primary">
-                          {testimonial.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <p className="font-semibold text-base">{testimonial.name}</p>
-                        <p className="text-base text-muted-foreground">{testimonial.role}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </motion.div>
+          {/* First set of testimonials */}
+          {testimonials.map((testimonial) => (
+            <TestimonialCard key={`first-${testimonial.id}`} testimonial={testimonial} />
+          ))}
+          {/* Second set (duplicate for seamless loop) */}
+          {testimonials.map((testimonial) => (
+            <TestimonialCard key={`second-${testimonial.id}`} testimonial={testimonial} />
+          ))}
+          {/* Third set (extra buffer for smooth transition) */}
+          {testimonials.map((testimonial) => (
+            <TestimonialCard key={`third-${testimonial.id}`} testimonial={testimonial} />
+          ))}
         </div>
       </div>
+
+      {/* CSS for seamless infinite marquee */}
+      <style jsx global>{`
+        .testimonial-marquee {
+          animation: marquee 20s linear infinite;
+          width: fit-content;
+        }
+
+        .testimonial-marquee.paused {
+          animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-100% / 3));
+          }
+        }
+      `}</style>
     </section>
   );
 };

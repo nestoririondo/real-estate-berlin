@@ -50,7 +50,11 @@ const AboutSection = () => {
             <motion.div
               className="absolute -top-6 -left-6 md:top-0 md:left-4 w-28 h-28 md:w-40 md:h-40 bg-primary/20 rounded-2xl z-0"
               initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-              animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.8, rotate: -10 }}
+              animate={
+                isInView
+                  ? { opacity: 1, scale: 1, rotate: 0 }
+                  : { opacity: 0, scale: 0.8, rotate: -10 }
+              }
               transition={{ duration: 0.5, delay: 0.1 }}
             />
 
@@ -58,7 +62,9 @@ const AboutSection = () => {
             <motion.div
               className="absolute top-8 right-0 md:top-4 md:right-8 w-24 h-24 md:w-32 md:h-32 bg-muted rounded-xl z-0"
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              animate={
+                isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+              }
               transition={{ duration: 0.5, delay: 0.2 }}
             />
 
@@ -66,7 +72,11 @@ const AboutSection = () => {
             <motion.div
               className="absolute top-8 left-8 md:top-12 md:left-16 w-[70%] md:w-[65%] aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl z-20"
               initial={{ opacity: 0, y: 30, x: -20 }}
-              animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 30, x: -20 }}
+              animate={
+                isInView
+                  ? { opacity: 1, y: 0, x: 0 }
+                  : { opacity: 0, y: 30, x: -20 }
+              }
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
             >
               <Image
@@ -82,7 +92,11 @@ const AboutSection = () => {
             <motion.div
               className="absolute bottom-12 right-0 md:bottom-8 md:right-4 w-40 h-48 md:w-52 md:h-64 bg-primary/15 rounded-2xl z-10"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
+              animate={
+                isInView
+                  ? { opacity: 1, scale: 1, y: 0 }
+                  : { opacity: 0, scale: 0.8, y: 20 }
+              }
               transition={{ duration: 0.5, delay: 0.3 }}
             />
 
@@ -90,7 +104,9 @@ const AboutSection = () => {
             <motion.div
               className="absolute bottom-0 left-0 md:bottom-4 md:left-0 w-20 h-20 md:w-28 md:h-28 bg-muted rounded-xl z-0"
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              animate={
+                isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+              }
               transition={{ duration: 0.5, delay: 0.4 }}
             />
           </div>
@@ -107,24 +123,20 @@ const AboutSection = () => {
                 {t("about.title")}{" "}
                 <span className="relative inline-block">
                   {t("about.titleHighlight")}
-                  <svg
-                    className="absolute -bottom-1 left-0 w-full h-2 md:h-3"
-                    viewBox="0 0 200 8"
-                    preserveAspectRatio="none"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <motion.path
-                      d="M1 5C30 4.5 70 5.5 100 4.8C130 4 170 5.2 199 4.5"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      className="text-primary"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      animate={isInView ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, delay: 1.2, ease: "easeOut" }}
-                    />
-                  </svg>
+                  <motion.img
+                    src="/underline.png"
+                    alt=""
+                    className="absolute bottom-0 left-0 translate-y-4 w-[250%] h-6 md:h-7"
+                    initial={{ opacity: 0, scaleX: 0 }}
+                    animate={
+                      isInView
+                        ? { opacity: 1, scaleX: 1 }
+                        : { opacity: 0, scaleX: 0 }
+                    }
+                    transition={{ duration: 0.4, delay: 1.2, ease: "easeOut" }}
+                    // use CSS filter to tint the PNG; adjust hue-rotate to match your accent color
+                    style={{ transformOrigin: "left", filter: "hue-rotate(150deg)" }}
+                  />
                 </span>
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
@@ -141,8 +153,14 @@ const AboutSection = () => {
                     key={highlight.key}
                     className="flex items-start gap-3 p-4 rounded-lg bg-muted/50"
                     initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1, ease: "easeOut" }}
+                    animate={
+                      isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                    }
+                    transition={{
+                      duration: 0.4,
+                      delay: 0.3 + index * 0.1,
+                      ease: "easeOut",
+                    }}
                   >
                     <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <Icon className="h-5 w-5 text-primary" />
@@ -168,7 +186,10 @@ const AboutSection = () => {
               transition={{ duration: 0.4, delay: 0.7, ease: "easeOut" }}
             >
               <Button asChild size="lg" className="text-lg group">
-                <Link href={`/${locale}/contact`} className="flex items-center gap-2">
+                <Link
+                  href={`/${locale}/contact`}
+                  className="flex items-center gap-2"
+                >
                   {t("about.cta")}
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>

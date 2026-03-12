@@ -1,6 +1,8 @@
 import type { PropertyFilterValues } from "@/types/filter";
 import type { Property } from "@/types/property";
 import { PropertyType, Neighborhood, Bedrooms, Location } from "@/types/enums";
+import { getDistrictForNeighborhood } from "@/constants/neighborhoodToDistrict";
+import { getDistrictFromZipCode } from "@/constants/zipToDistrict";
 
 export const filterProperties = (
   properties: Property[],
@@ -46,12 +48,29 @@ export const filterProperties = (
     // Filter by neighborhood/district
     if (!filters.neighborhood.includes(Neighborhood.ALL)) {
       const propertyNeighborhood = property.neighborhood?.toLowerCase() || "";
-      const matchesNeighborhood = filters.neighborhood.some((district) => {
-        const districtLower = district.toLowerCase();
+
+      // Try multiple ways to determine the property's district:
+      // 1. Map neighborhood name to district
+      // 2. Use zip code to determine district
+      const districtFromName = getDistrictForNeighborhood(propertyNeighborhood);
+      const districtFromZip = getDistrictFromZipCode(property.zip_code);
+
+      const matchesNeighborhood = filters.neighborhood.some((filterDistrict) => {
+        // Direct match via neighborhood name mapping
+        if (districtFromName === filterDistrict) {
+          return true;
+        }
+
+        // Direct match via zip code mapping
+        if (districtFromZip === filterDistrict) {
+          return true;
+        }
+
+        const districtLower = filterDistrict.toLowerCase();
         // Split compound district names (e.g., "Friedrichshain-Kreuzberg" -> ["friedrichshain", "kreuzberg"])
         const districtParts = districtLower.split("-").map(p => p.trim());
 
-        // Check if property neighborhood matches any part of the district
+        // Check if property neighborhood matches any part of the district name
         return districtParts.some(part =>
           propertyNeighborhood.includes(part) || part.includes(propertyNeighborhood)
         ) ||

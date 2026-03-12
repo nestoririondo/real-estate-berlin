@@ -33,12 +33,6 @@ export const getProperties = async (params?: {
       status,
     });
 
-    // Debug: Check energy efficiency class in first property from API
-    if (response.data && Array.isArray(response.data) && response.data.length > 0) {
-      const firstProp = response.data[0] as PropstackProperty;
-      console.log("Sample property energy_efficiency_class from API:", firstProp.energy_efficiency_class);
-      console.log("Sample property ID:", firstProp.id);
-    }
 
     // Transform API data to your Property model
     // This is where you apply business rules
@@ -154,7 +148,7 @@ const mapPropstackToProperty = (propstack: PropstackProperty): Property => {
     currency: propstack.currency || "EUR",
     title: propstack.title || propstack.name || "",
     location: propstack.address || location,
-    neighborhood: propstack.location_name || propstack.city || "",
+    neighborhood: propstack.location_name || propstack.region || propstack.city || "",
     beds,
     baths: propstack.number_of_bath_rooms || 0,
     sqm,
