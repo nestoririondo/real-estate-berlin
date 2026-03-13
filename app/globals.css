@@ -137,7 +137,6 @@
   
   /* Smooth transitions for theme changes */
   html {
-    scroll-behavior: smooth;
     transition: background-color 500ms ease;
   }
   

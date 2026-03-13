@@ -23,7 +23,7 @@ export const ServicesHero = ({ title, subtitle }: ServicesHeroProps) => {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]" ref={ref}>
       {/* Left — text */}
-      <div className="flex flex-col justify-between px-8 md:px-14 lg:px-20 py-16 md:py-20 bg-background">
+      <div className="relative z-10 flex flex-col justify-between px-8 md:px-14 lg:px-20 py-16 md:py-20 bg-background">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
@@ -57,6 +57,10 @@ export const ServicesHero = ({ title, subtitle }: ServicesHeroProps) => {
               {index === 0 && <div className="h-px bg-border" />}
               <Link
                 href={`#${id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                }}
                 className="group/item flex items-center justify-between py-4 transition-colors hover:text-primary"
               >
                 <span

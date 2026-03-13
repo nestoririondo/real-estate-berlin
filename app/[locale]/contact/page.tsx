@@ -90,7 +90,7 @@ const ContactPage = async ({ params }: ContactPageProps) => {
         </div>
 
         {/* Right — form */}
-        <div className="flex flex-col justify-center px-8 md:px-14 lg:px-16 py-16 md:py-24 bg-background overflow-y-auto">
+        <div className="flex flex-col justify-center px-8 md:px-14 lg:px-16 py-16 md:py-24 bg-background">
           <p className="text-xs tracking-[0.2em] uppercase text-primary mb-10 font-medium">
             {t("heroTitle")}
           </p>
