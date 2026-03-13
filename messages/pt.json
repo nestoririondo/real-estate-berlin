@@ -34,7 +34,7 @@
   "properties": {
     "title": "Propriedades",
     "allProperties": "Todas as Propriedades",
-    "showing": "{count} propriedades em Berlim",
+    "showing": "{count} propriedades",
     "noResults": "Nenhuma propriedade corresponde aos seus filtros",
     "tryAdjusting": "Tente ajustar seus critérios de busca",
     "beds": "{count} quartos",

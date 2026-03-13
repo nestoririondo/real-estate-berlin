@@ -34,7 +34,7 @@
   "properties": {
     "title": "Propiedades",
     "allProperties": "Todas las Propiedades",
-    "showing": "{count} propiedades en Berlín",
+    "showing": "{count} propiedades",
     "noResults": "No hay propiedades que coincidan con sus filtros",
     "tryAdjusting": "Intente ajustar sus criterios de búsqueda",
     "beds": "{count} dormitorios",
