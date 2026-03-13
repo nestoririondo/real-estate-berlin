@@ -23,19 +23,24 @@ interface PropertyFilterProps {
 const PropertyFilter = ({ filters, onFilterChange, cityOptions, neighborhoodOptions }: PropertyFilterProps) => {
   const t = useTranslations("filter");
   const tCommon = useTranslations("common");
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth >= 1024 : false
+  );
   const [enableTransition, setEnableTransition] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const isDesktop = window.innerWidth >= 1024;
-    setIsOpen(isDesktop);
-    setMounted(true);
-    requestAnimationFrame(() => setEnableTransition(true));
+    const raf = requestAnimationFrame(() => {
+      setMounted(true);
+      setEnableTransition(true);
+    });
 
     const onResize = () => setIsOpen(window.innerWidth >= 1024);
     window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   const updateFilter = (

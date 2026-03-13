@@ -1,15 +1,14 @@
 "use client";
 
-import { useState, useRef, useMemo } from "react";
+import { Suspense, useRef, useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { PropertyFilter } from "@/components/properties/PropertyFilter";
 import { PropertyCard } from "@/components/properties/PropertyCard";
 import { PropertyCardSkeleton } from "@/components/properties/PropertyCardSkeleton";
 import { motion, useInView } from "framer-motion";
-import type { PropertyFilterValues } from "@/types/filter";
 import { filterProperties } from "@/lib/utils/propertyFilter";
-import { DEFAULT_FILTERS } from "@/constants/filterDefaults";
 import { useProperties } from "@/hooks/useProperties";
+import { useFilterParams } from "@/hooks/useFilterParams";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -21,10 +20,10 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.42, 0, 0.58, 1] as const } },
 };
 
-const Properties = () => {
+const PropertiesInner = () => {
   const t = useTranslations("properties");
   const locale = useLocale();
-  const [filters, setFilters] = useState<PropertyFilterValues>(DEFAULT_FILTERS);
+  const { filters, setFilters } = useFilterParams();
   const gridRef = useRef(null);
   const isInView = useInView(gridRef, { once: false, margin: "-50px" });
 
@@ -123,5 +122,11 @@ const Properties = () => {
     </div>
   );
 };
+
+const Properties = () => (
+  <Suspense>
+    <PropertiesInner />
+  </Suspense>
+);
 
 export default Properties;

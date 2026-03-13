@@ -25,6 +25,8 @@ const eslintConfig = defineConfig([
       "prefer-arrow-callback": "error",
       // Disable default export rule for Next.js components (pages, layouts, etc. require default exports)
       "import/no-default-export": "off",
+      // Allow unused variables/parameters prefixed with _
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
     },
   },
   {

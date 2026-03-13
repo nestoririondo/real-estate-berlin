@@ -5,7 +5,6 @@ import { PropertyDescription } from "./PropertyDescription";
 import { PropertyFeatures } from "./PropertyFeatures";
 import { PropertySpecs } from "./PropertySpecs";
 import { PropertyEnergyRating } from "./PropertyEnergyRating";
-import { useTranslations } from "next-intl";
 import type { Property } from "@/types/property";
 import {
   formatPropertyType,
@@ -18,7 +17,6 @@ interface PropertyDetailsProps {
 }
 
 const PropertyDetails = ({ property }: PropertyDetailsProps) => {
-  const t = useTranslations("property");
 
   // Get description from property data (prefer long description, fallback to short)
   const description = property.long_description_note || property.description_note;

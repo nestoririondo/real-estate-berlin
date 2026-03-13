@@ -16,7 +16,7 @@ interface ContactFormProps {
   propertyTitle: string;
 }
 
-const ContactForm = ({ propertyId, propertyTitle }: ContactFormProps) => {
+const ContactForm = ({ propertyId: _propertyId, propertyTitle: _propertyTitle }: ContactFormProps) => {
   const t = useTranslations("contact");
   const [formData, setFormData] = useState({
     name: "",

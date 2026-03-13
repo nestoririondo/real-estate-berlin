@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 const API_BASE_URL = "https://api.propstack.de/v2";
 
-export async function GET() {
+export const GET = async () => {
   try {
     const apiKey = process.env.NEXT_PUBLIC_PROPSTACK_API_KEY;
     

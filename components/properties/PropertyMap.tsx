@@ -22,7 +22,6 @@ const PropertyMap = ({ lat, lng, title, location, address }: PropertyMapProps) =
   const mapRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [coordinates, setCoordinates] = useState<{ lat: number; lng: number } | null>(null);
   const t = useTranslations("property");
 
   useEffect(() => {
@@ -83,7 +82,6 @@ const PropertyMap = ({ lat, lng, title, location, address }: PropertyMapProps) =
             if (geocoded) {
               mapLat = geocoded.lat;
               mapLng = geocoded.lng;
-              setCoordinates(geocoded);
             } else {
               setError("Could not find location");
               setIsLoading(false);
@@ -131,7 +129,7 @@ const PropertyMap = ({ lat, lng, title, location, address }: PropertyMapProps) =
         });
 
         setIsLoading(false);
-      } catch (err) {
+      } catch {
         setError("Failed to initialize map");
         setIsLoading(false);
       }
