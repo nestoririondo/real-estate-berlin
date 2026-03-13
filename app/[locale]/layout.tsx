@@ -20,10 +20,27 @@ const dmSans = DM_Sans({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Real Estate Berlin",
-  description: "Find your perfect property in Berlin",
-};
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://realestateinberlin.nestoririondo.com";
+
+export async function generateMetadata({ params }: LocaleLayoutProps): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: "Real Estate in Berlin",
+      template: "%s | Real Estate in Berlin",
+    },
+    description:
+      "Expert real estate services in Berlin — buying, selling, renovation and consulting. IVD member. Multilingual team: EN, DE, ES, IT, PT.",
+    openGraph: {
+      siteName: "Real Estate in Berlin",
+      locale,
+      images: [{ url: "/ABOUT-middle.jpg", width: 1200, height: 800, alt: "Real Estate in Berlin" }],
+    },
+    twitter: { card: "summary_large_image" },
+  };
+}
+
 
 export const generateStaticParams = () => {
   return locales.map((locale) => ({ locale }));

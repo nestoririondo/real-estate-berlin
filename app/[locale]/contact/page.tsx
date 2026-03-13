@@ -1,9 +1,38 @@
+import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactFAQ } from "@/components/contact/ContactFAQ";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, Languages } from "lucide-react";
 import { getBusinessHoursDisplay } from "@/constants/businessHours";
+
+export async function generateMetadata({
+  params,
+}: ContactPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "contactPage" });
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://realestateinberlin.nestoririondo.com";
+
+  return {
+    title: "Contact",
+    description: t("heroSubtitle"),
+    alternates: {
+      languages: {
+        en: `${siteUrl}/en/contact`,
+        de: `${siteUrl}/de/contact`,
+        es: `${siteUrl}/es/contact`,
+        it: `${siteUrl}/it/contact`,
+        pt: `${siteUrl}/pt/contact`,
+        "x-default": `${siteUrl}/en/contact`,
+      },
+    },
+    openGraph: {
+      title: "Contact | Real Estate in Berlin",
+      description: t("heroSubtitle"),
+      url: `${siteUrl}/${locale}/contact`,
+    },
+  };
+}
 
 interface ContactPageProps {
   params: Promise<{ locale: string }>;

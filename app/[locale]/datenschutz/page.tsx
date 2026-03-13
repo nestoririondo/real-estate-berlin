@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Datenschutz",
+  description: "Datenschutzerklärung — Real Estate in Berlin, REB Consulting GmbH.",
+  robots: { index: false },
+};
+
 const DatenschutzPage = () => {
   return (
     <div className="min-h-screen py-20">

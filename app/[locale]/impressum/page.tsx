@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Impressum",
+  description: "Impressum — REB Consulting GmbH, Leipziger Platz 15, 10117 Berlin.",
+  robots: { index: false },
+};
+
 const ImpressumPage = () => {
   return (
     <div className="min-h-screen py-20">
