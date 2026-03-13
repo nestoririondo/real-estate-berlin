@@ -135,7 +135,7 @@ const TestimonialsSection = () => {
 
       {/* Full-width infinite carousel */}
       <div
-        className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing"
+        className="relative w-full overflow-x-hidden py-4 cursor-grab active:cursor-grabbing"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={() => setIsPaused(true)}

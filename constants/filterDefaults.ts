@@ -1,5 +1,5 @@
 import type { PropertyFilterValues } from "@/types/filter";
-import { PropertyType, Neighborhood, Bedrooms, Location } from "@/types/enums";
+import { PropertyType, Bedrooms } from "@/types/enums";
 
 export const BEDROOM_OPTIONS = [
   Bedrooms.ALL,
@@ -9,20 +9,13 @@ export const BEDROOM_OPTIONS = [
   Bedrooms.FOUR_PLUS,
 ];
 
-export const LOCATION_OPTIONS = [
-  Location.ALL,
-  Location.BERLIN,
-  Location.LEIPZIG,
-  Location.ABROAD,
-];
-
 export const DEFAULT_FILTERS: PropertyFilterValues = {
-  location: Location.ALL,
-  type: PropertyType.ALL,
+  location: ["all"],
+  type: [PropertyType.ALL],
   priceMin: 0,
   priceMax: 2000000,
   bedrooms: [Bedrooms.ALL],
-  neighborhood: [Neighborhood.ALL],
+  neighborhood: ["all"],
   sizeMin: 0,
   sizeMax: 200,
 };
@@ -35,4 +28,3 @@ export const FILTER_LIMITS = {
   PRICE_STEP: 10000,
   SIZE_STEP: 5,
 } as const;
-

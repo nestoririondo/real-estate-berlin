@@ -1,134 +1,80 @@
-import { Neighborhood } from "@/types/enums";
-
 /**
- * Maps Berlin zip codes to their districts (Bezirke)
- * Berlin zip codes range from 10115 to 14199
+ * Maps Berlin zip codes to their districts (Bezirke).
+ * Used as a fallback when Propstack's location_name field is empty.
  */
-export const getDistrictFromZipCode = (zipCode: string | null | undefined): Neighborhood | undefined => {
+export const getDistrictFromZipCode = (zipCode: string | null | undefined): string | undefined => {
   if (!zipCode) return undefined;
+  const zip = parseInt(zipCode.trim(), 10);
+  if (isNaN(zip)) return undefined;
 
-  const zip = zipCode.trim();
-  const zipNum = parseInt(zip, 10);
-
-  if (isNaN(zipNum)) return undefined;
-
-  // Mitte: 10115-10179, 10315 (part), 10405-10439, 13347-13359 (Wedding)
   if (
-    (zipNum >= 10115 && zipNum <= 10179) ||
-    (zipNum >= 10405 && zipNum <= 10439) ||
-    (zipNum >= 13347 && zipNum <= 13359) ||
-    zipNum === 10557 || zipNum === 10551 || zipNum === 10553 || zipNum === 10555 || // Moabit/Tiergarten
-    zipNum === 10559 || zipNum === 10785 || zipNum === 10787
-  ) {
-    return Neighborhood.MITTE;
-  }
+    (zip >= 10115 && zip <= 10179) ||
+    (zip >= 10405 && zip <= 10439) ||
+    (zip >= 13347 && zip <= 13359) ||
+    [10557, 10551, 10553, 10555, 10559, 10785, 10787].includes(zip)
+  ) return "Mitte";
 
-  // Friedrichshain-Kreuzberg: 10243-10249, 10961-10999, 10178 (part)
   if (
-    (zipNum >= 10243 && zipNum <= 10249) ||
-    (zipNum >= 10961 && zipNum <= 10999) ||
-    (zipNum >= 10315 && zipNum <= 10319)
-  ) {
-    return Neighborhood.FRIEDRICHSHAIN_KREUZBERG;
-  }
+    (zip >= 10243 && zip <= 10249) ||
+    (zip >= 10961 && zip <= 10999) ||
+    (zip >= 10315 && zip <= 10319)
+  ) return "Friedrichshain-Kreuzberg";
 
-  // Pankow: 10405-10439 (Prenzlauer Berg), 13086-13189
   if (
-    (zipNum >= 13086 && zipNum <= 13089) ||
-    (zipNum >= 13125 && zipNum <= 13129) ||
-    (zipNum >= 13156 && zipNum <= 13159) ||
-    (zipNum >= 13187 && zipNum <= 13189) ||
-    zipNum === 10407 || zipNum === 10409 || // Prenzlauer Berg
-    zipNum === 10435 || zipNum === 10437 || zipNum === 10439 ||
-    zipNum === 10247 // Part of Friedrichshain but close to Prenzlauer Berg
-  ) {
-    return Neighborhood.PANKOW;
-  }
+    (zip >= 13086 && zip <= 13089) ||
+    (zip >= 13125 && zip <= 13129) ||
+    (zip >= 13156 && zip <= 13159) ||
+    (zip >= 13187 && zip <= 13189) ||
+    [10407, 10409, 10435, 10437, 10439, 10247].includes(zip)
+  ) return "Pankow";
 
-  // Charlottenburg-Wilmersdorf: 10585-10629, 10707-10789, 14050-14059, 14193-14199
   if (
-    (zipNum >= 10585 && zipNum <= 10629) ||
-    (zipNum >= 10707 && zipNum <= 10719) ||
-    (zipNum >= 10789 && zipNum <= 10825) ||
-    (zipNum >= 14050 && zipNum <= 14059) ||
-    (zipNum >= 14193 && zipNum <= 14199) ||
-    zipNum === 13627 // Charlottenburg-Nord
-  ) {
-    return Neighborhood.CHARLOTTENBURG_WILMERSDORF;
-  }
+    (zip >= 10585 && zip <= 10629) ||
+    (zip >= 10707 && zip <= 10719) ||
+    (zip >= 10789 && zip <= 10825) ||
+    (zip >= 14050 && zip <= 14059) ||
+    (zip >= 14193 && zip <= 14199) ||
+    zip === 13627
+  ) return "Charlottenburg-Wilmersdorf";
 
-  // Spandau: 13581-13599, 14089
   if (
-    (zipNum >= 13581 && zipNum <= 13599) ||
-    (zipNum >= 13629 && zipNum <= 13629) ||
-    zipNum === 14089
-  ) {
-    return Neighborhood.SPANDAU;
-  }
+    (zip >= 13581 && zip <= 13599) ||
+    zip === 13629 || zip === 14089
+  ) return "Spandau";
 
-  // Steglitz-Zehlendorf: 12157-12209, 14109-14169
   if (
-    (zipNum >= 12157 && zipNum <= 12209) ||
-    (zipNum >= 14109 && zipNum <= 14169) ||
-    zipNum === 12163 || zipNum === 12165 || zipNum === 12167 || zipNum === 12169
-  ) {
-    return Neighborhood.STEGLITZ_ZEHLENDORF;
-  }
+    (zip >= 12157 && zip <= 12209) ||
+    (zip >= 14109 && zip <= 14169)
+  ) return "Steglitz-Zehlendorf";
 
-  // Tempelhof-Schöneberg: 10777-10829, 10965, 12099-12109, 12157-12159, 12247-12279
   if (
-    (zipNum >= 10777 && zipNum <= 10783) ||
-    (zipNum >= 10823 && zipNum <= 10829) ||
-    (zipNum >= 12099 && zipNum <= 12109) ||
-    (zipNum >= 12247 && zipNum <= 12279) ||
-    (zipNum >= 10825 && zipNum <= 10829) ||
-    zipNum === 10965 || zipNum === 12101 || zipNum === 12103 || zipNum === 12105 || zipNum === 12107 || zipNum === 12109
-  ) {
-    return Neighborhood.TEMPELHOF_SCHOENEBERG;
-  }
+    (zip >= 10777 && zip <= 10783) ||
+    (zip >= 10823 && zip <= 10829) ||
+    (zip >= 12099 && zip <= 12109) ||
+    (zip >= 12247 && zip <= 12279) ||
+    zip === 10965
+  ) return "Tempelhof-Schöneberg";
 
-  // Neukölln: 12043-12059, 12347-12359, 12435, 12437, 12439
   if (
-    (zipNum >= 12043 && zipNum <= 12059) ||
-    (zipNum >= 12347 && zipNum <= 12359) ||
-    zipNum === 12435 || zipNum === 12437 || zipNum === 12439 ||
-    zipNum === 12045 || zipNum === 12047 || zipNum === 12049 || zipNum === 12051 || zipNum === 12053 || zipNum === 12055 || zipNum === 12057 || zipNum === 12059
-  ) {
-    return Neighborhood.NEUKOELLN;
-  }
+    (zip >= 12043 && zip <= 12059) ||
+    (zip >= 12347 && zip <= 12359) ||
+    [12435, 12437, 12439].includes(zip)
+  ) return "Neukölln";
 
-  // Treptow-Köpenick: 12435-12559
   if (
-    (zipNum >= 12435 && zipNum <= 12439) ||
-    (zipNum >= 12459 && zipNum <= 12559) ||
-    zipNum === 12487 || zipNum === 12489 || zipNum === 12524 || zipNum === 12526 || zipNum === 12527 || zipNum === 12555 || zipNum === 12557 || zipNum === 12559
-  ) {
-    return Neighborhood.TREPTOW_KOEPENICK;
-  }
+    (zip >= 12459 && zip <= 12559) ||
+    [12487, 12489, 12524, 12526, 12527].includes(zip)
+  ) return "Treptow-Köpenick";
 
-  // Marzahn-Hellersdorf: 12619-12689
-  if (zipNum >= 12619 && zipNum <= 12689) {
-    return Neighborhood.MARZAHN_HELLERSDORF;
-  }
+  if (zip >= 12619 && zip <= 12689) return "Marzahn-Hellersdorf";
 
-  // Lichtenberg: 10315-10319, 10365-10369, 13051-13059
   if (
-    (zipNum >= 10315 && zipNum <= 10319) ||
-    (zipNum >= 10365 && zipNum <= 10369) ||
-    (zipNum >= 13051 && zipNum <= 13059) ||
-    zipNum === 10367
-  ) {
-    return Neighborhood.LICHTENBERG;
-  }
+    (zip >= 10365 && zip <= 10369) ||
+    (zip >= 13051 && zip <= 13059) ||
+    zip === 10367
+  ) return "Lichtenberg";
 
-  // Reinickendorf: 13403-13509
-  if (
-    (zipNum >= 13403 && zipNum <= 13509) ||
-    zipNum === 13405 || zipNum === 13407 || zipNum === 13409 || zipNum === 13435 || zipNum === 13437 || zipNum === 13439 ||
-    zipNum === 13465 || zipNum === 13467 || zipNum === 13469 || zipNum === 13503 || zipNum === 13505 || zipNum === 13507 || zipNum === 13509
-  ) {
-    return Neighborhood.REINICKENDORF;
-  }
+  if (zip >= 13403 && zip <= 13509) return "Reinickendorf";
 
   return undefined;
 };

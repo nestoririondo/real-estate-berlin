@@ -1,16 +1,25 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { PropertyFilter } from "@/components/properties/PropertyFilter";
 import { PropertyCard } from "@/components/properties/PropertyCard";
 import { PropertyCardSkeleton } from "@/components/properties/PropertyCardSkeleton";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import type { PropertyFilterValues } from "@/types/filter";
 import { filterProperties } from "@/lib/utils/propertyFilter";
 import { DEFAULT_FILTERS } from "@/constants/filterDefaults";
 import { useProperties } from "@/hooks/useProperties";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.42, 0, 0.58, 1] as const } },
+};
 
 const Properties = () => {
   const t = useTranslations("properties");
@@ -19,40 +28,25 @@ const Properties = () => {
   const gridRef = useRef(null);
   const isInView = useInView(gridRef, { once: false, margin: "-50px" });
 
-  // Fetch properties from API (via API route -> service layer -> API client)
   const { properties, loading, error } = useProperties({
     locale: locale === "de" ? "de" : "en",
   });
 
-  // Filter and sort properties (newest first)
+  const cityOptions = useMemo(() => {
+    const cities = [...new Set(properties.map((p) => p.city).filter(Boolean))] as string[];
+    return ["all", ...cities.sort()];
+  }, [properties]);
+
+  const neighborhoodOptions = useMemo(() => {
+    const neighborhoods = [...new Set(properties.map((p) => p.neighborhood).filter(Boolean))] as string[];
+    return ["all", ...neighborhoods.sort()];
+  }, [properties]);
+
   const filteredProperties = filterProperties(properties, filters).sort((a, b) => {
     const dateA = a.created_at ? new Date(a.created_at).getTime() : 0;
     const dateB = b.created_at ? new Date(b.created_at).getTime() : 0;
-    return dateB - dateA; // Newest first
+    return dateB - dateA;
   });
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.42, 0, 0.58, 1] as const, // easeOut cubic bezier
-      },
-    },
-  };
 
   if (error) {
     return (
@@ -72,34 +66,31 @@ const Properties = () => {
           className="text-4xl font-bold mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
           {t("loading") || "Loading..."}
         </motion.h1>
       ) : (
         <h1 className="text-4xl font-bold mb-8">
-          {t("showing", {
-            count: filteredProperties.length,
-          })}
+          {t("showing", { count: filteredProperties.length })}
         </h1>
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* Filter Sidebar */}
         <div className="lg:col-span-1">
-          <PropertyFilter filters={filters} onFilterChange={setFilters} />
+          <PropertyFilter
+            filters={filters}
+            onFilterChange={setFilters}
+            cityOptions={cityOptions}
+            neighborhoodOptions={neighborhoodOptions}
+          />
         </div>
 
-        {/* Properties Grid */}
         <div className="lg:col-span-3" ref={gridRef}>
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {Array.from({ length: 6 }).map((_, index) => (
-                <PropertyCardSkeleton key={index} />
+              {Array.from({ length: 6 }).map((_, i) => (
+                <PropertyCardSkeleton key={i} />
               ))}
             </div>
           ) : filteredProperties.length > 0 ? (
@@ -108,7 +99,7 @@ const Properties = () => {
               variants={containerVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
-              key={JSON.stringify(filters)} // Re-animate when filters change
+              key={JSON.stringify(filters)}
             >
               {filteredProperties.map((property) => (
                 <motion.div key={property.id} variants={itemVariants}>
@@ -123,12 +114,8 @@ const Properties = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5 }}
             >
-              <p className="text-muted-foreground text-lg mb-2">
-                {t("noResults")}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {t("tryAdjusting")}
-              </p>
+              <p className="text-muted-foreground text-lg mb-2">{t("noResults")}</p>
+              <p className="text-sm text-muted-foreground">{t("tryAdjusting")}</p>
             </motion.div>
           )}
         </div>

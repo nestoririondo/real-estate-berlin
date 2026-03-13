@@ -11,6 +11,7 @@ import type { Property } from "@/types/property";
 import type { PropstackProperty } from "@/types/propstackProperty";
 import { PropertyType } from "@/types/enums";
 import { ACTIVE_STATUS_IDS_STRING } from "@/lib/constants/propstackStatuses";
+import { getDistrictFromZipCode } from "@/constants/zipToDistrict";
 
 /**
  * Gets all properties with business logic applied
@@ -148,7 +149,7 @@ const mapPropstackToProperty = (propstack: PropstackProperty): Property => {
     currency: propstack.currency || "EUR",
     title: propstack.title || propstack.name || "",
     location: propstack.address || location,
-    neighborhood: propstack.location_name || propstack.region || propstack.city || "",
+    neighborhood: propstack.location_name || getDistrictFromZipCode(propstack.zip_code) || propstack.city || "",
     beds,
     baths: propstack.number_of_bath_rooms || 0,
     sqm,

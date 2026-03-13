@@ -39,13 +39,13 @@ const AboutSection = () => {
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {/* Image Side - Gallery Wall Style */}
-          <div className="relative h-[500px] md:h-[600px] lg:h-[650px]">
+          <div className="relative h-[360px] md:h-[600px] lg:h-[650px]">
             {/* Decorative shape - top left */}
             <motion.div
               className="absolute -top-6 -left-6 md:top-0 md:left-4 w-28 h-28 md:w-40 md:h-40 bg-primary/20 rounded-2xl z-0"
@@ -70,7 +70,7 @@ const AboutSection = () => {
 
             {/* Main founder image */}
             <motion.div
-              className="absolute top-8 left-8 md:top-12 md:left-16 w-[70%] md:w-[65%] aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl z-20"
+              className="absolute top-4 left-4 md:top-12 md:left-16 w-[55%] md:w-[65%] h-[300px] md:h-auto md:aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl z-20"
               initial={{ opacity: 0, y: 30, x: -20 }}
               animate={
                 isInView
