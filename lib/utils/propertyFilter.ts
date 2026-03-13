@@ -13,7 +13,7 @@ export const filterProperties = (
     }
 
     if (!filters.type.includes(PropertyType.ALL)) {
-      if (!filters.type.includes(property.type)) return false;
+      if (!property.type || !filters.type.includes(property.type)) return false;
     }
 
     if (property.price < filters.priceMin || property.price > filters.priceMax) {
