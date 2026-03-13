@@ -1,14 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const POST = async (request: NextRequest) => {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   try {
     const { name, email, phone, message, service } = await request.json();
 
     if (!name || !email || !message) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 },
+      );
     }
 
     await resend.emails.send({
@@ -32,7 +35,10 @@ const POST = async (request: NextRequest) => {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error sending email:", error);
-    return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to send email" },
+      { status: 500 },
+    );
   }
 };
 
