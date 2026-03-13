@@ -61,7 +61,7 @@ const SizeRangeFilter = ({
             type="button"
             onClick={() => handleRangeClick(range)}
             className={cn(
-              "px-3 py-1.5 text-sm rounded-full border transition-colors",
+              "px-3 py-1.5 text-sm rounded-sm border transition-colors",
               isRangeSelected(range)
                 ? "bg-primary text-primary-foreground border-primary"
                 : "bg-background hover:bg-muted border-border"
