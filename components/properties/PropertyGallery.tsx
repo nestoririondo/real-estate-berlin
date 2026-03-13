@@ -18,40 +18,36 @@ const blurDataURL = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgG
 const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const thumbnailScrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0])); // Track loaded images
-  const preloadedImagesRef = useRef<Set<number>>(new Set()); // Track preloaded images with ref
+  const preloadedImagesRef = useRef<Set<number>>(new Set());
 
-  // Preload adjacent images
   const preloadImage = useCallback((index: number) => {
     if (index < 0 || index >= images.length) return;
-    
-    // Check if already preloaded using ref
     if (preloadedImagesRef.current.has(index)) return;
-    
-    // Preload the image
+
     const img = new window.Image();
-    img.src = images[index];
+    img.src = `/_next/image?url=${encodeURIComponent(images[index])}&w=828&q=65`;
     preloadedImagesRef.current.add(index);
   }, [images]);
 
-  const nextImage = () => {
-    const next = (selectedImage + 1) % images.length;
-    setSelectedImage(next);
-    // Preload next and previous images
-    preloadImage((next + 1) % images.length);
-    preloadImage((next - 1 + images.length) % images.length);
+  // Preload all images on mount
+  useEffect(() => {
+    images.forEach((_, index) => preloadImage(index));
+  }, [images, preloadImage]);
+
+  const goToImage = (index: number) => {
+    if (index === selectedImage) return;
+    setIsLoading(true);
+    setSelectedImage(index);
+    preloadImage((index + 1) % images.length);
+    preloadImage((index - 1 + images.length) % images.length);
   };
 
-  const prevImage = () => {
-    const prev = (selectedImage - 1 + images.length) % images.length;
-    setSelectedImage(prev);
-    // Preload next and previous images
-    preloadImage((prev + 1) % images.length);
-    preloadImage((prev - 1 + images.length) % images.length);
-  };
+  const nextImage = () => goToImage((selectedImage + 1) % images.length);
+  const prevImage = () => goToImage((selectedImage - 1 + images.length) % images.length);
 
   // Preload images when dialog opens
   useEffect(() => {
@@ -115,20 +111,26 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
     <div className="space-y-4">
       {/* Main Image */}
       <div
-        className="relative w-full h-[500px] rounded-lg overflow-hidden group cursor-pointer bg-muted"
+        className="relative w-full h-[500px] rounded-sm overflow-hidden group cursor-pointer bg-muted"
         onClick={() => setIsDialogOpen(true)}
       >
         <Image
           src={images[selectedImage]}
           alt={`${title} - Image ${selectedImage + 1}`}
           fill
-          className="object-cover transition-opacity duration-300"
-          sizes="(max-width: 768px) 100vw, 66vw"
+          className={`object-cover transition-opacity duration-300 ${isLoading ? "opacity-50" : "opacity-100"}`}
+          sizes="(max-width: 768px) 100vw, 828px"
           placeholder="blur"
           blurDataURL={blurDataURL}
           priority={selectedImage === 0}
-          onLoad={() => setLoadedImages((prev) => new Set([...prev, selectedImage]))}
+          quality={65}
+          onLoad={() => setIsLoading(false)}
         />
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="h-8 w-8 rounded-full border-4 border-white/30 border-t-white animate-spin" />
+          </div>
+        )}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors pointer-events-none" />
         <Button
           variant="ghost"
@@ -161,7 +163,7 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg border border-border h-9 w-9 rounded-full"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg border border-border h-9 w-9 rounded-sm"
             onClick={() => scrollThumbnails("left")}
           >
             <ChevronLeft className="h-5 w-5" />
@@ -173,7 +175,7 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg border border-border h-9 w-9 rounded-full"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg border border-border h-9 w-9 rounded-sm"
             onClick={() => scrollThumbnails("right")}
           >
             <ChevronRight className="h-5 w-5" />
@@ -183,7 +185,7 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
         {/* Scrollable Thumbnail Container */}
         <div 
           ref={thumbnailScrollRef}
-          className="overflow-x-auto scrollbar-hide scroll-smooth px-10"
+          className={`overflow-x-auto scrollbar-hide scroll-smooth ${canScrollLeft ? "pl-10" : ""} ${canScrollRight ? "pr-10" : ""}`}
           style={{ 
             WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS/iPad
             scrollbarWidth: "none", // Firefox
@@ -194,9 +196,9 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
             {images.map((image, index) => (
               <button
                 key={index}
-                onClick={() => setSelectedImage(index)}
+                onClick={() => goToImage(index)}
                 className={cn(
-                  "relative w-20 h-20 flex-shrink-0 rounded-md overflow-hidden border-2 transition-all",
+                  "relative w-20 h-20 shrink-0 rounded-sm overflow-hidden border-2 transition-all",
                   selectedImage === index
                     ? "border-primary"
                     : "border-transparent hover:border-primary/50"
@@ -227,9 +229,9 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
       {/* Full Screen Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogPortal>
-          <DialogOverlay className="!bg-black/70 backdrop-blur-sm" />
+          <DialogOverlay className="bg-black/70! backdrop-blur-sm" />
           <DialogContent
-            className="!max-w-none !w-screen !h-screen !p-0 !bg-transparent !border-none flex flex-col !m-0 !rounded-none !top-0 !left-0 !translate-x-0 !translate-y-0 !inset-0 pointer-events-none"
+            className="max-w-none! w-screen! h-screen! p-0! bg-transparent! border-none! flex flex-col m-0! rounded-none! top-0! left-0! translate-x-0! translate-y-0! inset-0! pointer-events-none"
             showCloseButton={false}
           >
             <DialogTitle className="sr-only">{title} - Gallery</DialogTitle>
@@ -238,7 +240,7 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-4 right-4 z-50 text-white hover:bg-white/20 bg-black/50 h-12 w-12 rounded-full pointer-events-auto"
+              className="absolute top-4 right-4 z-50 text-white hover:bg-white/20 bg-black/50 h-12 w-12 rounded-sm pointer-events-auto"
               onClick={() => setIsDialogOpen(false)}
             >
               <X className="h-6 w-6" />
@@ -256,9 +258,10 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
                 className="object-contain transition-opacity duration-300"
                 sizes="100vw"
                 priority
+                quality={80}
                 placeholder="blur"
                 blurDataURL={blurDataURL}
-                onLoad={() => setLoadedImages((prev) => new Set([...prev, selectedImage]))}
+                onLoad={() => setIsLoading(false)}
               />
               <Button
                 variant="ghost"
@@ -283,7 +286,7 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
                 <ChevronRight className="h-8 w-8" />
               </Button>
               <div
-                className="absolute top-6 left-1/2 -translate-x-1/2 text-white text-base bg-black/70 px-4 py-2 rounded-full"
+                className="absolute top-6 left-1/2 -translate-x-1/2 text-white text-base bg-black/70 px-4 py-2 rounded-sm"
                 onClick={(e) => e.stopPropagation()}
               >
                 {selectedImage + 1} / {images.length}
@@ -292,17 +295,16 @@ const PropertyGallery = ({ images, title }: PropertyGalleryProps) => {
 
           {/* Thumbnails Strip */}
           <div
-            className="w-full backdrop-blur-sm p-6 border-t border-white/20 pointer-events-auto"
-            style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
+            className="w-full bg-black/70 backdrop-blur-sm p-6 border-t border-white/20 pointer-events-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex gap-3 justify-center overflow-x-auto max-w-7xl mx-auto">
               {images.map((image, index) => (
                 <button
                   key={index}
-                  onClick={() => setSelectedImage(index)}
+                  onClick={() => goToImage(index)}
                   className={cn(
-                    "relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all",
+                    "relative w-24 h-24 shrink-0 rounded-sm overflow-hidden border-2 transition-all",
                     selectedImage === index
                       ? "border-white"
                       : "border-transparent hover:border-white/50 opacity-60 hover:opacity-100"

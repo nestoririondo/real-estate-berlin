@@ -1,5 +1,4 @@
 import { services } from "@/lib/data/services";
-import { ServiceStats } from "@/components/services/ServiceStats";
 import { ServicesHero } from "@/components/services/ServicesHero";
 import { ServicesSection } from "@/components/services/ServicesSection";
 import { ServicesCTA } from "@/components/services/ServicesCTA";
@@ -22,10 +21,7 @@ const ServicesPage = async ({ params }: ServicesPageProps) => {
         benefits={[t("benefit1"), t("benefit2"), t("benefit3")]}
       />
 
-      {/* Social Proof / Stats Section */}
-      <ServiceStats />
-
-      {/* Services Grid with Enhanced Details */}
+      {/* Services */}
       <ServicesSection
         services={services}
         locale={locale}

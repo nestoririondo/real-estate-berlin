@@ -5,6 +5,7 @@ const withNextIntl = createNextIntlPlugin("./i18n.ts");
 
 const nextConfig: NextConfig = {
   images: {
+    minimumCacheTTL: 60 * 60 * 24 * 7, // cache optimized images for 7 days
     remotePatterns: [
       {
         protocol: "https",

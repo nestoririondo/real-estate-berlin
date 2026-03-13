@@ -19,6 +19,7 @@ const iconMap = {
 
 const ServicesSection = () => {
   const t = useTranslations("home");
+  const ts = useTranslations("services");
   const locale = useLocale();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -76,11 +77,11 @@ const ServicesSection = () => {
                     <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
                       <Icon className="h-6 w-6 text-primary" />
                     </div>
-                    <CardTitle className="text-2xl">{service.title}</CardTitle>
+                    <CardTitle className="text-2xl" style={{ fontFamily: "var(--font-display)" }}>{ts(`${service.id}.title`)}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1">
                     <CardDescription className="text-base leading-relaxed">
-                      {service.description}
+                      {ts(`${service.id}.shortDescription`)}
                     </CardDescription>
                   </CardContent>
                 </Card>

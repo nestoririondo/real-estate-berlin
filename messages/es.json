@@ -142,6 +142,9 @@
       "experienceDesc": "Experiencia inmobiliaria en Berlín"
     },
     "buy": {
+      "title": "Comprar",
+      "shortDescription": "Encuentre su apartamento ideal en Berlín — desde viviendas familiares hasta propiedades de inversión, le acompañamos desde la primera visita hasta la firma.",
+      "description": "Deje de alquilar y empiece a ser propietario — su apartamento ideal en Berlín está más cerca de lo que cree. Tanto si busca una vivienda familiar como un elegante pied-à-terre en su barrio favorito, le encontramos la propiedad adecuada de nuestra cartera exclusiva. Suscríbase a nuestro boletín y acceda a nuevos inmuebles antes de que aparezcan en internet.",
       "badge": "Más Popular",
       "benefits": [
         "Acceso a listados exclusivos fuera del mercado",
@@ -159,6 +162,9 @@
       "cta": "Iniciar Búsqueda de Propiedades"
     },
     "sell": {
+      "title": "Vender",
+      "shortDescription": "Desde una valoración precisa hasta un cierre sin contratiempos — gestionamos su venta con una estrategia a medida y toda nuestra red multilingüe.",
+      "description": "Vender su propiedad es algo más que una transacción — es una decisión personal que merece un enfoque personal. Ofrecemos una valoración precisa orientada al mercado, junto con una estrategia de venta cuidadosamente diseñada según sus objetivos. Nuestra red multilingüe y años de experiencia en Berlín garantizan la máxima visibilidad y el mejor resultado posible en cada etapa del proceso.",
       "badge": "Rápido y Eficiente",
       "benefits": [
         "Valuación gratuita y análisis de mercado",
@@ -176,6 +182,9 @@
       "cta": "Obtener Valuación de Propiedad"
     },
     "renovate": {
+      "title": "Renovar",
+      "shortDescription": "Le conectamos con empresas de confianza y supervisamos cada fase — desde el diseño y los presupuestos hasta los materiales y la entrega de llaves.",
+      "description": "¿Está comprando una propiedad que necesita obras, o quiere renovar una antes de volver a alquilarla o venderla? Le conectamos con empresas de reforma de confianza con las que llevamos años colaborando y supervisamos cada fase — desde el diseño inicial y los presupuestos hasta la selección de materiales y la entrega final de llaves. Estará informado en todo momento, en su idioma y sin estrés.",
       "badge": "Solución Llave en Mano",
       "benefits": [
         "Gestión de proyectos de extremo a extremo",
@@ -193,6 +202,9 @@
       "cta": "Planificar Su Renovación"
     },
     "consulting": {
+      "title": "Asesoramiento",
+      "shortDescription": "Asesoramiento experto sobre la normativa berlinesa, documentación inmobiliaria y mercados internacionales — adaptado individualmente a su situación.",
+      "description": "Desde la orientación en el entramado regulatorio de Berlín — áreas de reurbanización, control de alquileres, plazos de preaviso — hasta la revisión de documentación inmobiliaria y una segunda opinión clara, estamos aquí para asesorarle de forma personalizada. También apoyamos a compradores con ambiciones internacionales: gracias a nuestra red en España, Italia, Portugal y más allá, podemos ayudarle a convertir en realidad la propiedad de sus sueños en el extranjero.",
       "badge": "Asesoramiento Experto",
       "benefits": [
         "Desarrollo de estrategia personalizada",

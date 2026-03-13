@@ -48,7 +48,7 @@ const AboutSection = () => {
           <div className="relative h-[360px] md:h-[600px] lg:h-[650px]">
             {/* Decorative shape - top left */}
             <motion.div
-              className="absolute -top-6 -left-6 md:top-0 md:left-4 w-28 h-28 md:w-40 md:h-40 bg-primary/20 rounded-2xl z-0"
+              className="absolute -top-6 -left-6 md:top-0 md:left-4 w-28 h-28 md:w-40 md:h-40 bg-primary/20 rounded-sm z-0"
               initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
               animate={
                 isInView
@@ -60,7 +60,7 @@ const AboutSection = () => {
 
             {/* Decorative shape - top right */}
             <motion.div
-              className="absolute top-8 right-0 md:top-4 md:right-8 w-24 h-24 md:w-32 md:h-32 bg-muted rounded-xl z-0"
+              className="absolute top-8 right-0 md:top-4 md:right-8 w-24 h-24 md:w-32 md:h-32 bg-muted rounded-sm z-0"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={
                 isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -70,7 +70,7 @@ const AboutSection = () => {
 
             {/* Main founder image */}
             <motion.div
-              className="absolute top-4 left-4 md:top-12 md:left-16 w-[55%] md:w-[65%] h-[300px] md:h-auto md:aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl z-20"
+              className="absolute top-4 left-4 md:top-12 md:left-16 w-[55%] md:w-[65%] h-[300px] md:h-auto md:aspect-[3/4] rounded-sm overflow-hidden shadow-2xl z-20"
               initial={{ opacity: 0, y: 30, x: -20 }}
               animate={
                 isInView
@@ -90,7 +90,7 @@ const AboutSection = () => {
 
             {/* Decorative shape - bottom right (larger) */}
             <motion.div
-              className="absolute bottom-12 right-0 md:bottom-8 md:right-4 w-40 h-48 md:w-52 md:h-64 bg-primary/15 rounded-2xl z-10"
+              className="absolute bottom-12 right-0 md:bottom-8 md:right-4 w-40 h-48 md:w-52 md:h-64 bg-primary/15 rounded-sm z-10"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={
                 isInView
@@ -102,7 +102,7 @@ const AboutSection = () => {
 
             {/* Decorative shape - bottom left */}
             <motion.div
-              className="absolute bottom-0 left-0 md:bottom-4 md:left-0 w-20 h-20 md:w-28 md:h-28 bg-muted rounded-xl z-0"
+              className="absolute bottom-0 left-0 md:bottom-4 md:left-0 w-20 h-20 md:w-28 md:h-28 bg-muted rounded-sm z-0"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={
                 isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -169,10 +169,10 @@ const AboutSection = () => {
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-sm">
+                      <h3 className="font-semibold text-base">
                         {t(`about.highlights.${highlight.key}.title`)}
                       </h3>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-muted-foreground mt-0.5">
                         {t(`about.highlights.${highlight.key}.description`)}
                       </p>
                     </div>

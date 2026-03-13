@@ -142,6 +142,9 @@
       "experienceDesc": "Berliner Immobilienexpertise"
     },
     "buy": {
+      "title": "Kaufen",
+      "shortDescription": "Finden Sie Ihre Traumwohnung in Berlin — vom Familienhaus bis zur Kapitalanlage, wir begleiten Sie von der ersten Besichtigung bis zum Notartermin.",
+      "description": "Hören Sie auf zu mieten und fangen Sie an, Eigentum zu besitzen — Ihre ideale Wohnung in Berlin ist näher, als Sie denken. Ob Sie ein Familienheim oder ein stilvolles Stadtapartment in Ihrem Lieblingsviertels suchen, wir finden aus unserem exklusiven Portfolio die passende Immobilie für Sie. Melden Sie sich für unseren Newsletter an und erhalten Sie Zugang zu brandneuen Angeboten, bevor sie online erscheinen.",
       "badge": "Beliebteste",
       "benefits": [
         "Zugang zu exklusiven Off-Market-Angeboten",
@@ -159,6 +162,9 @@
       "cta": "Immobiliensuche starten"
     },
     "sell": {
+      "title": "Verkaufen",
+      "shortDescription": "Von der präzisen Bewertung bis zum reibungslosen Abschluss — wir managen Ihren Verkauf mit einer maßgeschneiderten Strategie und unserem gesamten mehrsprachigen Netzwerk.",
+      "description": "Ihre Immobilie zu verkaufen ist mehr als eine Transaktion — es ist eine persönliche Entscheidung, die einen persönlichen Ansatz verdient. Wir bieten eine präzise, marktorientierte Bewertung sowie eine sorgfältig ausgearbeitete Verkaufsstrategie, die auf Ihre Ziele zugeschnitten ist. Unser mehrsprachiges Netzwerk und unsere langjährige Berliner Expertise sorgen für maximale Sichtbarkeit und das bestmögliche Ergebnis — auf jedem Schritt des Weges.",
       "badge": "Schnell & Effizient",
       "benefits": [
         "Kostenlose Immobilienbewertung und Marktanalyse",
@@ -176,6 +182,9 @@
       "cta": "Immobilienbewertung erhalten"
     },
     "renovate": {
+      "title": "Renovieren",
+      "shortDescription": "Wir vermitteln Ihnen vertrauensvolle Fachfirmen und begleiten jede Phase — von Planung und Kostenvoranschlag bis zu Materialauswahl und Schlüsselübergabe.",
+      "description": "Kaufen Sie eine renovierungsbedürftige Immobilie oder möchten Sie eine vor der Neuvermietung oder dem Wiederverkauf aufwerten? Wir vermitteln Ihnen bewährte Renovierungsfirmen, mit denen wir seit Jahren zusammenarbeiten, und begleiten jede Phase — von der ersten Planung und den Kostenvoranschlägen bis zur Materialauswahl und der finalen Schlüsselübergabe. Sie bleiben stets informiert, in Ihrer Sprache, ohne den Stress.",
       "badge": "Schlüsselfertige Lösung",
       "benefits": [
         "End-to-End-Projektmanagement",
@@ -193,6 +202,9 @@
       "cta": "Renovierung planen"
     },
     "consulting": {
+      "title": "Beratung",
+      "shortDescription": "Kompetente Beratung zu Berlins Regelungen, Immobilienunterlagen und internationalen Märkten — individuell auf Ihre Situation zugeschnitten.",
+      "description": "Von der Orientierung im Berliner Regulierungsdschungel — Sanierungsgebiete, Mietpreisbremse, Kündigungsfristen — über die Prüfung von Immobilienunterlagen bis hin zur fundierten Zweitmeinung: Wir stehen Ihnen persönlich zur Seite. Wir unterstützen auch Käufer mit internationalen Ambitionen: Dank unseres Netzwerks in Spanien, Italien, Portugal und darüber hinaus helfen wir Ihnen, Ihren Immobilientraum im Ausland Wirklichkeit werden zu lassen.",
       "badge": "Expertenberatung",
       "benefits": [
         "Personalisierte Strategieentwicklung",

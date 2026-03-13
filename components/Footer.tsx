@@ -4,9 +4,11 @@ import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Mail, Send, CheckCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle, FileText } from "lucide-react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
+
+const MAILCHIMP_URL = process.env.NEXT_PUBLIC_MAILCHIMP_URL ?? "";
 
 const Footer = () => {
   const t = useTranslations("footer");
@@ -20,11 +22,23 @@ const Footer = () => {
     if (!email) return;
 
     setLoading(true);
-    // Simulate API call - replace with actual newsletter signup logic
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setSubscribed(true);
-    setLoading(false);
-    setEmail("");
+    try {
+      const form = new FormData();
+      form.append("EMAIL", email);
+      form.append("b_95e0312e937c0373aca5daa01_925adeb7cb", ""); // honeypot
+      form.append("gdpr[63044]", "Y");
+
+      await fetch(MAILCHIMP_URL, {
+        method: "POST",
+        body: form,
+        mode: "no-cors", // Mailchimp doesn't allow CORS, no-cors silences the error
+      });
+
+      setSubscribed(true);
+      setEmail("");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,7 +79,10 @@ const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h6 className="font-semibold mb-4">{t("legal")}</h6>
+            <h6 className="font-semibold mb-4 flex items-center gap-2">
+              <FileText className="h-5 w-5" />
+              {t("legal")}
+            </h6>
             <ul className="space-y-2 text-muted-foreground">
               <li>
                 <Link href={`/${locale}/impressum`} className="hover:text-primary transition-colors">

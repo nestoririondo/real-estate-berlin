@@ -17,112 +17,104 @@ const Hero = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Avoid hydration mismatch - this pattern is necessary for theme switching
-  // This is a standard pattern for next-themes to prevent hydration mismatches
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
-  // Dark mode image (night Berlin) - using absolute path from public folder
   const darkModeImage = "/header-pages-berlin-4577624_1920.jpg";
-  // Light mode image (sunset Berlin)
   const lightModeImage = "https://media.istockphoto.com/id/503874284/de/foto/berlin-skyline-mit-spree-bei-sonnenuntergang-deutschland.jpg?s=1024x1024&w=is&k=20&c=JfUhT6VazsIMjUoIsnTVi394JJcibNjVgNz5kpqYTD8=";
-  
-  // Use resolvedTheme to get the actual theme (light/dark) even when theme is "system"
-  // Default to "dark" during SSR to avoid hydration mismatch
+
   const currentTheme = mounted ? (resolvedTheme || "dark") : "dark";
   const isDark = currentTheme === "dark";
 
   return (
-    <section className="relative py-30 md:py-50 overflow-hidden">
-      {/* Background Image with crossfade transition */}
+    <section className="relative min-h-[90vh] overflow-hidden flex flex-col justify-between">
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        {/* Dark mode image */}
-        <div
-          className={`absolute inset-0 transition-opacity duration-500 ${
-            mounted && isDark ? "opacity-100" : "opacity-0"
-          } dark:opacity-100`}
-        >
-          <Image
-            src={darkModeImage}
-            alt="Berlin skyline at night"
-            fill
-            className="object-cover"
-            priority
-            quality={90}
-            unoptimized={true}
-          />
+        <div className={`absolute inset-0 transition-opacity duration-500 ${mounted && isDark ? "opacity-100" : "opacity-0"} dark:opacity-100`}>
+          <Image src={darkModeImage} alt="Berlin skyline at night" fill className="object-cover" priority quality={90} unoptimized />
         </div>
-        {/* Light mode image */}
-        <div
-          className={`absolute inset-0 transition-opacity duration-500 ${
-            mounted && !isDark ? "opacity-100" : "opacity-0"
-          } dark:opacity-0`}
-        >
-          <Image
-            src={lightModeImage}
-            alt="Berlin skyline at sunset"
-            fill
-            className="object-cover"
-            priority
-            quality={90}
-          />
+        <div className={`absolute inset-0 transition-opacity duration-500 ${mounted && !isDark ? "opacity-100" : "opacity-0"} dark:opacity-0`}>
+          <Image src={lightModeImage} alt="Berlin skyline at sunset" fill className="object-cover" priority quality={90} />
         </div>
-        {/* Dark overlay for text readability - transitions smoothly */}
-        <div
-          className={`absolute inset-0 transition-all duration-500 ${
-            mounted && isDark ? "bg-black/20" : "bg-black/40"
-          } dark:bg-black/20`}
-        />
+        <div className={`absolute inset-0 transition-all duration-500 ${mounted && isDark ? "bg-black/40" : "bg-black/50"} dark:bg-black/40`} />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/60 to-transparent" />
       </div>
-      
+
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          ref={ref}
-          className="text-center max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+      <div ref={ref} className="relative z-10 flex flex-col justify-between h-full min-h-[90vh] px-8 md:px-14 lg:px-20 py-16 md:py-24">
+        {/* Top eyebrow */}
+        <motion.p
+          className="text-xs tracking-[0.2em] uppercase text-white/60 font-medium"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
         >
+          Berlin, Germany
+        </motion.p>
+
+        {/* Center text block */}
+        <div className="max-w-2xl">
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-tight text-white drop-shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            className="text-5xl md:text-7xl lg:text-8xl font-medium text-white leading-tight mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.7, ease: [0.42, 0, 0.58, 1] }}
           >
             {t("brandName")}
           </motion.h1>
+          <motion.div
+            className="w-10 h-px bg-primary mb-6"
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: [0.42, 0, 0.58, 1] }}
+            style={{ transformOrigin: "left" }}
+          />
           <motion.p
-            className="text-2xl md:text-3xl lg:text-4xl font-medium text-white/95 mb-4 drop-shadow-md"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-          >
-            {t("title")}
-          </motion.p>
-          <motion.p
-            className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-md"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed"
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ duration: 0.6, delay: 0.35, ease: [0.42, 0, 0.58, 1] }}
           >
             {t("subtitle")}
           </motion.p>
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ duration: 0.6, delay: 0.45, ease: [0.42, 0, 0.58, 1] }}
           >
-            <Button asChild size="lg" className="text-lg transition-transform duration-200 hover:scale-105 group">
+            <Button asChild size="lg" className="group">
               <Link href={`/${locale}/properties`} className="flex items-center gap-2">
                 {t("browseProperties")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
           </motion.div>
+        </div>
+
+        {/* Bottom stats row */}
+        <motion.div
+          className="flex gap-10"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+        >
+          {[
+            { value: "15+", label: "Years in Berlin" },
+            { value: "500+", label: "Transactions" },
+            { value: "5", label: "Languages" },
+          ].map((stat) => (
+            <div key={stat.label}>
+              <div
+                className="text-2xl font-medium text-primary"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {stat.value}
+              </div>
+              <div className="text-xs text-white/50 mt-0.5">{stat.label}</div>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

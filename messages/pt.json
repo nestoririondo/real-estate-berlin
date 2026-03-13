@@ -142,6 +142,9 @@
       "experienceDesc": "Experiência imobiliária em Berlim"
     },
     "buy": {
+      "title": "Comprar",
+      "shortDescription": "Encontre o seu apartamento perfeito em Berlim — de casas familiares a propriedades de investimento, acompanhamo-lo da primeira visita ao fecho do negócio.",
+      "description": "Deixe de arrendar e comece a ser proprietário — o seu apartamento ideal em Berlim está mais perto do que pensa. Quer esteja à procura de uma casa de família ou de um elegante pied-à-terre no seu bairro preferido, encontramos a propriedade certa no nosso portfólio exclusivo. Subscreva a nossa newsletter e tenha acesso a novos imóveis antes de aparecerem online.",
       "badge": "Mais Popular",
       "benefits": [
         "Acesso a listagens exclusivas fora do mercado",
@@ -159,6 +162,9 @@
       "cta": "Iniciar Busca de Propriedades"
     },
     "sell": {
+      "title": "Vender",
+      "shortDescription": "De uma avaliação rigorosa ao fecho sem complicações — gerimos a sua venda com uma estratégia personalizada e toda a nossa rede multilingue.",
+      "description": "Vender a sua propriedade é mais do que uma transação — é uma decisão pessoal que merece uma abordagem pessoal. Oferecemos uma avaliação precisa e orientada pelo mercado, a par de uma estratégia de venda cuidadosamente elaborada segundo os seus objetivos. A nossa rede multilingue e os anos de experiência em Berlim garantem a máxima exposição e o melhor resultado possível, em cada etapa do processo.",
       "badge": "Rápido e Eficiente",
       "benefits": [
         "Avaliação gratuita e análise de mercado",
@@ -176,6 +182,9 @@
       "cta": "Obter Avaliação da Propriedade"
     },
     "renovate": {
+      "title": "Renovar",
+      "shortDescription": "Ligamo-lo a empresas de confiança e supervisionamos cada fase — do projeto e orçamentos à escolha de materiais e entrega das chaves.",
+      "description": "Está a comprar uma propriedade que precisa de obras, ou quer renovar uma antes de a voltar a arrendar ou vender? Ligamo-lo a empresas de remodelação de confiança com quem colaboramos há anos e supervisionamos cada fase — desde o projeto inicial e os orçamentos até à seleção de materiais e à entrega final das chaves. Fica sempre a par de tudo, no seu idioma, sem o stress.",
       "badge": "Solução Chave na Mão",
       "benefits": [
         "Gerenciamento de projetos de ponta a ponta",
@@ -193,6 +202,9 @@
       "cta": "Planejar Sua Renovação"
     },
     "consulting": {
+      "title": "Consultoria",
+      "shortDescription": "Aconselhamento especializado sobre as regulamentações de Berlim, documentação de imóveis e mercados internacionais — adaptado individualmente à sua situação.",
+      "description": "Desde a orientação no enquadramento regulatório de Berlim — zonas de requalificação, controlo de rendas, prazos de aviso prévio — até à análise de documentação imobiliária e a uma segunda opinião clara, estamos aqui para o aconselhar individualmente. Apoiamos também compradores com ambições internacionais: graças à nossa rede em Espanha, Itália, Portugal e além, podemos ajudá-lo a transformar em realidade a propriedade dos seus sonhos no estrangeiro.",
       "badge": "Aconselhamento Especializado",
       "benefits": [
         "Desenvolvimento de estratégia personalizada",

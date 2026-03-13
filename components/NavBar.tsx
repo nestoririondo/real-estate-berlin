@@ -250,7 +250,7 @@ const NavBarComponent = React.forwardRef<HTMLElement, NavbarProps>(
                               href={link.href || "#"}
                               className={cn(
                                 "group inline-flex h-10 w-max items-center justify-center rounded-t-md px-4 py-2 text-sm font-medium transition-colors cursor-pointer relative overflow-hidden",
-                                "focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background",
+                                "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                                 "disabled:pointer-events-none disabled:opacity-50",
                                 "before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-primary before:scale-x-0 before:transition-transform before:duration-300",
                                 isActive

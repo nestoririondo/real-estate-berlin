@@ -74,7 +74,7 @@
     "sending": "Invio del tuo messaggio...",
     "sent": "Messaggio Inviato con Successo!",
     "sentDescription": "Fabrizio ti risponderà entro 5 minuti.",
-    "responsePromise": "Ti sentirai presto da noi!",
+    "responsePromise": "Ti ricontatteremo al più presto!",
     "privacyNote": "Le tue informazioni sono sicure e verranno utilizzate solo per contattarti riguardo a questa proprietà.",
     "orContact": "Oppure contattaci direttamente"
   },
@@ -142,6 +142,9 @@
       "experienceDesc": "Esperienza immobiliare a Berlino"
     },
     "buy": {
+      "title": "Acquistare",
+      "shortDescription": "Trovate il vostro appartamento ideale a Berlino — dalle case familiari agli immobili da investimento, vi accompagniamo dal primo sopralluogo al rogito.",
+      "description": "Smettete di affittare e iniziate a essere proprietari — il vostro appartamento ideale a Berlino è più vicino di quanto pensiate. Che cerchiate una casa per la famiglia o un elegante pied-à-terre nel vostro quartiere preferito, vi abbiniamo all'immobile giusto dal nostro portafoglio esclusivo. Iscrivetevi alla nostra newsletter e accedete agli annunci più recenti prima ancora che appaiano online.",
       "badge": "Più Popolare",
       "benefits": [
         "Accesso a listini esclusivi fuori mercato",
@@ -159,6 +162,9 @@
       "cta": "Inizia la Ricerca Immobiliare"
     },
     "sell": {
+      "title": "Vendere",
+      "shortDescription": "Dalla valutazione precisa alla chiusura senza intoppi — gestiamo la vostra vendita con una strategia su misura e l'intera nostra rete multilingue.",
+      "description": "Vendere il vostro immobile è più di una semplice transazione — è una decisione personale che merita un approccio personale. Offriamo una valutazione accurata orientata al mercato, affiancata da una strategia di vendita attentamente studiata in base ai vostri obiettivi. La nostra rete multilingue e gli anni di esperienza a Berlino garantiscono la massima visibilità e il miglior risultato possibile, a ogni passo del percorso.",
       "badge": "Veloce ed Efficiente",
       "benefits": [
         "Valutazione gratuita e analisi di mercato",
@@ -176,6 +182,9 @@
       "cta": "Ottieni Valutazione Immobile"
     },
     "renovate": {
+      "title": "Ristrutturare",
+      "shortDescription": "Vi mettiamo in contatto con imprese fidate e seguiamo ogni fase — dal progetto e i preventivi alla scelta dei materiali e alla consegna delle chiavi.",
+      "description": "State acquistando un immobile da ristrutturare, o volete valorizzarne uno prima di rimetterlo a reddito o rivenderlo? Vi mettiamo in contatto con imprese di ristrutturazione fidate, con cui collaboriamo da anni, e seguiamo ogni fase — dal progetto iniziale e i preventivi alla selezione dei materiali e alla consegna finale delle chiavi. Siete sempre aggiornati, nella vostra lingua, senza lo stress.",
       "badge": "Soluzione Chiavi in Mano",
       "benefits": [
         "Gestione progetti end-to-end",
@@ -193,6 +202,9 @@
       "cta": "Pianifica la Tua Ristrutturazione"
     },
     "consulting": {
+      "title": "Consulenza",
+      "shortDescription": "Consulenza esperta sulla normativa berlinese, documentazione immobiliare e mercati internazionali — personalizzata sulla vostra situazione.",
+      "description": "Dall'orientamento nel panorama normativo di Berlino — aree di riqualificazione, controllo degli affitti, termini di preavviso — alla revisione della documentazione immobiliare e a un chiaro parere indipendente, siamo qui per consigliarvi individualmente. Supportiamo anche chi ha ambizioni internazionali: grazie alla nostra rete in Spagna, Italia, Portogallo e oltre, possiamo aiutarvi a trasformare in realtà la proprietà dei vostri sogni all'estero.",
       "badge": "Consulenza Esperta",
       "benefits": [
         "Sviluppo strategia personalizzata",
