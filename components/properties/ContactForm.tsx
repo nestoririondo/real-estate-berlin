@@ -2,14 +2,10 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Mail, Phone, Send, Clock, Loader2, Shield } from "lucide-react";
+import { Send, Loader2, Shield, Phone, Mail } from "lucide-react";
 import { COMPANY_PHONE, COMPANY_PHONE_E164, COMPANY_EMAIL } from "@/constants/companyInfo";
 import { AnimatePresence } from "framer-motion";
 import { ContactSuccess } from "@/components/contact/ContactSuccess";
@@ -22,37 +18,24 @@ interface ContactFormProps {
 const ContactForm = ({ propertyTitle }: ContactFormProps) => {
   const t = useTranslations("contact");
   const tPage = useTranslations("contactPage");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          service: propertyTitle,
-        }),
+        body: JSON.stringify({ ...formData, service: propertyTitle }),
       });
-
       if (!response.ok) throw new Error("Failed to send");
-
       setIsSubmitted(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
       setTimeout(() => setIsSubmitted(false), 10000);
@@ -64,132 +47,132 @@ const ContactForm = ({ propertyTitle }: ContactFormProps) => {
   };
 
   return (
-    <Card className="sticky top-8">
-      {!isSubmitted && (<CardHeader>
-        <div className="flex items-center gap-4 mb-4">
-          <Avatar className="h-16 w-16">
-            <AvatarImage src="/fabrizio-avatar.jpg" alt="Fabrizio" />
-            <AvatarFallback className="bg-primary/20 text-primary text-xl font-semibold">
-              F
-            </AvatarFallback>
-          </Avatar>
-          <div className="flex-1">
-            <CardTitle className="text-2xl mb-1">{t("title")}</CardTitle>
-            <p className="text-sm text-muted-foreground">
-              {t("agentName")} • {t("agentTitle")}
-            </p>
-          </div>
-        </div>
-        <div className="flex items-center gap-2 text-sm text-primary bg-primary/10 px-3 py-2 rounded-md">
-          <Clock className="h-4 w-4" />
-          <span>{t("responseTime")}</span>
-        </div>
-        <p className="text-sm text-muted-foreground mt-3">{t("subtitle")}</p>
-      </CardHeader>)}
-
-      <CardContent>
-        <AnimatePresence mode="wait">
+    <div className="sticky top-8">
+      <AnimatePresence mode="wait">
         {isSubmitted ? (
           <ContactSuccess />
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="prop-name">{tPage("name")} <span className="text-destructive">*</span></Label>
-              <Input
-                id="prop-name"
-                name="name"
-                type="text"
-                placeholder={tPage("namePlaceholder")}
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
+          <div>
+            {/* Header */}
+            <div className="mb-6">
+              <p className="text-xs tracking-[0.2em] uppercase text-primary font-medium mb-2">
+                {t("agentName")} · {t("agentTitle")}
+              </p>
+              <h2
+                className="text-3xl font-medium leading-tight mb-1"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {t("title")}
+              </h2>
+              <div className="w-6 h-px bg-primary mt-3" />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="prop-email">{tPage("email")} <span className="text-destructive">*</span></Label>
-              <Input
-                id="prop-email"
-                name="email"
-                type="email"
-                placeholder={tPage("emailPlaceholder")}
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="prop-name" className="text-xs tracking-[0.12em] uppercase text-muted-foreground block mb-1.5">
+                  {tPage("name")} <span className="text-primary">*</span>
+                </label>
+                <Input
+                  id="prop-name"
+                  name="name"
+                  type="text"
+                  placeholder={tPage("namePlaceholder")}
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="rounded-none border-x-0 border-t-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-primary"
+                />
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="prop-phone">
-                {tPage("phone")} <span className="text-muted-foreground text-xs">({tPage("optional")})</span>
-              </Label>
-              <Input
-                id="prop-phone"
-                name="phone"
-                type="tel"
-                placeholder={tPage("phonePlaceholder")}
-                value={formData.phone}
-                onChange={handleChange}
-              />
-            </div>
+              <div>
+                <label htmlFor="prop-email" className="text-xs tracking-[0.12em] uppercase text-muted-foreground block mb-1.5">
+                  {tPage("email")} <span className="text-primary">*</span>
+                </label>
+                <Input
+                  id="prop-email"
+                  name="email"
+                  type="email"
+                  placeholder={tPage("emailPlaceholder")}
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="rounded-none border-x-0 border-t-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-primary"
+                />
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="prop-message">{tPage("message")} <span className="text-destructive">*</span></Label>
-              <Textarea
-                id="prop-message"
-                name="message"
-                placeholder={tPage("messagePlaceholder")}
-                value={formData.message}
-                onChange={handleChange}
-                rows={4}
-                required
-                className="resize-none"
-              />
-            </div>
+              <div>
+                <label htmlFor="prop-phone" className="text-xs tracking-[0.12em] uppercase text-muted-foreground block mb-1.5">
+                  {tPage("phone")} <span className="text-muted-foreground/50">({tPage("optional")})</span>
+                </label>
+                <Input
+                  id="prop-phone"
+                  name="phone"
+                  type="tel"
+                  placeholder={tPage("phonePlaceholder")}
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="rounded-none border-x-0 border-t-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-primary"
+                />
+              </div>
 
-            <Button type="submit" className="w-full group" disabled={isSubmitting} size="lg">
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  {tPage("sending")}
-                </>
-              ) : (
-                <>
-                  <Send className="h-4 w-4 mr-2 group-hover:translate-x-1 transition-transform" />
-                  {t("sendMessage")}
-                </>
-              )}
-            </Button>
+              <div>
+                <label htmlFor="prop-message" className="text-xs tracking-[0.12em] uppercase text-muted-foreground block mb-1.5">
+                  {tPage("message")} <span className="text-primary">*</span>
+                </label>
+                <Textarea
+                  id="prop-message"
+                  name="message"
+                  placeholder={tPage("messagePlaceholder")}
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={4}
+                  required
+                  className="rounded-none border-x-0 border-t-0 border-b border-border bg-transparent px-0 resize-none focus-visible:ring-0 focus-visible:border-primary"
+                />
+              </div>
 
-            <p className="text-xs text-center text-muted-foreground flex items-center justify-center gap-1">
-              <Shield className="h-3 w-3" />
-              {tPage("formPrivacyNote")}
-            </p>
-          </form>
-        )}
-        </AnimatePresence>
+              <div className="pt-2">
+                <Button type="submit" className="w-full group" disabled={isSubmitting} size="lg">
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      {tPage("sending")}
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4 mr-2 group-hover:translate-x-1 transition-transform" />
+                      {t("sendMessage")}
+                    </>
+                  )}
+                </Button>
+              </div>
 
-        <Separator className="my-6" />
+              <p className="text-xs text-center text-muted-foreground flex items-center justify-center gap-1">
+                <Shield className="h-3 w-3" />
+                {tPage("formPrivacyNote")}
+              </p>
+            </form>
 
-        <div className="space-y-3">
-          <h3 className="font-semibold">{t("orContact")}</h3>
-          <div className="space-y-2">
-            <div className="flex items-center gap-3 text-sm">
-              <Phone className="h-4 w-4 text-muted-foreground" />
-              <a href={`tel:${COMPANY_PHONE_E164}`} className="hover:text-primary transition-colors">
-                {COMPANY_PHONE}
-              </a>
-            </div>
-            <div className="flex items-center gap-3 text-sm">
-              <Mail className="h-4 w-4 text-muted-foreground" />
-              <a href={`mailto:${COMPANY_EMAIL}`} className="hover:text-primary transition-colors">
-                {COMPANY_EMAIL}
-              </a>
+            {/* Direct contact */}
+            <div className="mt-8 pt-6 border-t border-border">
+              <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-4">
+                {t("orContact")}
+              </p>
+              <div className="space-y-2">
+                <a href={`tel:${COMPANY_PHONE_E164}`} className="flex items-center gap-3 text-sm hover:text-primary transition-colors group/link">
+                  <Phone className="h-3.5 w-3.5 text-primary" />
+                  {COMPANY_PHONE}
+                </a>
+                <a href={`mailto:${COMPANY_EMAIL}`} className="flex items-center gap-3 text-sm hover:text-primary transition-colors group/link">
+                  <Mail className="h-3.5 w-3.5 text-primary" />
+                  {COMPANY_EMAIL}
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 

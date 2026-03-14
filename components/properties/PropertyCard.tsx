@@ -3,12 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { MapPin, Home } from "lucide-react";
-import { PropertyStats } from "./PropertyStats";
+import { Home } from "lucide-react";
 import type { Property } from "@/types/property";
-import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils/formatPrice";
 
 interface PropertyCardProps {
@@ -22,67 +18,69 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
   const isRented = property.rented === true;
 
   return (
-    <Link href={`/${locale}/properties/${property.id}`}>
-      <Card
-        className={cn(
-          "group overflow-hidden transition-all hover:shadow-lg cursor-pointer h-full flex flex-col p-0 gap-0"
-        )}
-      >
-        <div className="relative w-full h-56 overflow-hidden rounded-t-xl">
-          <Image
-            src={property.image}
-            alt={property.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-          <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2">
-            <div className="flex items-center gap-2 flex-wrap">
-              {property.isNew && (
-                <Badge className="bg-primary text-primary-foreground">
-                  {t("new")}
-                </Badge>
-              )}
-              {property.type === "rent" && (
-                <Badge className="text-xs font-semibold bg-secondary text-secondary-foreground border border-border">
-                  {t("rent")}
-                </Badge>
-              )}
-              {isRented && (
-                <Badge className="flex items-center gap-1 bg-blue-100 dark:bg-blue-900/80 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-700">
-                  <Home className="h-3.5 w-3.5" />
-                  <span className="text-xs">{t("rented")}</span>
-                </Badge>
-              )}
-            </div>
-            <Badge className="bg-background/95 text-foreground backdrop-blur-sm text-base font-bold px-3 py-1 ml-auto">
-              {formatPrice(property.price, property.currency, locale)}
-              {property.type === "rent" && (
-                <span className="text-xs font-normal ml-1 opacity-75">/mo</span>
-              )}
-            </Badge>
-          </div>
+    <Link href={`/${locale}/properties/${property.id}`} className="group block rounded-sm transition-all duration-300 hover:bg-muted/60 p-3 -mx-3">
+      {/* Image */}
+      <div className="relative w-full h-64 overflow-hidden mb-4">
+        <Image
+          src={property.image}
+          alt={property.title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        {/* Status badges */}
+        <div className="absolute top-3 left-3 flex items-center gap-2">
+          {property.isNew && (
+            <span className="text-xs tracking-[0.15em] uppercase font-medium text-white bg-primary px-2 py-1">
+              {t("new")}
+            </span>
+          )}
+          {property.type === "rent" && (
+            <span className="text-xs tracking-[0.15em] uppercase font-medium text-foreground bg-background/90 backdrop-blur-sm px-2 py-1">
+              {t("rent")}
+            </span>
+          )}
+          {isRented && (
+            <span className="text-xs tracking-[0.15em] uppercase font-medium text-blue-800 dark:text-blue-200 bg-blue-100/90 dark:bg-blue-900/80 backdrop-blur-sm px-2 py-1 flex items-center gap-1">
+              <Home className="h-3 w-3" />
+              {t("rented")}
+            </span>
+          )}
         </div>
+      </div>
 
-        <div className="px-4 py-3 space-y-2">
-          <h3 className="text-xl font-semibold line-clamp-1 group-hover:text-primary transition-colors">
-            {property.title}
-          </h3>
-
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-1 text-muted-foreground">
-              <MapPin className="h-4 w-4" />
-              <span className="text-sm">{property.neighborhood}</span>
-            </div>
-            <PropertyStats
-              beds={property.beds}
-              baths={property.baths}
-              sqm={property.sqm}
-              size="sm"
-            />
-          </div>
+      {/* Info */}
+      <div>
+        {/* Price */}
+        <div className="flex items-baseline gap-1.5 mb-1">
+          <span
+            className="text-2xl font-medium text-foreground"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            {formatPrice(property.price, property.currency, locale)}
+          </span>
+          {property.type === "rent" && (
+            <span className="text-sm text-muted-foreground">/mo</span>
+          )}
         </div>
-      </Card>
+        {/* Location + size */}
+        <p className="text-sm text-muted-foreground mb-2">
+          {property.neighborhood}
+          <span className="mx-1.5 text-muted-foreground/40">·</span>
+          {property.sqm}m²
+        </p>
+
+        {/* Gold divider */}
+        <div className="w-6 h-px bg-primary mb-3 transition-all duration-300 group-hover:w-12" />
+
+        {/* Title — 2 lines */}
+        <h3
+          className="text-lg font-medium line-clamp-2 transition-colors duration-300 group-hover:text-primary"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          {property.title}
+        </h3>
+      </div>
     </Link>
   );
 };

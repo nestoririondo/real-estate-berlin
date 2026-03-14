@@ -14,7 +14,7 @@ const ImpressumPage = () => {
 
         <div className="prose prose-slate dark:prose-invert max-w-none space-y-6">
           <section>
-            <h2 className="text-2xl font-semibold mb-4">ReAL ESTATE IN BERLIN</h2>
+            <h2 className="text-2xl font-semibold mb-4">Real Estate in Berlin</h2>
             <p className="mb-4"><strong>Angabe gemäß §5 TMG:</strong></p>
             <p>REB Consulting GmbH</p>
             <p>Geschäftsführer: Fabrizio Selvaggi</p>

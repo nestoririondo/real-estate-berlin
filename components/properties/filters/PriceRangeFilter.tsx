@@ -1,6 +1,4 @@
 import { useTranslations } from "next-intl";
-import { Label } from "@/components/ui/label";
-import { Euro } from "lucide-react";
 import { FILTER_LIMITS } from "@/constants/filterDefaults";
 import { cn } from "@/lib/utils";
 
@@ -13,8 +11,8 @@ interface PriceRange {
 const PRICE_RANGES: PriceRange[] = [
   { label: "filter.all", min: FILTER_LIMITS.PRICE_MIN, max: FILTER_LIMITS.PRICE_MAX },
   { label: "< €200k", min: 0, max: 200000 },
-  { label: "€200k - €500k", min: 200000, max: 500000 },
-  { label: "€500k - €1M", min: 500000, max: 1000000 },
+  { label: "€200k – €500k", min: 200000, max: 500000 },
+  { label: "€500k – €1M", min: 500000, max: 1000000 },
   { label: "€1M+", min: 1000000, max: FILTER_LIMITS.PRICE_MAX },
 ];
 
@@ -26,48 +24,31 @@ interface PriceRangeFilterProps {
   onMaxChange: (value: number) => void;
 }
 
-const PriceRangeFilter = ({
-  minPrice,
-  maxPrice,
-  onPriceRangeChange,
-}: PriceRangeFilterProps) => {
+const PriceRangeFilter = ({ minPrice, maxPrice, onPriceRangeChange }: PriceRangeFilterProps) => {
   const t = useTranslations("filter");
 
-  const isRangeSelected = (range: PriceRange) => {
-    return minPrice === range.min && maxPrice === range.max;
-  };
-
-  const handleRangeClick = (range: PriceRange) => {
-    onPriceRangeChange([range.min, range.max]);
-  };
-
-  const getLabel = (range: PriceRange) => {
-    if (range.label === "filter.all") {
-      return t("all");
-    }
-    return range.label;
-  };
+  const isRangeSelected = (range: PriceRange) =>
+    minPrice === range.min && maxPrice === range.max;
 
   return (
     <div className="space-y-3">
-      <Label className="text-base font-medium flex items-center gap-2">
-        <Euro className="h-4 w-4" />
+      <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground font-medium">
         {t("priceRange")}
-      </Label>
-      <div className="flex flex-wrap gap-2">
+      </p>
+      <div className="flex flex-wrap gap-x-4 gap-y-2">
         {PRICE_RANGES.map((range) => (
           <button
             key={range.label}
             type="button"
-            onClick={() => handleRangeClick(range)}
+            onClick={() => onPriceRangeChange([range.min, range.max])}
             className={cn(
-              "px-3 py-1.5 text-sm rounded-sm border transition-colors",
+              "text-sm pb-0.5 border-b transition-all duration-200",
               isRangeSelected(range)
-                ? "bg-primary text-primary-foreground border-primary"
-                : "bg-background hover:bg-muted border-border"
+                ? "text-primary border-primary font-medium"
+                : "text-muted-foreground border-transparent hover:text-foreground hover:border-border"
             )}
           >
-            {getLabel(range)}
+            {range.label === "filter.all" ? t("all") : range.label}
           </button>
         ))}
       </div>

@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Home, Bed, MapPin, ChevronDown, ChevronUp, RotateCcw, Globe } from "lucide-react";
 import type { PropertyFilterValues } from "@/types/filter";
 import { PropertyType, Bedrooms } from "@/types/enums";
@@ -89,34 +87,30 @@ const PropertyFilter = ({ filters, onFilterChange, cityOptions, neighborhoodOpti
   const labelFor = (value: string) => value === "all" ? tCommon("all") : value;
 
   return (
-    <div className={`w-full rounded-lg border bg-card shadow-sm ${!mounted ? "opacity-0" : "opacity-100"}`}>
-      <div className={`flex items-center justify-between ${isOpen ? "p-6 pb-0" : "p-6"}`}>
+    <div className={!mounted ? "opacity-0" : "opacity-100"}>
+      <div className="flex items-center justify-between mb-1">
         <button
           onClick={() => { if (window.innerWidth < 1024) setIsOpen(!isOpen); }}
-          className="flex items-center gap-2 text-lg font-semibold lg:cursor-default lg:pointer-events-none"
+          className="flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-medium text-foreground lg:cursor-default lg:pointer-events-none"
         >
           {tCommon("filter")}
-          <span className="lg:hidden">
-            {isOpen ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+          <span className="lg:hidden text-muted-foreground">
+            {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </span>
         </button>
-        {isOpen && (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={resetFilters}
-            className={`gap-2 ${!hasActiveFilters ? "invisible" : ""}`}
-          >
-            <RotateCcw className="h-4 w-4" />
-            {tCommon("reset")}
-          </Button>
-        )}
+        <button
+          onClick={resetFilters}
+          className={`text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 ${!hasActiveFilters ? "invisible" : ""}`}
+        >
+          <RotateCcw className="h-3 w-3" />
+          {tCommon("reset")}
+        </button>
       </div>
 
       <div className={`grid ${enableTransition ? "transition-all duration-300 ease-in-out" : ""} ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
         <div className="overflow-hidden">
-          <div className="space-y-6 p-6">
-            <Separator />
+          <div className="space-y-5 pt-4">
+            <div className="h-px bg-border" />
 
             <MultiSelectFilter
               label={t("location")}
@@ -127,7 +121,7 @@ const PropertyFilter = ({ filters, onFilterChange, cityOptions, neighborhoodOpti
               translateValue={labelFor}
             />
 
-            <Separator />
+            <div className="h-px bg-border" />
 
             <MultiSelectFilter
               label={t("type")}
@@ -138,7 +132,7 @@ const PropertyFilter = ({ filters, onFilterChange, cityOptions, neighborhoodOpti
               translateValue={(v) => tCommon(v)}
             />
 
-            <Separator />
+            <div className="h-px bg-border" />
 
             <PriceRangeFilter
               minPrice={filters.priceMin}
@@ -148,7 +142,7 @@ const PropertyFilter = ({ filters, onFilterChange, cityOptions, neighborhoodOpti
               onMaxChange={(value) => updateFilter("priceMax", value)}
             />
 
-            <Separator />
+            <div className="h-px bg-border" />
 
             <MultiSelectFilter
               label={t("bedrooms")}
@@ -159,7 +153,7 @@ const PropertyFilter = ({ filters, onFilterChange, cityOptions, neighborhoodOpti
               translateValue={(v) => v === Bedrooms.ALL ? tCommon("all") : v}
             />
 
-            <Separator />
+            <div className="h-px bg-border" />
 
             <MultiSelectFilter
               label={t("neighborhood")}
@@ -170,7 +164,7 @@ const PropertyFilter = ({ filters, onFilterChange, cityOptions, neighborhoodOpti
               translateValue={labelFor}
             />
 
-            <Separator />
+            <div className="h-px bg-border" />
 
             <SizeRangeFilter
               minSize={filters.sizeMin}

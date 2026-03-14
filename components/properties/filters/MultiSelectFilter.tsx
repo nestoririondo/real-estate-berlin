@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface MultiSelectFilterProps<T> {
   label: string;
@@ -13,7 +12,6 @@ interface MultiSelectFilterProps<T> {
 
 const MultiSelectFilter = <T extends string>({
   label,
-  icon: Icon,
   options,
   selectedValues,
   onToggle,
@@ -21,23 +19,26 @@ const MultiSelectFilter = <T extends string>({
 }: MultiSelectFilterProps<T>) => {
   return (
     <div className="space-y-3">
-      <Label className="text-base font-medium flex items-center gap-2">
-        <Icon className="h-4 w-4" />
+      <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground font-medium">
         {label}
-      </Label>
-      <div className="flex flex-wrap gap-2">
+      </p>
+      <div className="flex flex-wrap gap-x-4 gap-y-2">
         {options.map((option) => {
           const isSelected = selectedValues.includes(option);
           return (
-            <Button
+            <button
               key={option}
               type="button"
-              variant={isSelected ? "default" : "outline"}
-              size="sm"
               onClick={() => onToggle(option)}
+              className={cn(
+                "text-sm pb-0.5 border-b transition-all duration-200",
+                isSelected
+                  ? "text-primary border-primary font-medium"
+                  : "text-muted-foreground border-transparent hover:text-foreground hover:border-border"
+              )}
             >
               {translateValue(option)}
-            </Button>
+            </button>
           );
         })}
       </div>
