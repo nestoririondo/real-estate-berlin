@@ -31,7 +31,7 @@ const MultiSelectFilter = <T extends string>({
               type="button"
               onClick={() => onToggle(option)}
               className={cn(
-                "text-sm pb-0.5 border-b transition-all duration-200",
+                "text-sm pb-0.5 border-b transition-all duration-200 cursor-pointer",
                 isSelected
                   ? "text-primary border-primary font-medium"
                   : "text-muted-foreground border-transparent hover:text-foreground hover:border-border"

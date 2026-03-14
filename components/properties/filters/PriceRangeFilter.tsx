@@ -42,7 +42,7 @@ const PriceRangeFilter = ({ minPrice, maxPrice, onPriceRangeChange }: PriceRange
             type="button"
             onClick={() => onPriceRangeChange([range.min, range.max])}
             className={cn(
-              "text-sm pb-0.5 border-b transition-all duration-200",
+              "text-sm pb-0.5 border-b transition-all duration-200 cursor-pointer",
               isRangeSelected(range)
                 ? "text-primary border-primary font-medium"
                 : "text-muted-foreground border-transparent hover:text-foreground hover:border-border"

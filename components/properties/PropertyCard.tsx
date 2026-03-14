@@ -18,7 +18,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
   const isRented = property.rented === true;
 
   return (
-    <Link href={`/${locale}/properties/${property.id}`} className="group block rounded-sm transition-all duration-300 hover:bg-muted/60 p-3 -mx-3">
+    <Link href={`/${locale}/properties/${property.id}`} className="group block rounded-sm transition-all duration-300 hover:bg-muted p-3 -mx-3">
       {/* Image */}
       <div className="relative w-full h-64 overflow-hidden mb-4">
         <Image

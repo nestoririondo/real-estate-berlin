@@ -126,19 +126,20 @@ const AboutSection = () => {
                   <motion.img
                     src="/underline.png"
                     alt=""
-                    className="absolute bottom-0 left-0 translate-y-4 w-[250%] h-6 md:h-7"
+                    className="absolute bottom-0 left-0 translate-y-4 w-[250%] h-6 md:h-7 object-contain object-left dark:hidden"
                     initial={{ opacity: 0, scaleX: 0 }}
-                    animate={
-                      isInView
-                        ? { opacity: 1, scaleX: 1 }
-                        : { opacity: 0, scaleX: 0 }
-                    }
+                    animate={isInView ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
                     transition={{ duration: 0.4, delay: 1.2, ease: "easeOut" }}
-                    // use CSS filter to tint the PNG; adjust hue-rotate to match your accent color
-                    style={{
-                      transformOrigin: "left",
-                      filter: "hue-rotate(150deg)",
-                    }}
+                    style={{ transformOrigin: "left" }}
+                  />
+                  <motion.img
+                    src="/underline_white.png"
+                    alt=""
+                    className="absolute bottom-0 left-0 translate-y-4 w-[250%] h-6 md:h-7 object-contain object-left hidden dark:block"
+                    initial={{ opacity: 0, scaleX: 0 }}
+                    animate={isInView ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
+                    transition={{ duration: 0.4, delay: 1.2, ease: "easeOut" }}
+                    style={{ transformOrigin: "left" }}
                   />
                 </span>
               </h2>
