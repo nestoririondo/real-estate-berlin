@@ -4,31 +4,22 @@ import { ServicesHero } from "@/components/services/ServicesHero";
 import { ServicesSection } from "@/components/services/ServicesSection";
 import { ServicesCTA } from "@/components/services/ServicesCTA";
 import { getTranslations } from "next-intl/server";
+import { SITE_URL, buildAlternates } from "@/lib/config/site";
 
 export async function generateMetadata({
   params,
 }: ServicesPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "services" });
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://realestateinberlin.nestoririondo.com";
 
   return {
     title: t("heroTitle"),
     description: t("heroSubtitle"),
-    alternates: {
-      languages: {
-        en: `${siteUrl}/en/services`,
-        de: `${siteUrl}/de/services`,
-        es: `${siteUrl}/es/services`,
-        it: `${siteUrl}/it/services`,
-        pt: `${siteUrl}/pt/services`,
-        "x-default": `${siteUrl}/en/services`,
-      },
-    },
+    alternates: buildAlternates("/services"),
     openGraph: {
       title: t("heroTitle"),
       description: t("heroSubtitle"),
-      url: `${siteUrl}/${locale}/services`,
+      url: `${SITE_URL}/${locale}/services`,
     },
   };
 }

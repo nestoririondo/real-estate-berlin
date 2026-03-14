@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { SITE_URL, buildAlternates } from "@/lib/config/site";
 
 interface PropertiesLayoutProps {
   children: React.ReactNode;
@@ -11,25 +12,15 @@ export async function generateMetadata({
 }: PropertiesLayoutProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "home" });
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://realestateinberlin.nestoririondo.com";
 
   return {
     title: "Properties",
     description: t("featuredPropertiesSubtitle"),
-    alternates: {
-      languages: {
-        en: `${siteUrl}/en/properties`,
-        de: `${siteUrl}/de/properties`,
-        es: `${siteUrl}/es/properties`,
-        it: `${siteUrl}/it/properties`,
-        pt: `${siteUrl}/pt/properties`,
-        "x-default": `${siteUrl}/en/properties`,
-      },
-    },
+    alternates: buildAlternates("/properties"),
     openGraph: {
       title: "Properties in Berlin | Real Estate in Berlin",
       description: t("featuredPropertiesSubtitle"),
-      url: `${siteUrl}/${locale}/properties`,
+      url: `${SITE_URL}/${locale}/properties`,
     },
   };
 }

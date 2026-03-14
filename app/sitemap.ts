@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/i18n";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://realestateinberlin.nestoririondo.com";
+import { SITE_URL } from "@/lib/config/site";
 
 const staticRoutes = [
   { path: "", priority: 1.0, changeFrequency: "weekly" as const },

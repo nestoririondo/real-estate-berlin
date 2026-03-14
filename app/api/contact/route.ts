@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { COMPANY_EMAIL } from "@/constants/companyInfo";
 
 const POST = async (request: NextRequest) => {
   const resend = new Resend(process.env.RESEND_API_KEY);
@@ -16,7 +17,7 @@ const POST = async (request: NextRequest) => {
 
     await resend.emails.send({
       from: "Real Estate in Berlin <info@realestateinberlin.nestoririondo.com>",
-      to: "hello@nestoririondo.com",
+      to: COMPANY_EMAIL,
       replyTo: email,
       subject: `New enquiry from ${name}${service ? ` — ${service}` : ""}`,
       html: `

@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Mail, Phone, MessageSquare, Clock, Loader2, Shield } from "lucide-react";
+import { COMPANY_PHONE, COMPANY_PHONE_E164, COMPANY_EMAIL } from "@/constants/companyInfo";
 import { AnimatePresence } from "framer-motion";
 import { ContactSuccess } from "@/components/contact/ContactSuccess";
 
@@ -175,14 +176,14 @@ const ContactForm = ({ propertyTitle }: ContactFormProps) => {
           <div className="space-y-2">
             <div className="flex items-center gap-3 text-sm">
               <Phone className="h-4 w-4 text-muted-foreground" />
-              <a href="tel:+493022392323" className="hover:text-primary transition-colors">
-                030-22392323
+              <a href={`tel:${COMPANY_PHONE_E164}`} className="hover:text-primary transition-colors">
+                {COMPANY_PHONE}
               </a>
             </div>
             <div className="flex items-center gap-3 text-sm">
               <Mail className="h-4 w-4 text-muted-foreground" />
-              <a href="mailto:info@realestateinberlin.com" className="hover:text-primary transition-colors">
-                info@realestateinberlin.com
+              <a href={`mailto:${COMPANY_EMAIL}`} className="hover:text-primary transition-colors">
+                {COMPANY_EMAIL}
               </a>
             </div>
           </div>

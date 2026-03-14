@@ -5,31 +5,23 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, Languages } from "lucide-react";
 import { getBusinessHoursDisplay } from "@/constants/businessHours";
+import { SITE_URL, buildAlternates } from "@/lib/config/site";
+import { COMPANY_PHONE, COMPANY_PHONE_E164, COMPANY_EMAIL, COMPANY_ADDRESS } from "@/constants/companyInfo";
 
 export async function generateMetadata({
   params,
 }: ContactPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contactPage" });
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://realestateinberlin.nestoririondo.com";
 
   return {
     title: "Contact",
     description: t("heroSubtitle"),
-    alternates: {
-      languages: {
-        en: `${siteUrl}/en/contact`,
-        de: `${siteUrl}/de/contact`,
-        es: `${siteUrl}/es/contact`,
-        it: `${siteUrl}/it/contact`,
-        pt: `${siteUrl}/pt/contact`,
-        "x-default": `${siteUrl}/en/contact`,
-      },
-    },
+    alternates: buildAlternates("/contact"),
     openGraph: {
       title: "Contact | Real Estate in Berlin",
       description: t("heroSubtitle"),
-      url: `${siteUrl}/${locale}/contact`,
+      url: `${SITE_URL}/${locale}/contact`,
     },
   };
 }
@@ -70,15 +62,15 @@ const ContactPage = async ({ params }: ContactPageProps) => {
               <div className="space-y-2 text-white/75 text-sm">
                 <div className="flex items-center gap-3">
                   <MapPin className="h-4 w-4 text-primary shrink-0" />
-                  <span>Leipziger Platz 15, 10117 Berlin</span>
+                  <span>{COMPANY_ADDRESS}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-primary shrink-0" />
-                  <a href="tel:+493022392323" className="hover:text-white transition-colors">030-22392323</a>
+                  <a href={`tel:${COMPANY_PHONE_E164}`} className="hover:text-white transition-colors">{COMPANY_PHONE}</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-primary shrink-0" />
-                  <a href="mailto:info@realestateinberlin.com" className="hover:text-white transition-colors">info@realestateinberlin.com</a>
+                  <a href={`mailto:${COMPANY_EMAIL}`} className="hover:text-white transition-colors">{COMPANY_EMAIL}</a>
                 </div>
               </div>
             </div>
@@ -127,15 +119,15 @@ const ContactPage = async ({ params }: ContactPageProps) => {
             <div className="space-y-2 text-muted-foreground">
               <div className="flex items-center gap-3">
                 <MapPin className="h-4 w-4 text-primary shrink-0" />
-                <span>Leipziger Platz 15, 10117 Berlin</span>
+                <span>{COMPANY_ADDRESS}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-primary shrink-0" />
-                <a href="tel:+493022392323" className="hover:text-foreground transition-colors">030-22392323</a>
+                <a href={`tel:${COMPANY_PHONE_E164}`} className="hover:text-foreground transition-colors">{COMPANY_PHONE}</a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-primary shrink-0" />
-                <a href="mailto:info@realestateinberlin.com" className="hover:text-foreground transition-colors">info@realestateinberlin.com</a>
+                <a href={`mailto:${COMPANY_EMAIL}`} className="hover:text-foreground transition-colors">{COMPANY_EMAIL}</a>
               </div>
             </div>
 

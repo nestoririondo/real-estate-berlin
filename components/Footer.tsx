@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Send, CheckCircle, FileText } from "lucide-react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
+import { COMPANY_PHONE, COMPANY_PHONE_E164, COMPANY_EMAIL } from "@/constants/companyInfo";
 
 const MAILCHIMP_URL = process.env.NEXT_PUBLIC_MAILCHIMP_URL ?? "";
 
@@ -65,13 +66,13 @@ const Footer = () => {
             </h6>
             <div className="space-y-2 text-muted-foreground">
               <p>
-                <a href="tel:+493022392323" className="hover:text-primary transition-colors">
-                  030-22392323
+                <a href={`tel:${COMPANY_PHONE_E164}`} className="hover:text-primary transition-colors">
+                  {COMPANY_PHONE}
                 </a>
               </p>
               <p>
-                <a href="mailto:info@realestateinberlin.com" className="hover:text-primary transition-colors">
-                  info@realestateinberlin.com
+                <a href={`mailto:${COMPANY_EMAIL}`} className="hover:text-primary transition-colors">
+                  {COMPANY_EMAIL}
                 </a>
               </p>
             </div>
