@@ -33,10 +33,10 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <div className={`absolute inset-0 transition-opacity duration-500 ${mounted && isDark ? "opacity-100" : "opacity-0"} dark:opacity-100`}>
-          <Image src={darkModeImage} alt="Berlin skyline at night" fill className="object-cover" priority quality={90} unoptimized />
+          <Image src={darkModeImage} alt="Berlin skyline at night" fill className="object-cover object-[30%_center]" priority quality={90} unoptimized />
         </div>
         <div className={`absolute inset-0 transition-opacity duration-500 ${mounted && !isDark ? "opacity-100" : "opacity-0"} dark:opacity-0`}>
-          <Image src={lightModeImage} alt="Berlin skyline at sunset" fill className="object-cover" priority quality={90} />
+          <Image src={lightModeImage} alt="Berlin skyline at sunset" fill className="object-cover object-[30%_center]" priority quality={90} />
         </div>
         <div className={`absolute inset-0 transition-all duration-500 ${mounted && isDark ? "bg-black/40" : "bg-black/50"} dark:bg-black/40`} />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/60 to-transparent" />
@@ -94,28 +94,28 @@ const Hero = () => {
         </div>
 
         {/* Bottom stats row */}
-        <motion.div
-          className="flex gap-10"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.6, delay: 0.55 }}
-        >
+        <div className="flex gap-10">
           {[
             { value: "15+", label: "Years in Berlin" },
             { value: "500+", label: "Transactions" },
             { value: "5", label: "Languages" },
-          ].map((stat) => (
-            <div key={stat.label}>
+          ].map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 12 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+              transition={{ duration: 0.5, delay: 0.55 + i * 0.15, ease: [0.42, 0, 0.58, 1] }}
+            >
               <div
-                className="text-2xl font-medium text-primary"
+                className="text-3xl font-medium text-primary"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {stat.value}
               </div>
-              <div className="text-xs text-white/50 mt-0.5">{stat.label}</div>
-            </div>
+              <div className="text-sm text-white/75 mt-1">{stat.label}</div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

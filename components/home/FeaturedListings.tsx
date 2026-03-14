@@ -79,7 +79,7 @@ const FeaturedListings = () => {
               {t("featuredPropertiesSubtitle")}
             </p>
           </div>
-          <Button asChild variant="secondary" className="hidden md:flex text-lg group">
+          <Button asChild size="lg" variant="secondary" className="hidden md:flex group">
             <Link href={`/${locale}/properties`} className="flex items-center gap-2">
               {t("viewAllProperties")}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -114,7 +114,7 @@ const FeaturedListings = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
-          <Button asChild variant="secondary" className="text-lg group">
+          <Button asChild size="lg" variant="secondary" className="group">
             <Link href={`/${locale}/properties`} className="flex items-center gap-2">
               {t("viewAllProperties")}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />

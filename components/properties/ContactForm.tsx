@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Mail, Phone, MessageSquare, Clock, Loader2, Shield } from "lucide-react";
+import { Mail, Phone, Send, Clock, Loader2, Shield } from "lucide-react";
 import { COMPANY_PHONE, COMPANY_PHONE_E164, COMPANY_EMAIL } from "@/constants/companyInfo";
 import { AnimatePresence } from "framer-motion";
 import { ContactSuccess } from "@/components/contact/ContactSuccess";
@@ -155,7 +155,7 @@ const ContactForm = ({ propertyTitle }: ContactFormProps) => {
                 </>
               ) : (
                 <>
-                  <MessageSquare className="h-4 w-4 mr-2" />
+                  <Send className="h-4 w-4 mr-2 group-hover:translate-x-1 transition-transform" />
                   {t("sendMessage")}
                 </>
               )}

@@ -64,7 +64,7 @@ export const ServiceCard = ({ service, locale, index }: ServiceCardProps) => {
             asChild
             size="lg"
             variant="outline"
-            className="group/btn border-primary/40 hover:bg-primary hover:text-primary-foreground hover:border-primary"
+            className="group/btn border-primary/40 hover:bg-primary hover:text-white hover:border-primary"
           >
             <Link href={`/${locale}/contact`} className="flex items-center gap-2">
               {t(`${serviceKey}.cta`)}

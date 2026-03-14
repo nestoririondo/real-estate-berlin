@@ -8,6 +8,7 @@ import { MapPin, Phone, Mail, Send, CheckCircle, FileText } from "lucide-react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { COMPANY_PHONE, COMPANY_PHONE_E164, COMPANY_EMAIL } from "@/constants/companyInfo";
+import { motion } from "framer-motion";
 
 const MAILCHIMP_URL = process.env.NEXT_PUBLIC_MAILCHIMP_URL ?? "";
 
@@ -44,7 +45,7 @@ const Footer = () => {
 
   return (
     <footer className="border-t bg-muted/30">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Location */}
           <div>
@@ -132,18 +133,34 @@ const Footer = () => {
 
         <Separator className="my-8" />
 
-        <div className="text-center text-muted-foreground space-y-2">
+        <div className="text-center text-muted-foreground space-y-4">
           <p>&copy; {new Date().getFullYear()} {t("rights")}</p>
           <p className="text-sm">
             {t("websiteBy")}{" "}
-            <a
+            <motion.a
               href="https://nestoririondo.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary transition-colors"
+              className="inline-flex font-medium"
+              whileHover="hover"
             >
-              Nestor Iriondo
-            </a>
+              {"Nestor Iriondo".split("").map((char, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0.4 }}
+                  variants={{
+                    hover: {
+                      color: "var(--color-primary)",
+                      opacity: 1,
+
+                      transition: { delay: i * 0.04, duration: 0.15 },
+                    },
+                  }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </motion.a>
           </p>
         </div>
       </div>

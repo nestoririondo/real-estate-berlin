@@ -96,7 +96,7 @@ const ServicesSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
-        <Button asChild variant="secondary" className="text-lg group">
+        <Button asChild size="lg" variant="secondary" className="group">
           <Link href={`/${locale}/services`} className="flex items-center gap-2">
             {t("seeAllServices")}
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />

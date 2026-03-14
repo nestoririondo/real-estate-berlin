@@ -188,7 +188,7 @@ const AboutSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.4, delay: 0.7, ease: "easeOut" }}
             >
-              <Button asChild size="lg" className="text-lg group">
+              <Button asChild size="lg" className="group">
                 <Link
                   href={`/${locale}/contact`}
                   className="flex items-center gap-2"
