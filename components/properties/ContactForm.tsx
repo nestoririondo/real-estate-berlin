@@ -9,15 +9,18 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Mail, Phone, MessageSquare, Clock, CheckCircle2 } from "lucide-react";
+import { Mail, Phone, MessageSquare, Clock, Loader2, Shield } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
+import { ContactSuccess } from "@/components/contact/ContactSuccess";
 
 interface ContactFormProps {
   propertyId: number;
   propertyTitle: string;
 }
 
-const ContactForm = ({ propertyId: _propertyId, propertyTitle: _propertyTitle }: ContactFormProps) => {
+const ContactForm = ({ propertyTitle }: ContactFormProps) => {
   const t = useTranslations("contact");
+  const tPage = useTranslations("contactPage");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,30 +33,38 @@ const ContactForm = ({ propertyId: _propertyId, propertyTitle: _propertyTitle }:
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          service: propertyTitle,
+        }),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: "", email: "", phone: "", message: "" });
+      if (!response.ok) throw new Error("Failed to send");
 
-    // Reset success message after 10 seconds
-    setTimeout(() => setIsSubmitted(false), 10000);
+      setIsSubmitted(true);
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      setTimeout(() => setIsSubmitted(false), 10000);
+    } catch {
+      alert("Something went wrong. Please try again or contact us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <Card className="sticky top-8">
-      <CardHeader>
+      {!isSubmitted && (<CardHeader>
         <div className="flex items-center gap-4 mb-4">
           <Avatar className="h-16 w-16">
             <AvatarImage src="/fabrizio-avatar.jpg" alt="Fabrizio" />
@@ -72,34 +83,22 @@ const ContactForm = ({ propertyId: _propertyId, propertyTitle: _propertyTitle }:
           <Clock className="h-4 w-4" />
           <span>{t("responseTime")}</span>
         </div>
-        <p className="text-sm text-muted-foreground mt-3">
-          {t("subtitle")}
-        </p>
-      </CardHeader>
+        <p className="text-sm text-muted-foreground mt-3">{t("subtitle")}</p>
+      </CardHeader>)}
+
       <CardContent>
+        <AnimatePresence mode="wait">
         {isSubmitted ? (
-          <div className="text-center py-8">
-            <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-              <CheckCircle2 className="h-8 w-8 text-primary" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">{t("sent")}</h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              {t("sentDescription")}
-            </p>
-            <div className="flex items-center justify-center gap-2 text-sm text-primary">
-              <Clock className="h-4 w-4" />
-              <span>{t("responsePromise")}</span>
-            </div>
-          </div>
+          <ContactSuccess />
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">{t("name")}</Label>
+              <Label htmlFor="prop-name">{tPage("name")} <span className="text-destructive">*</span></Label>
               <Input
-                id="name"
+                id="prop-name"
                 name="name"
                 type="text"
-                placeholder={t("namePlaceholder")}
+                placeholder={tPage("namePlaceholder")}
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -107,12 +106,12 @@ const ContactForm = ({ propertyId: _propertyId, propertyTitle: _propertyTitle }:
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">{t("email")}</Label>
+              <Label htmlFor="prop-email">{tPage("email")} <span className="text-destructive">*</span></Label>
               <Input
-                id="email"
+                id="prop-email"
                 name="email"
                 type="email"
-                placeholder={t("emailPlaceholder")}
+                placeholder={tPage("emailPlaceholder")}
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -120,35 +119,38 @@ const ContactForm = ({ propertyId: _propertyId, propertyTitle: _propertyTitle }:
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="phone">{t("phone")} <span className="text-muted-foreground text-xs">({t("optional")})</span></Label>
+              <Label htmlFor="prop-phone">
+                {tPage("phone")} <span className="text-muted-foreground text-xs">({tPage("optional")})</span>
+              </Label>
               <Input
-                id="phone"
+                id="prop-phone"
                 name="phone"
                 type="tel"
-                placeholder={t("phonePlaceholder")}
+                placeholder={tPage("phonePlaceholder")}
                 value={formData.phone}
                 onChange={handleChange}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="message">{t("message")}</Label>
+              <Label htmlFor="prop-message">{tPage("message")} <span className="text-destructive">*</span></Label>
               <Textarea
-                id="message"
+                id="prop-message"
                 name="message"
-                placeholder={t("messagePlaceholder")}
+                placeholder={tPage("messagePlaceholder")}
                 value={formData.message}
                 onChange={handleChange}
-                rows={5}
+                rows={4}
                 required
+                className="resize-none"
               />
             </div>
 
-            <Button type="submit" className="w-full transition-transform duration-200 hover:scale-105 disabled:hover:scale-100" disabled={isSubmitting} size="lg">
+            <Button type="submit" className="w-full group" disabled={isSubmitting} size="lg">
               {isSubmitting ? (
                 <>
-                  <MessageSquare className="h-4 w-4 mr-2 animate-pulse" />
-                  {t("sending")}
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  {tPage("sending")}
                 </>
               ) : (
                 <>
@@ -157,32 +159,30 @@ const ContactForm = ({ propertyId: _propertyId, propertyTitle: _propertyTitle }:
                 </>
               )}
             </Button>
-            
-            <p className="text-xs text-center text-muted-foreground">
-              {t("privacyNote")}
+
+            <p className="text-xs text-center text-muted-foreground flex items-center justify-center gap-1">
+              <Shield className="h-3 w-3" />
+              {tPage("formPrivacyNote")}
             </p>
           </form>
         )}
+        </AnimatePresence>
 
         <Separator className="my-6" />
 
-        {/* Contact Info */}
         <div className="space-y-3">
           <h3 className="font-semibold">{t("orContact")}</h3>
           <div className="space-y-2">
             <div className="flex items-center gap-3 text-sm">
               <Phone className="h-4 w-4 text-muted-foreground" />
-              <a href="tel:+493012345678" className="hover:text-primary">
-                +49 30 123 456 78
+              <a href="tel:+493022392323" className="hover:text-primary transition-colors">
+                030-22392323
               </a>
             </div>
             <div className="flex items-center gap-3 text-sm">
               <Mail className="h-4 w-4 text-muted-foreground" />
-              <a
-                href="mailto:info@realestateberlin.com"
-                className="hover:text-primary"
-              >
-                info@realestateberlin.com
+              <a href="mailto:info@realestateinberlin.com" className="hover:text-primary transition-colors">
+                info@realestateinberlin.com
               </a>
             </div>
           </div>
@@ -193,4 +193,3 @@ const ContactForm = ({ propertyId: _propertyId, propertyTitle: _propertyTitle }:
 };
 
 export { ContactForm };
-
