@@ -37,8 +37,8 @@
     "showing": "{count} Immobilien",
     "noResults": "Keine Immobilien entsprechen Ihren Filtern",
     "tryAdjusting": "Versuchen Sie, Ihre Suchkriterien anzupassen",
-    "beds": "{count} Schlafzimmer",
-    "baths": "{count} Badezimmer",
+    "beds": "{count, plural, one {# Schlafzimmer} other {# Schlafzimmer}}",
+    "baths": "{count, plural, one {# Badezimmer} other {# Badezimmer}}",
     "sqm": "{count}m²",
     "loading": "Lädt..."
   },

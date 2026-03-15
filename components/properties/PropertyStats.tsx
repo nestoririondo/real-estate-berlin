@@ -1,4 +1,5 @@
 import { Bed, Bath, Square } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface PropertyStatsProps {
   beds: number;
@@ -15,6 +16,7 @@ const PropertyStats = ({
   size = "md",
   showLabels = false,
 }: PropertyStatsProps) => {
+  const t = useTranslations("properties");
   const sizeClasses = {
     sm: "gap-3 text-sm",
     md: "gap-4 text-sm",
@@ -32,15 +34,13 @@ const PropertyStats = ({
       <div className="flex items-center gap-1">
         <Bed className={iconSizes[size]} />
         <span>
-          {beds}
-          {showLabels && " Bedrooms"}
+          {showLabels ? t("beds", { count: beds }) : beds}
         </span>
       </div>
       <div className="flex items-center gap-1">
         <Bath className={iconSizes[size]} />
         <span>
-          {baths}
-          {showLabels && " Bathrooms"}
+          {showLabels ? t("baths", { count: baths }) : baths}
         </span>
       </div>
       <div className="flex items-center gap-1">

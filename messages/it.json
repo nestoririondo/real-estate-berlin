@@ -37,8 +37,8 @@
     "showing": "{count} immobili",
     "noResults": "Nessun immobile corrisponde ai tuoi filtri",
     "tryAdjusting": "Prova ad aggiustare i tuoi criteri di ricerca",
-    "beds": "{count} camere",
-    "baths": "{count} bagni",
+    "beds": "{count, plural, one {# Camera da letto} other {# Camere da letto}}",
+    "baths": "{count, plural, one {# Bagno} other {# Bagni}}",
     "sqm": "{count}m²",
     "loading": "Caricamento..."
   },

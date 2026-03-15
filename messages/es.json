@@ -37,8 +37,8 @@
     "showing": "{count} propiedades",
     "noResults": "No hay propiedades que coincidan con sus filtros",
     "tryAdjusting": "Intente ajustar sus criterios de búsqueda",
-    "beds": "{count} dormitorios",
-    "baths": "{count} baños",
+    "beds": "{count, plural, one {# Dormitorio} other {# Dormitorios}}",
+    "baths": "{count, plural, one {# Baño} other {# Baños}}",
     "sqm": "{count}m²",
     "loading": "Cargando..."
   },

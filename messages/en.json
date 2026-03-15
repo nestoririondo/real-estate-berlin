@@ -37,8 +37,8 @@
     "showing": "{count} properties",
     "noResults": "No properties match your filters",
     "tryAdjusting": "Try adjusting your search criteria",
-    "beds": "{count} beds",
-    "baths": "{count} baths",
+    "beds": "{count, plural, one {# Bedroom} other {# Bedrooms}}",
+    "baths": "{count, plural, one {# Bathroom} other {# Bathrooms}}",
     "sqm": "{count}m²",
     "loading": "Loading..."
   },
