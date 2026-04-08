@@ -16,8 +16,16 @@ export const GET = async () => {
     const data = await res.json();
 
     if (data.status !== "OK") {
-      console.error("Google Places API error:", data.status, data.error_message);
-      return NextResponse.json({ reviews: [], rating: null, totalReviews: null });
+      console.error(
+        "Google Places API error:",
+        data.status,
+        data.error_message,
+      );
+      return NextResponse.json({
+        reviews: [],
+        rating: null,
+        totalReviews: null,
+      });
     }
 
     return NextResponse.json({
@@ -29,4 +37,4 @@ export const GET = async () => {
     console.error("Failed to fetch Google reviews:", error);
     return NextResponse.json({ reviews: [], rating: null, totalReviews: null });
   }
-}
+};
