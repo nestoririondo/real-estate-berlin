@@ -10,6 +10,7 @@ const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => {
       attribute="class"
       defaultTheme="system"
       enableSystem={true}
+      themes={["light", "dark", "theme-beige", "theme-pearl", "theme-navy", "theme-cognac"]}
       disableTransitionOnChange={false}
       storageKey="real-estate-berlin-theme"
       {...props}

@@ -26,7 +26,7 @@ const Hero = () => {
   const lightModeImage = "https://media.istockphoto.com/id/503874284/de/foto/berlin-skyline-mit-spree-bei-sonnenuntergang-deutschland.jpg?s=1024x1024&w=is&k=20&c=JfUhT6VazsIMjUoIsnTVi394JJcibNjVgNz5kpqYTD8=";
 
   const currentTheme = mounted ? (resolvedTheme || "dark") : "dark";
-  const isDark = currentTheme === "dark";
+  const isDark = currentTheme === "dark" || currentTheme === "theme-navy" || currentTheme === "theme-cognac";
 
   return (
     <section className="relative min-h-[90vh] overflow-hidden flex flex-col justify-between">

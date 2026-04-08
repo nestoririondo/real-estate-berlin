@@ -1,61 +1,105 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+const PALETTES = [
+  {
+    name: "light",
+    label: "Gold Light",
+    bg: "#F5F0E8",
+    primary: "#C9A436",
+  },
+  {
+    name: "theme-pearl",
+    label: "Pearl",
+    bg: "#F2F0EC",
+    primary: "#2E5266",
+  },
+  {
+    name: "theme-beige",
+    label: "Beige",
+    bg: "#DDD0C8",
+    primary: "#C9963A",
+  },
+  {
+    name: "dark",
+    label: "Night",
+    bg: "#1B1B2A",
+    primary: "#C9A436",
+  },
+  {
+    name: "theme-navy",
+    label: "Navy",
+    bg: "#0A1828",
+    primary: "#BFA181",
+  },
+  {
+    name: "theme-cognac",
+    label: "Cognac",
+    bg: "#181510",
+    primary: "#C8883A",
+  },
+];
+
 const ThemeToggle = ({ className }: { className?: string }) => {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
-  // Avoid hydration mismatch
   React.useEffect(() => {
     setMounted(true);
   }, []);
 
-  const toggleTheme = React.useCallback(() => {
-    // Use resolvedTheme to determine current actual theme (handles "system" theme)
-    const currentResolved = resolvedTheme || "dark";
-    // Toggle between light and dark (if system, switch to opposite of current resolved theme)
-    setTheme(currentResolved === "dark" ? "light" : "dark");
-  }, [resolvedTheme, setTheme]);
-
   if (!mounted) {
     return (
-      <Button
-        variant="ghost"
-        size="icon"
-        className={cn("h-9 w-9", className)}
-        aria-label="Toggle theme"
-        disabled
-      >
-        <Sun className="h-4 w-4" />
-      </Button>
+      <div className={cn("flex items-center gap-1.5", className)}>
+        {PALETTES.map((p) => (
+          <div
+            key={p.name}
+            className="h-5 w-5 rounded-full border border-white/20 opacity-50"
+            style={{ background: p.bg }}
+          />
+        ))}
+      </div>
     );
   }
 
-  // Use resolvedTheme to show correct icon (handles "system" theme)
-  const currentResolved = resolvedTheme || "dark";
-  const isDark = currentResolved === "dark";
+  const activeTheme = theme === "system" ? (resolvedTheme || "dark") : theme;
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={toggleTheme}
-      className={cn("h-9 w-9", className)}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-    >
-      {isDark ? (
-        <Sun className="h-4 w-4 transition-all" />
-      ) : (
-        <Moon className="h-4 w-4 transition-all" />
-      )}
-    </Button>
+    <div className={cn("flex items-center gap-1.5", className)} role="group" aria-label="Choose color palette">
+      {PALETTES.map((p) => {
+        const isActive = activeTheme === p.name;
+        return (
+          <button
+            key={p.name}
+            onClick={() => setTheme(p.name)}
+            aria-label={p.label}
+            title={p.label}
+            className={cn(
+              "relative h-5 w-5 rounded-full transition-all duration-200 cursor-pointer",
+              "border-2",
+              isActive
+                ? "scale-125 shadow-md"
+                : "opacity-60 hover:opacity-90 hover:scale-110 border-transparent"
+            )}
+            style={{
+              background: p.bg,
+              borderColor: isActive ? p.primary : "transparent",
+              boxShadow: isActive ? `0 0 0 1px ${p.primary}` : undefined,
+            }}
+          >
+            {/* Inner dot showing primary/accent colour */}
+            <span
+              className="absolute inset-[4px] rounded-full"
+              style={{ background: p.primary }}
+            />
+          </button>
+        );
+      })}
+    </div>
   );
 };
 
 export { ThemeToggle };
-
