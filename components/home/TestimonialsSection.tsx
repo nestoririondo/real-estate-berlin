@@ -5,7 +5,7 @@ import { Star } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 
 interface Testimonial {
@@ -17,7 +17,7 @@ interface Testimonial {
   avatar?: string;
 }
 
-const testimonials: Testimonial[] = [
+const FALLBACK_TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
     name: "Sarah Mueller",
@@ -88,6 +88,27 @@ const TestimonialsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isPaused, setIsPaused] = useState(false);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(FALLBACK_TESTIMONIALS);
+
+  useEffect(() => {
+    fetch("/api/google-reviews")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.reviews?.length) {
+          setTestimonials(
+            data.reviews.map((r: { author_name: string; text: string; rating: number; profile_photo_url?: string }, i: number) => ({
+              id: i,
+              name: r.author_name,
+              role: "Google Review",
+              content: r.text,
+              rating: r.rating,
+              avatar: r.profile_photo_url,
+            }))
+          );
+        }
+      })
+      .catch(() => { /* keep fallback */ });
+  }, []);
 
   return (
     <section className="py-16 md:py-24 overflow-hidden">
