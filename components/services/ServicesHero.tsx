@@ -32,7 +32,7 @@ export const ServicesHero = ({ title, subtitle }: ServicesHeroProps) => {
           <p className="text-xs tracking-[0.2em] uppercase text-primary mb-6 font-medium">
             Real Estate in Berlin
           </p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6 hyphens-manual" style={{ fontFamily: "var(--font-display)" }}>
             {title}
           </h1>
           <p className="text-muted-foreground leading-relaxed max-w-sm">
