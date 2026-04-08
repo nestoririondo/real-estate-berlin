@@ -10,8 +10,10 @@ interface PriceRange {
 
 const PRICE_RANGES: PriceRange[] = [
   { label: "filter.all", min: FILTER_LIMITS.PRICE_MIN, max: FILTER_LIMITS.PRICE_MAX },
-  { label: "< €200k", min: 0, max: 200000 },
-  { label: "€200k – €500k", min: 200000, max: 500000 },
+  { label: "< €100k", min: 0, max: 100000 },
+  { label: "€100k – €200k", min: 100000, max: 200000 },
+  { label: "€200k – €300k", min: 200000, max: 300000 },
+  { label: "€300k – €500k", min: 300000, max: 500000 },
   { label: "€500k – €1M", min: 500000, max: 1000000 },
   { label: "€1M+", min: 1000000, max: FILTER_LIMITS.PRICE_MAX },
 ];

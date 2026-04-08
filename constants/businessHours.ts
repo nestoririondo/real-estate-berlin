@@ -8,14 +8,15 @@ export interface BusinessHours {
 
 // Business hours configuration
 // Day of week: 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+// Fractional hours: 9.5 = 9:30, 17.5 = 17:30, etc.
 export const BUSINESS_HOURS: BusinessHours = {
   0: { closed: true }, // Sunday: Closed
-  1: { open: 9, close: 18 }, // Monday: 9:00 AM - 6:00 PM
-  2: { open: 9, close: 18 }, // Tuesday: 9:00 AM - 6:00 PM
-  3: { open: 9, close: 18 }, // Wednesday: 9:00 AM - 6:00 PM
-  4: { open: 9, close: 18 }, // Thursday: 9:00 AM - 6:00 PM
-  5: { open: 9, close: 18 }, // Friday: 9:00 AM - 6:00 PM
-  6: { open: 10, close: 14 }, // Saturday: 10:00 AM - 2:00 PM
+  1: { open: 9.5, close: 17.5 }, // Monday: 9:30 AM - 5:30 PM
+  2: { open: 9.5, close: 17.5 }, // Tuesday: 9:30 AM - 5:30 PM
+  3: { open: 9.5, close: 17.5 }, // Wednesday: 9:30 AM - 5:30 PM
+  4: { open: 9.5, close: 17.5 }, // Thursday: 9:30 AM - 5:30 PM
+  5: { open: 9.5, close: 17.5 }, // Friday: 9:30 AM - 5:30 PM
+  6: { open: 11, close: 16 }, // Saturday: 11:00 AM - 4:00 PM
 };
 
 /**
@@ -46,8 +47,10 @@ export const formatBusinessHours = (_locale: string = "en"): string[] => {
   void _locale;
   const formatTime = (hour: number): string => {
     const period = hour >= 12 ? "PM" : "AM";
-    const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
-    return `${displayHour}:00 ${period}`;
+    const h = Math.floor(hour);
+    const m = Math.round((hour - h) * 60);
+    const displayHour = h > 12 ? h - 12 : h === 0 ? 12 : h;
+    return `${displayHour}:${m.toString().padStart(2, "0")} ${period}`;
   };
 
   const days = [
@@ -71,8 +74,10 @@ export const formatBusinessHours = (_locale: string = "en"): string[] => {
 export const getBusinessHoursDisplay = (): Array<{ day: string; hours: string }> => {
   const formatTime = (hour: number): string => {
     const period = hour >= 12 ? "PM" : "AM";
-    const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
-    return `${displayHour}:00 ${period}`;
+    const h = Math.floor(hour);
+    const m = Math.round((hour - h) * 60);
+    const displayHour = h > 12 ? h - 12 : h === 0 ? 12 : h;
+    return `${displayHour}:${m.toString().padStart(2, "0")} ${period}`;
   };
 
   return [

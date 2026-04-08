@@ -84,7 +84,11 @@ const PropertyFilter = ({ filters, onFilterChange, cityOptions, neighborhoodOpti
     filters.sizeMin !== FILTER_LIMITS.SIZE_MIN ||
     filters.sizeMax !== FILTER_LIMITS.SIZE_MAX;
 
-  const labelFor = (value: string) => value === "all" ? tCommon("all") : value;
+  const labelFor = (value: string) => {
+    if (value === "all") return tCommon("all");
+    if (value === "abroad") return t("abroad");
+    return value;
+  };
 
   return (
     <div className={!mounted ? "opacity-0" : "opacity-100"}>

@@ -80,7 +80,7 @@ const FeaturedListings = () => {
             </p>
           </div>
           <Button asChild size="lg" variant="secondary" className="hidden md:flex group">
-            <Link href={`/${locale}/properties`} className="flex items-center gap-2">
+            <Link href={`/${locale}/properties?location=Berlin`} className="flex items-center gap-2">
               {t("viewAllProperties")}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -115,7 +115,7 @@ const FeaturedListings = () => {
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
           <Button asChild size="lg" variant="secondary" className="group">
-            <Link href={`/${locale}/properties`} className="flex items-center gap-2">
+            <Link href={`/${locale}/properties?location=Berlin`} className="flex items-center gap-2">
               {t("viewAllProperties")}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>

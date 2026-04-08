@@ -24,7 +24,7 @@ export const FILTER_LIMITS = {
   PRICE_MIN: 0,
   PRICE_MAX: 2000000,
   SIZE_MIN: 0,
-  SIZE_MAX: 200,
+  SIZE_MAX: 500,
   PRICE_STEP: 10000,
   SIZE_STEP: 5,
 } as const;

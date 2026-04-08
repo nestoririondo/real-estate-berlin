@@ -14,6 +14,8 @@
     "new": "Nuovo",
     "available": "Disponibile",
     "rented": "Affittato",
+    "tenanted": "Affittato",
+    "vacant": "Libero",
     "sold": "Venduto",
     "back": "Indietro"
   },
@@ -69,8 +71,8 @@
     "namePlaceholder": "Mario Rossi",
     "emailPlaceholder": "mario@esempio.com",
     "phonePlaceholder": "+49 123 456 789",
-    "messagePlaceholder": "Ciao Fabrizio, sono interessato a questa proprietà e vorrei programmare una visita. Potresti dirmi di più su...",
-    "sendMessage": "Invia Messaggio a Fabrizio",
+    "messagePlaceholder": "Sono interessato a questa proprietà e vorrei programmare una visita. Potresti dirmi di più su...",
+    "sendMessage": "Invia Messaggio alla nostra Agenzia",
     "sending": "Invio del tuo messaggio...",
     "sent": "Messaggio Inviato con Successo!",
     "sentDescription": "Fabrizio ti risponderà entro 5 minuti.",
@@ -86,7 +88,7 @@
     "featuredProperties": "Immobili in Evidenza",
     "featuredPropertiesSubtitle": "Esplora la nostra selezione accurata di immobili premium a Berlino",
     "viewAllProperties": "Vedi Tutti gli Immobili",
-    "testimonialsTitle": "Cosa Dicono I Nostri Clienti",
+    "testimonialsTitle": "Testimonianze",
     "testimonialsSubtitle": "Non fidarti solo della nostra parola - ascolta i nostri clienti soddisfatti",
     "servicesTitle": "I Nostri Servizi",
     "servicesSubtitle": "Servizi immobiliari completi su misura per le tue esigenze",
@@ -138,8 +140,8 @@
       "ivdDesc": "Standard professionali certificati",
       "networkTitle": "Rete Internazionale",
       "networkDesc": "Connessioni immobiliari globali",
-      "experienceTitle": "15+ Anni",
-      "experienceDesc": "Esperienza immobiliare a Berlino"
+      "experienceTitle": "15+ Esperienza",
+      "experienceDesc": "Anni nel mercato immobiliare di Berlino"
     },
     "buy": {
       "title": "Acquistare",
@@ -238,6 +240,7 @@
       "sell": "Vendere un Immobile",
       "renovate": "Servizi di Ristrutturazione",
       "consulting": "Consulenza",
+      "rent": "Affitto",
       "other": "Altro"
     },
     "name": "Nome",

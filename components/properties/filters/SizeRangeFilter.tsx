@@ -10,10 +10,12 @@ interface SizeRange {
 
 const SIZE_RANGES: SizeRange[] = [
   { label: "filter.all", min: FILTER_LIMITS.SIZE_MIN, max: FILTER_LIMITS.SIZE_MAX },
-  { label: "< 50m²", min: 0, max: 50 },
-  { label: "50 – 100m²", min: 50, max: 100 },
-  { label: "100 – 150m²", min: 100, max: 150 },
-  { label: "150m²+", min: 150, max: FILTER_LIMITS.SIZE_MAX },
+  { label: "< 30m²", min: 0, max: 30 },
+  { label: "30 – 40m²", min: 30, max: 40 },
+  { label: "40 – 50m²", min: 40, max: 50 },
+  { label: "50 – 75m²", min: 50, max: 75 },
+  { label: "75 – 100m²", min: 75, max: 100 },
+  { label: "> 100m²", min: 100, max: FILTER_LIMITS.SIZE_MAX },
 ];
 
 interface SizeRangeFilterProps {

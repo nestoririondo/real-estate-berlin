@@ -31,13 +31,23 @@ const PropertiesInner = () => {
     locale: locale === "de" ? "de" : "en",
   });
 
+  const GERMAN_CITIES = ["Berlin", "Leipzig"];
+
   const cityOptions = useMemo(() => {
     const cities = [...new Set(properties.map((p) => p.city).filter(Boolean))] as string[];
-    return ["all", ...cities.sort()];
+    const germanCities = cities.filter((c) => GERMAN_CITIES.includes(c));
+    const hasAbroad = cities.some((c) => !GERMAN_CITIES.includes(c));
+    return ["all", ...germanCities.sort(), ...(hasAbroad ? ["abroad"] : [])];
   }, [properties]);
 
   const neighborhoodOptions = useMemo(() => {
-    const neighborhoods = [...new Set(properties.map((p) => p.neighborhood).filter(Boolean))] as string[];
+    const neighborhoods = [...new Set(
+      properties.map((p) => {
+        const cityLower = p.city?.toLowerCase() || "";
+        const isAbroad = cityLower !== "" && !["berlin", "leipzig"].includes(cityLower);
+        return isAbroad ? p.country : p.neighborhood;
+      }).filter(Boolean)
+    )] as string[];
     return ["all", ...neighborhoods.sort()];
   }, [properties]);
 

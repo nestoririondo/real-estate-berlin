@@ -56,6 +56,7 @@ export const ContactForm = () => {
     { value: "sell", label: t("services.sell") },
     { value: "renovate", label: t("services.renovate") },
     { value: "consulting", label: t("services.consulting") },
+    { value: "rent", label: t("services.rent") },
     { value: "other", label: t("services.other") },
   ];
 
@@ -137,7 +138,7 @@ export const ContactForm = () => {
 
           <div className="space-y-2">
             <Label htmlFor="phone">
-              {t("phone")} <span className="text-muted-foreground">({t("optional")})</span>
+              {t("phone")} <span className="text-destructive">*</span>
             </Label>
             <Input
               id="phone"
@@ -146,6 +147,7 @@ export const ContactForm = () => {
               placeholder={t("phonePlaceholder")}
               value={formData.phone}
               onChange={handleChange}
+              required
             />
           </div>
 

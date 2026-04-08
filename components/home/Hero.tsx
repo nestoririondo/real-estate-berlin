@@ -55,9 +55,10 @@ const Hero = () => {
         </motion.p>
 
         {/* Center text block */}
-        <div className="max-w-2xl">
+        <div>
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-medium text-white leading-tight mb-6"
+            className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-medium text-white whitespace-nowrap mb-6"
+            style={{ fontFamily: "var(--font-display)" }}
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.7, ease: [0.42, 0, 0.58, 1] }}
@@ -72,7 +73,7 @@ const Hero = () => {
             style={{ transformOrigin: "left" }}
           />
           <motion.p
-            className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed"
+            className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-xl"
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
             transition={{ duration: 0.6, delay: 0.35, ease: [0.42, 0, 0.58, 1] }}
@@ -96,7 +97,7 @@ const Hero = () => {
         {/* Bottom stats row */}
         <div className="flex gap-10">
           {[
-            { value: "15+", label: "Years in Berlin" },
+            { value: "15+", label: "Experience" },
             { value: "500+", label: "Transactions" },
             { value: "5", label: "Languages" },
           ].map((stat, i) => (

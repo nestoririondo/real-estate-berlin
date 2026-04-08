@@ -16,6 +16,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
   const locale = useLocale();
 
   const isRented = property.rented === true;
+  const isVacant = property.rented === false;
 
   return (
     <Link href={`/${locale}/properties/${property.id}`} className="group block rounded-sm transition-all duration-300 hover:bg-muted p-3 -mx-3">
@@ -43,7 +44,13 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
           {isRented && (
             <span className="text-xs tracking-[0.15em] uppercase font-medium text-blue-800 dark:text-blue-200 bg-blue-100/90 dark:bg-blue-900/80 backdrop-blur-sm px-2 py-1 flex items-center gap-1">
               <Home className="h-3 w-3" />
-              {t("rented")}
+              {t("tenanted")}
+            </span>
+          )}
+          {isVacant && (
+            <span className="text-xs tracking-[0.15em] uppercase font-medium text-green-800 dark:text-green-200 bg-green-100/90 dark:bg-green-900/80 backdrop-blur-sm px-2 py-1 flex items-center gap-1">
+              <Home className="h-3 w-3" />
+              {t("vacant")}
             </span>
           )}
         </div>

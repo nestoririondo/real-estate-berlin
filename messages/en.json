@@ -14,6 +14,8 @@
     "new": "New",
     "available": "Available",
     "rented": "Rented",
+    "tenanted": "Tenanted",
+    "vacant": "Vacant",
     "sold": "Sold",
     "back": "Back"
   },
@@ -69,8 +71,8 @@
     "namePlaceholder": "John Doe",
     "emailPlaceholder": "john@example.com",
     "phonePlaceholder": "+49 123 456 789",
-    "messagePlaceholder": "Hi Fabrizio, I'm interested in this property and would like to schedule a viewing. Could you tell me more about...",
-    "sendMessage": "Send Message to Fabrizio",
+    "messagePlaceholder": "I'm interested in this property and would like to schedule a viewing. Could you tell me more about...",
+    "sendMessage": "Send Message to our Agency",
     "sending": "Sending your message...",
     "sent": "Message Sent Successfully!",
     "sentDescription": "Fabrizio will get back to you within 5 minutes.",
@@ -86,7 +88,7 @@
     "featuredProperties": "Featured Properties",
     "featuredPropertiesSubtitle": "Browse our hand-picked selection of premium properties in Berlin",
     "viewAllProperties": "View All Properties",
-    "testimonialsTitle": "What Our Clients Say",
+    "testimonialsTitle": "Testimonials",
     "testimonialsSubtitle": "Don't just take our word for it - hear from our satisfied clients",
     "servicesTitle": "Our Services",
     "servicesSubtitle": "Comprehensive real estate services tailored to your needs",
@@ -138,8 +140,8 @@
       "ivdDesc": "Certified professional standards",
       "networkTitle": "International Network",
       "networkDesc": "Global property connections",
-      "experienceTitle": "15+ Years",
-      "experienceDesc": "Berlin real estate expertise"
+      "experienceTitle": "15+ Experience",
+      "experienceDesc": "Years in Berlin real estate"
     },
     "buy": {
       "title": "Buy",
@@ -232,12 +234,13 @@
     "formSubtitle": "Fill out the form below and we'll get back to you within 5 minutes.",
     "responseTime": "Response in 5 min",
     "service": "Service Interest",
-    "servicePlaceholder": "What can we help you with?",
+    "servicePlaceholder": "How can we help you?",
     "services": {
       "buy": "Buying a Property",
       "sell": "Selling a Property",
       "renovate": "Renovation Services",
       "consulting": "Consulting",
+      "rent": "Renting",
       "other": "Other"
     },
     "name": "Name",

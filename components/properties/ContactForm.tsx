@@ -102,7 +102,7 @@ const ContactForm = ({ propertyTitle }: ContactFormProps) => {
 
               <div>
                 <label htmlFor="prop-phone" className="text-xs tracking-[0.12em] uppercase text-muted-foreground block mb-1.5">
-                  {tPage("phone")} <span className="text-muted-foreground/50">({tPage("optional")})</span>
+                  {tPage("phone")} <span className="text-primary">*</span>
                 </label>
                 <Input
                   id="prop-phone"
@@ -111,6 +111,7 @@ const ContactForm = ({ propertyTitle }: ContactFormProps) => {
                   placeholder={tPage("phonePlaceholder")}
                   value={formData.phone}
                   onChange={handleChange}
+                  required
                   className="rounded-none border-x-0 border-t-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-primary"
                 />
               </div>

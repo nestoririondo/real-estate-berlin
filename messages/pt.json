@@ -14,6 +14,8 @@
     "new": "Novo",
     "available": "Disponível",
     "rented": "Alugado",
+    "tenanted": "Arrendado",
+    "vacant": "Livre",
     "sold": "Vendido",
     "back": "Voltar"
   },
@@ -69,8 +71,8 @@
     "namePlaceholder": "João Silva",
     "emailPlaceholder": "joao@exemplo.com",
     "phonePlaceholder": "+49 123 456 789",
-    "messagePlaceholder": "Olá Fabrizio, estou interessado nesta propriedade e gostaria de agendar uma visita. Você poderia me contar mais sobre...",
-    "sendMessage": "Enviar Mensagem para Fabrizio",
+    "messagePlaceholder": "Estou interessado nesta propriedade e gostaria de agendar uma visita. Você poderia me contar mais sobre...",
+    "sendMessage": "Enviar Mensagem para a nossa Agência",
     "sending": "Enviando sua mensagem...",
     "sent": "Mensagem Enviada com Sucesso!",
     "sentDescription": "Fabrizio entrará em contato em 5 minutos.",
@@ -86,7 +88,7 @@
     "featuredProperties": "Propriedades em Destaque",
     "featuredPropertiesSubtitle": "Explore nossa seleção cuidadosamente escolhida de propriedades premium em Berlim",
     "viewAllProperties": "Ver Todas as Propriedades",
-    "testimonialsTitle": "O Que Nossos Clientes Dizem",
+    "testimonialsTitle": "Testemunhos",
     "testimonialsSubtitle": "Não acredite apenas na nossa palavra - ouça nossos clientes satisfeitos",
     "servicesTitle": "Nossos Serviços",
     "servicesSubtitle": "Serviços imobiliários abrangentes adaptados às suas necessidades",
@@ -138,8 +140,8 @@
       "ivdDesc": "Padrões profissionais certificados",
       "networkTitle": "Rede Internacional",
       "networkDesc": "Conexões imobiliárias globais",
-      "experienceTitle": "15+ Anos",
-      "experienceDesc": "Experiência imobiliária em Berlim"
+      "experienceTitle": "15+ Experiência",
+      "experienceDesc": "Anos no mercado imobiliário de Berlim"
     },
     "buy": {
       "title": "Comprar",
@@ -238,6 +240,7 @@
       "sell": "Vender uma Propriedade",
       "renovate": "Serviços de Renovação",
       "consulting": "Consultoria",
+      "rent": "Arrendamento",
       "other": "Outro"
     },
     "name": "Nome",

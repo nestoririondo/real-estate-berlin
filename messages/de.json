@@ -14,6 +14,8 @@
     "new": "Neu",
     "available": "Verfügbar",
     "rented": "Vermietet",
+    "tenanted": "Vermietet",
+    "vacant": "Leer",
     "sold": "Verkauft",
     "back": "Zurück"
   },
@@ -69,8 +71,8 @@
     "namePlaceholder": "Max Mustermann",
     "emailPlaceholder": "max@beispiel.de",
     "phonePlaceholder": "+49 123 456 789",
-    "messagePlaceholder": "Hallo Fabrizio, ich interessiere mich für diese Immobilie und würde gerne eine Besichtigung vereinbaren. Könnten Sie mir mehr erzählen über...",
-    "sendMessage": "Nachricht an Fabrizio senden",
+    "messagePlaceholder": "Ich interessiere mich für diese Immobilie und würde gerne eine Besichtigung vereinbaren. Könnten Sie mir mehr erzählen über...",
+    "sendMessage": "Nachricht an unsere Agentur senden",
     "sending": "Ihre Nachricht wird gesendet...",
     "sent": "Nachricht erfolgreich gesendet!",
     "sentDescription": "Fabrizio wird sich innerhalb von 5 Minuten bei Ihnen melden.",
@@ -86,7 +88,7 @@
     "featuredProperties": "Ausgewählte Immobilien",
     "featuredPropertiesSubtitle": "Durchsuchen Sie unsere handverlesene Auswahl an Premium-Immobilien in Berlin",
     "viewAllProperties": "Alle Immobilien anzeigen",
-    "testimonialsTitle": "Was Unsere Kunden Sagen",
+    "testimonialsTitle": "Testimonials",
     "testimonialsSubtitle": "Nehmen Sie nicht nur unser Wort dafür - hören Sie von unseren zufriedenen Kunden",
     "servicesTitle": "Unsere Dienstleistungen",
     "servicesSubtitle": "Umfassende Immobiliendienstleistungen, die auf Ihre Bedürfnisse zugeschnitten sind",
@@ -138,8 +140,8 @@
       "ivdDesc": "Zertifizierte professionelle Standards",
       "networkTitle": "Internationales Netzwerk",
       "networkDesc": "Globale Immobilienverbindungen",
-      "experienceTitle": "15+ Jahre",
-      "experienceDesc": "Berliner Immobilienexpertise"
+      "experienceTitle": "15+ Erfahrung",
+      "experienceDesc": "Jahre im Berliner Immobilienmarkt"
     },
     "buy": {
       "title": "Kaufen",
@@ -232,12 +234,13 @@
     "formSubtitle": "Füllen Sie das Formular unten aus und wir melden uns innerhalb von 5 Minuten bei Ihnen.",
     "responseTime": "Antwort in 5 Min",
     "service": "Service-Interesse",
-    "servicePlaceholder": "Womit können wir Ihnen helfen?",
+    "servicePlaceholder": "Wie können wir Ihnen helfen?",
     "services": {
       "buy": "Immobilie kaufen",
       "sell": "Immobilie verkaufen",
       "renovate": "Renovierungsdienstleistungen",
       "consulting": "Beratung",
+      "rent": "Vermietung",
       "other": "Anderes"
     },
     "name": "Name",

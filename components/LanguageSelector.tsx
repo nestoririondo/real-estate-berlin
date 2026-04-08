@@ -14,11 +14,11 @@ import { locales, type Locale } from "@/i18n";
 
 
 const languageNames: Record<Locale, string> = {
-  en: "English",
-  de: "Deutsch",
-  es: "Español",
-  pt: "Português",
-  it: "Italiano",
+  en: "🇬🇧 English",
+  de: "🇩🇪 Deutsch",
+  es: "🇪🇸 Español",
+  pt: "🇵🇹 Português",
+  it: "🇮🇹 Italiano",
 };
 
 const LanguageSelector = () => {
@@ -35,7 +35,7 @@ const LanguageSelector = () => {
 
   return (
     <Select value={locale} onValueChange={handleLanguageChange}>
-      <SelectTrigger className="w-[140px]">
+      <SelectTrigger className="w-[160px]">
         <Globe className="h-4 w-4 mr-2" />
         <SelectValue />
       </SelectTrigger>
