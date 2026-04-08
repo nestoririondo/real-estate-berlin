@@ -22,23 +22,20 @@ const FeaturedListings = () => {
     locale: locale === "de" ? "de" : "en",
   });
 
-  // Get last 4 properties (most recent) - sort by created_at or updated_at if available
+  // Get last 4 Berlin properties (most recent)
   const featuredProperties = useMemo(() => {
     if (!properties || properties.length === 0) return [];
-    
-    // Sort by created_at (most recent first), fallback to updated_at, then take first 4
-    const sorted = [...properties].sort((a, b) => {
+
+    const berlinOnly = properties.filter((p) => p.city?.toLowerCase() === "berlin");
+
+    return [...berlinOnly].sort((a, b) => {
       const dateA = a.created_at ? new Date(a.created_at).getTime() : 0;
       const dateB = b.created_at ? new Date(b.created_at).getTime() : 0;
-      if (dateA !== dateB) return dateB - dateA; // Most recent first
-      
-      // Fallback to updated_at
+      if (dateA !== dateB) return dateB - dateA;
       const updatedA = a.updated_at ? new Date(a.updated_at).getTime() : 0;
       const updatedB = b.updated_at ? new Date(b.updated_at).getTime() : 0;
       return updatedB - updatedA;
-    });
-    
-    return sorted.slice(0, 4);
+    }).slice(0, 4);
   }, [properties]);
 
   const containerVariants = {
