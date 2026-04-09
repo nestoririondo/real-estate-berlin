@@ -63,7 +63,7 @@ export const ContactForm = () => {
   return (
     <>
       {!isSubmitted && (
-        <p className="text-xs tracking-[0.2em] uppercase text-primary mb-10 font-medium">
+        <p className="text-xs tracking-[0.2em] uppercase text-primary mb-5 font-medium">
           {t("heroTitle")}
         </p>
       )}
@@ -77,13 +77,13 @@ export const ContactForm = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onSubmit={handleSubmit}
-          className="space-y-6"
+          className="space-y-4"
         >
-          <div className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-medium leading-tight mb-4">
+          <div className="mb-5">
+            <h1 className="text-3xl md:text-4xl font-medium leading-tight mb-3">
               {t("formTitle")}
             </h1>
-            <div className="w-10 h-px bg-primary mb-6" />
+            <div className="w-10 h-px bg-primary mb-4" />
             <p className="text-muted-foreground max-w-sm">{t("formSubtitle")}</p>
           </div>
           {/* Service Selection */}
@@ -161,7 +161,7 @@ export const ContactForm = () => {
               placeholder={t("messagePlaceholder")}
               value={formData.message}
               onChange={handleChange}
-              rows={5}
+              rows={4}
               required
               className="resize-none"
             />

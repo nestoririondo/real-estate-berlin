@@ -36,10 +36,10 @@ const ContactPage = async ({ params }: ContactPageProps) => {
   const hours = getBusinessHoursDisplay();
 
   return (
-    <div className="min-h-screen">
-      <section className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+    <div>
+      <section className="grid grid-cols-1 lg:grid-cols-2 lg:h-[calc(100dvh-4rem)]">
         {/* Left — image + all info */}
-        <div className="relative hidden lg:flex flex-col justify-end">
+        <div className="relative hidden lg:flex flex-col justify-end overflow-hidden">
           <Image
             src="/ABOUT-leftcolumn.jpg"
             alt="Real Estate in Berlin office"
@@ -111,7 +111,7 @@ const ContactPage = async ({ params }: ContactPageProps) => {
         </div>
 
         {/* Right — form */}
-        <div className="flex flex-col justify-center px-8 md:px-14 lg:px-16 py-16 md:py-24 bg-background">
+        <div className="flex flex-col justify-center px-8 md:px-14 lg:px-16 py-10 md:py-14 lg:py-10 bg-background lg:overflow-y-auto">
           <ContactForm />
 
           {/* Mobile/tablet info — hidden on desktop where left column shows it */}

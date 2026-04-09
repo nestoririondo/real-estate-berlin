@@ -108,12 +108,12 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.55 + i * 0.15, ease: [0.42, 0, 0.58, 1] }}
             >
               <div
-                className="text-3xl font-medium text-primary"
+                className="text-3xl font-medium text-white"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {stat.value}
               </div>
-              <div className="text-sm text-white/75 mt-1">{stat.label}</div>
+              <div className="text-sm text-white/60 mt-1">{stat.label}</div>
             </motion.div>
           ))}
         </div>
